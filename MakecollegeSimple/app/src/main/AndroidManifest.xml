@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainMenu"
+            android:name=".LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,9 +19,20 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainMenu"
+            android:label="Make college Simple"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Make college Simple"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
             android:name=".Summary"
             android:label="@string/title_activity_summary"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-    </application>
+            android:theme="@style/AppTheme.NoActionBar"/>
+        </application>
 
 </manifest>
