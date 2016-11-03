@@ -28,11 +28,11 @@ public class RegisterActivity extends AppCompatActivity{
         final Button bRegister = (Button) findViewById(R.id.bRegister);
         final TextView tvRegister = (TextView) findViewById(R.id.tvRegister);
 
-        // when user clicks bRegister, goes to MainMenu activity
+        // when user clicks bRegister, goes to WelcomeActivity
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registerIntent = new Intent(RegisterActivity.this, MainMenu.class);
+                Intent registerIntent = new Intent(RegisterActivity.this, WelcomeActivity.class);
 
                 RegisterActivity.this.startActivity(registerIntent);
             }

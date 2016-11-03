@@ -28,6 +28,16 @@
             android:label="Make college Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="Make college Simple"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".TutorialActivity"
+            android:label="Make college Simple"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <activity
             android:name=".Summary"
