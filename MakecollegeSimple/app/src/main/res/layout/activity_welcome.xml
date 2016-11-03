@@ -38,17 +38,10 @@
         android:textAlignment="center" />
 
     <Button
-        android:text="Click here to begin Tutorial"
+        android:text="Click here to Configure Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bTutorial"
+        android:id="@+id/bStartingSettings"
         android:layout_weight="0.04" />
 
-    <TextView
-        android:text="Skip Tutorial"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvSkipTutorial"
-        android:layout_weight="0.04"
-        android:textAlignment="center" />
 </LinearLayout>

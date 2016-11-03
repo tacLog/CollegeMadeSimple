@@ -15,6 +15,7 @@ public class TutorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial1);
 
+        // creating variables for respective types and IDs
         final TextView tvTutorial1 = (TextView) findViewById(R.id.tvTutorial1);
     }
 }

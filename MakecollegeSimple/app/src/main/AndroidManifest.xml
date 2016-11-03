@@ -38,7 +38,11 @@
             android:label="Make college Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
+        <activity
+            android:name=".StartingSettingsActivity"
+            android:label="Make college Simple"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".Summary"
             android:label="@string/title_activity_summary"

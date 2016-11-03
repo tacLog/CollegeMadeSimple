@@ -25,26 +25,17 @@ public class WelcomeActivity extends AppCompatActivity{
         final TextView tvCredits = (TextView) findViewById(R.id.tvCredits);
         final TextView tvMissionStatement = (TextView) findViewById(R.id.tvMissionStatement);
         final TextView tvSkipTutorial = (TextView) findViewById(R.id.tvSkipTutorial);
-        final Button bTutorial = (Button) findViewById(R.id.bTutorial);
+        final Button bStartingSettings = (Button) findViewById(R.id.bStartingSettings);
 
-        // when user clicks bTutorial, it takes them to TutorialActivity
-        bTutorial.setOnClickListener(new View.OnClickListener() {
+        // when user clicks bTutorial, it takes them to StartingSettingsActivity
+        bStartingSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent tutorialIntent = new Intent(WelcomeActivity.this, TutorialActivity.class);
+                Intent tutorialIntent = new Intent(WelcomeActivity.this, StartingSettingsActivity.class);
 
                 WelcomeActivity.this.startActivity(tutorialIntent);
             }
         });
 
-        // when user clicks skip tutorial, it takes them to the main menu screen
-        tvSkipTutorial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent skipTutorialIntent = new Intent(WelcomeActivity.this, MainMenu.class);
-
-                WelcomeActivity.this.startActivity(skipTutorialIntent);
-            }
-        });
     }
 }
