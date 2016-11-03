@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -22,9 +24,15 @@ public class StartingSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_starting_settings);
 
         // creating variables for the respective types and IDs
-        final TextView tvSettings = (TextView) findViewById(R.id.tvSettings);
-        final Button bTutorial = (Button) findViewById(R.id.bTutorial);
+        final TextView tvGettingStarted = (TextView) findViewById(R.id.tvGettingStarted);
+        final EditText etSchoolName = (EditText) findViewById(R.id.etSchoolName);
+        final CheckBox cbQuarter = (CheckBox) findViewById(R.id.cbQuarter);
+        final CheckBox cbSemester = (CheckBox) findViewById(R.id.cbSemester);
+        final CheckBox cbYes = (CheckBox) findViewById(R.id.cbYes);
+        final CheckBox cbNo = (CheckBox) findViewById(R.id.cbNo);
+        final TextView tvLiving = (TextView) findViewById(R.id.tvLiving);
         final TextView tvSkipTutorial = (TextView) findViewById(R.id.tvSkipTutorial);
+        final Button bTutorial = (Button) findViewById(R.id.bTutorial);
 
         // when user clicks bTutorial, goes to TutorialActivity
         bTutorial.setOnClickListener(new View.OnClickListener() {
