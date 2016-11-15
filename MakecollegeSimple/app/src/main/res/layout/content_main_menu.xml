@@ -13,8 +13,14 @@
     tools:context="edu.ucsc.makecollegesimple.MainMenu"
     tools:showIn="@layout/app_bar_main_menu">
 
-    <TextView
+    <com.github.mikephil.charting.charts.PieChart
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Summary" />
+        android:layout_height="match_parent"
+        android:id="@+id/idPieChart"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="58dp"></com.github.mikephil.charting.charts.PieChart>
+
+
 </RelativeLayout>

@@ -3,6 +3,7 @@ package edu.ucsc.makecollegesimple;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,13 +14,72 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
+
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    PieChart pieChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        //Pie chart
+        //I used a library to create the pie chart, please refer to https://github.com/PhilJay/MPAndroidChart for documentation.
+        pieChart = (PieChart) findViewById(R.id.idPieChart);
+        //this is the y-axis where each Entry represents the amount in the category and each category is numbered 0-4
+        final ArrayList<Entry> entries = new ArrayList<>();
+        entries.add(new Entry(4f, 0));  //(number before f is the amount for that category)
+        entries.add(new Entry(8f, 1));
+        entries.add(new Entry(6f, 2));
+        entries.add(new Entry(12f, 3));
+        entries.add(new Entry(8f, 4));
+        PieDataSet dataset = new PieDataSet(entries, "calls");
+
+        //this is the x-axis
+        ArrayList<String> labels = new ArrayList<String>();
+        labels.add("Supplies");
+        labels.add("Rent");
+        labels.add("Transportation");
+        labels.add("Tuition");
+        labels.add("Personal");
+
+        PieData data = new PieData(labels, dataset);
+        data.setValueTextSize(11f);
+
+        dataset.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        pieChart.setData(data);
+        pieChart.setCenterText("Costs");
+        pieChart.setCenterTextSize(15f);
+        pieChart.animateY(2500);
+
+        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                Log.i("tag", String.valueOf(e.getXIndex()));
+                int costsCategory = e.getXIndex();
+
+                if (costsCategory == 0){
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
+
+        //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
