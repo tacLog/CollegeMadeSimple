@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "783902877640",
+    "project_id": "uplifted-block-148906"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783902877640:android:0d87e8d4847fcb86",
+        "android_client_info": {
+          "package_name": "edu.ucsc.makecollegesimple"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783902877640-76gm17nhovp2kjm00qr08ud7f5c6uhu3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.ucsc.makecollegesimple",
+            "certificate_hash": "C41F535FEB4751C445518B9D1F93D643713CA27A"
+          }
+        },
+        {
+          "client_id": "783902877640-564d3ogskfvmm3tr268hslkqucabm7uf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgn0eKxraH0eUjJ7gkIzefsAjH-oeuGEk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
