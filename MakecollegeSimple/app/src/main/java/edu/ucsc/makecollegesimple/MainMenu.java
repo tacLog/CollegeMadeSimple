@@ -1,5 +1,6 @@
 package edu.ucsc.makecollegesimple;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,17 +33,22 @@ public class MainMenu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
+        float suppliesCost = 10;
+        float rentCost = 10;
+        float transportationCost = 10;
+        float tuitionCost = 10;
+        float personalCost = 10;
         //Pie chart
         //I used a library to create the pie chart, please refer to https://github.com/PhilJay/MPAndroidChart for documentation.
-        pieChart = (PieChart) findViewById(R.id.idPieChart);
-        //this is the y-axis where each Entry represents the amount in the category and each category is numbered 0-4
+        pieChart = (PieChart) findViewById(R.id.CostsPieChart);
+        //this is the y-axis
+        // first parameter of Entry represents the amount in the category and second parameter is index numbered 0-4
         final ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(4f, 0));  //(number before f is the amount for that category)
-        entries.add(new Entry(8f, 1));
-        entries.add(new Entry(6f, 2));
-        entries.add(new Entry(12f, 3));
-        entries.add(new Entry(8f, 4));
+        entries.add(new Entry(suppliesCost , 0));  //supplies
+        entries.add(new Entry (rentCost, 1));   //rent
+        entries.add(new Entry(transportationCost, 2));   //transportation
+        entries.add(new Entry(tuitionCost, 3));  //tuition
+        entries.add(new Entry(personalCost, 4));   //personal
         PieDataSet dataset = new PieDataSet(entries, "calls");
 
         //this is the x-axis
@@ -69,6 +75,11 @@ public class MainMenu extends AppCompatActivity
                 int costsCategory = e.getXIndex();
 
                 if (costsCategory == 0){
+                    // creating intent that opens RegisterActivity
+                    Intent newUserIntent = new Intent(MainMenu.this, CostSuppliesActivity.class);
+
+                    // telling LoginActivity to perform registerIntent
+                    MainMenu.this.startActivity(newUserIntent);
 
                 }
             }
