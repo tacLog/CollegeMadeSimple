@@ -18,6 +18,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.w3c.dom.Text;
 
+import static edu.ucsc.makecollegesimple.R.id.tvNewUser;
+
+// code written by Belal Kahn from https://www.simplifiedcoding.net/google-login-android-tutorial-integrate-gplus-login/
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     //Signin button
@@ -33,8 +37,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private int RC_SIGN_IN = 100;
 
     //TextViews
-    private TextView textViewName;
-    private TextView textViewEmail;
+    private TextView tvName;
+    private TextView tvEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         //Initializing Views
-        textViewName = (TextView) findViewById(R.id.textViewName);
-        textViewEmail = (TextView) findViewById(R.id.textViewEmail);
+        tvName = (TextView) findViewById(R.id.tvName);
+        tvEmail = (TextView) findViewById(R.id.tvEmail);
+        final TextView tvNewUser = (TextView) findViewById(R.id.tvNewUser);
 
         //Initializing google signin option
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -64,6 +69,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //Setting onclick listener to signing button
         signInButton.setOnClickListener(this);
+
+        // when user clicks newUser, takes them to the starting settings activity
+        tvNewUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newUserIntent = new Intent(LoginActivity.this, StartingSettingsActivity.class);
+
+                LoginActivity.this.startActivity(newUserIntent);
+            }
+        });
+
     }
 
 
@@ -96,8 +112,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             GoogleSignInAccount acct = result.getSignInAccount();
 
             //Displaying name and email
-            textViewName.setText(acct.getDisplayName());
-            textViewEmail.setText(acct.getEmail());
+            tvName.setText(acct.getDisplayName());
+            tvEmail.setText(acct.getEmail());
 
             // if login is successful, go to main menu
             Intent loginIntent = new Intent(LoginActivity.this, MainMenu.class);

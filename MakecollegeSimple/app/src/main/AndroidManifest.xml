@@ -25,11 +25,6 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".RegisterActivity"
-            android:label="Make college Simple"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
             android:name=".WelcomeActivity"
             android:label="Make college Simple"
             android:theme="@style/AppTheme.NoActionBar">
