@@ -70,11 +70,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Setting onclick listener to signing button
         signInButton.setOnClickListener(this);
 
-        // when user clicks newUser, takes them to the starting settings activity
+        // when user clicks newUser, takes them to the welcome activity
         tvNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newUserIntent = new Intent(LoginActivity.this, StartingSettingsActivity.class);
+                Intent newUserIntent = new Intent(LoginActivity.this, WelcomeActivity.class);
 
                 LoginActivity.this.startActivity(newUserIntent);
             }

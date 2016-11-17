@@ -41,7 +41,7 @@
         android:text="Click here to Configure Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bStartingSettings"
+        android:id="@+id/bConfigureSettings"
         android:layout_weight="0.04" />
 
 </LinearLayout>
