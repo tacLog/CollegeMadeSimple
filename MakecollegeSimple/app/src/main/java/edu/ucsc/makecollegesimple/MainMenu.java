@@ -29,15 +29,42 @@ public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     PieChart pieChart;
+    float suppliesCost;
+    float rentCost;
+    float transportationCost;
+    float tuitionCost;
+    float personalCost;
+    float totalCost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        float suppliesCost = 10;
-        float rentCost = 10;
-        float transportationCost = 10;
-        float tuitionCost = 10;
-        float personalCost = 10;
+
+        Bundle bundle = getIntent().getExtras(); //get variables that were passed from other activities (if any)
+        if (bundle == null) {
+            //if no variables were passed
+            suppliesCost = 10;
+            Log.i("bundle", String.valueOf(bundle)); //ignore this, used for debugging
+
+        }else{
+            // if there were variables passed
+            //convert bundle object to string
+            String strsuppliesCost =  String.valueOf(bundle.get("suppliesCost"));
+            Log.i("bundle2",strsuppliesCost); //ignore this, used for debugging
+            //convert string to float
+            float fltsuppliesCost = Float.parseFloat(strsuppliesCost);
+            Log.i("bundle3",String.valueOf(fltsuppliesCost)); //ignore this, used for debugging
+            //update the Supplies slice on piechart
+            suppliesCost = fltsuppliesCost;
+        }
+
+        //piechart slices are initialized at 10 for now
+        rentCost = 10;
+        transportationCost = 10;
+        tuitionCost = 10;
+        personalCost = 10;
+        totalCost = suppliesCost + rentCost + transportationCost + tuitionCost + personalCost;
+
         //Pie chart
         //I used a library to create the pie chart, please refer to https://github.com/PhilJay/MPAndroidChart for documentation.
         pieChart = (PieChart) findViewById(R.id.CostsPieChart);
@@ -49,7 +76,8 @@ public class MainMenu extends AppCompatActivity
         entries.add(new Entry(transportationCost, 2));   //transportation
         entries.add(new Entry(tuitionCost, 3));  //tuition
         entries.add(new Entry(personalCost, 4));   //personal
-        PieDataSet dataset = new PieDataSet(entries, "calls");
+
+        PieDataSet dataset = new PieDataSet(entries, "");
 
         //this is the x-axis
         ArrayList<String> labels = new ArrayList<String>();
@@ -60,12 +88,15 @@ public class MainMenu extends AppCompatActivity
         labels.add("Personal");
 
         PieData data = new PieData(labels, dataset);
-        data.setValueTextSize(11f);
 
-        dataset.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        pieChart.setData(data);
-        pieChart.setCenterText("Costs");
+        pieChart.setCenterText("Costs: $"  + totalCost);
         pieChart.setCenterTextSize(15f);
+
+        //appearance
+        data.setValueTextSize(11f);
+        dataset.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        pieChart.setDescription(null);
+        pieChart.setData(data);
         pieChart.animateY(2500);
 
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -93,7 +124,7 @@ public class MainMenu extends AppCompatActivity
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +133,7 @@ public class MainMenu extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
+*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -111,6 +142,7 @@ public class MainMenu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override

@@ -3,6 +3,8 @@ package edu.ucsc.makecollegesimple;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,73 +22,77 @@ import java.util.List;
  */
 
 public class CostSuppliesActivity extends Activity {
+
+    //lists for categories and costs entered by user, needs to be saved
+    final ArrayList categoriesTotal = new ArrayList();
+    final ArrayList<Double> costsTotal= new ArrayList<>();
+    //sum of all items in cost list, later passed back to the costs piechart activity, might need to be saved
+    double suppliesSum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost_supplies);
 
+        //retrieve widgets and assign variables to them
         final EditText categoryName = (EditText) findViewById(R.id.newCategory);
         final EditText costAmount = (EditText) findViewById(R.id.newCost);
         final TextView displayCategory = (TextView) findViewById(R.id.displayCategory);
         final TextView displayCost = (TextView) findViewById(R.id.displayCost);
         final TextView totalSupplies = (TextView) findViewById(R.id.totalSupplies);
         final Button okButton = (Button) findViewById(R.id.okButton);
-        final Button confirmButton = (Button) findViewById(R.id.confirmButton);
-        final ArrayList allCategoriesCosts = new ArrayList();
-        final ArrayList<Double> costsTotal= new ArrayList<>();
 
         okButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v) {
+                //only continue if both forms are not blank.
                 if (categoryName.length() == 0 || costAmount.length() == 0){
                     return;
                 }else if(categoryName.length() > 0) {
-
-
                     String name = categoryName.getText().toString();
                     String amount = costAmount.getText().toString();
 
-
-                    allCategoriesCosts.add(name);
-                    //allCategoriesCosts.add(amount);
+                    //add the entered values into the lists
+                    categoriesTotal.add(name);
                     costsTotal.add(Double.parseDouble(amount));
+
+                    //reset the forms to blank
                     categoryName.setText("");
                     costAmount.setText("");
 
+                    //loop through the categories list, convert each to string and concatenate them
                     String currentCategory = "";
-                    for (int i = 0; i < allCategoriesCosts.size(); i ++ ) {
-                        currentCategory = currentCategory + allCategoriesCosts.get(i).toString() + "\n";
+                    for (int i = 0; i < categoriesTotal.size(); i ++ ) {
+                        currentCategory = currentCategory + categoriesTotal.get(i).toString() + "\n";
                     }
-                    Log.i("allcategorycosts", String.valueOf(allCategoriesCosts));
 
+                    //loop through the cost list, convert each to string and concatenate them
                     String currentCost = "";
                     double currentcostSum = 0;
                     for (int i =0; i< costsTotal.size(); i++){
                         currentcostSum = currentcostSum + costsTotal.get(i);
-                        currentCost = currentCost + costsTotal.get(i).toString()+"\n";
+                        currentCost = currentCost + "$" + String.format("%.2f", costsTotal.get(i))+"\n";  //add each item in cost list to get the sum
                     }
 
-                    Log.i("costsupplies", String.valueOf(currentCategory));
+                    //display each list on the screen
                     displayCategory.setText(currentCategory);
                     displayCost.setText(currentCost);
-                    totalSupplies.setText("Total Supplies Cost: $" + currentcostSum);
+                    //display sum on the screen
+                    totalSupplies.setText("Total Supplies Cost: $" + String.format("%.2f",currentcostSum));
+                    suppliesSum = currentcostSum; //will be passed back to piechart activity
 
                 }
 
             }
 
         });
-
-        confirmButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick (View v) {
-                Intent newUserIntent = new Intent(CostSuppliesActivity.this, MainMenu.class);
-                //newUserIntent.putExtra("suppliesCost", currentcostSum);
-                // telling LoginActivity to perform registerIntent
-                CostSuppliesActivity.this.startActivity(newUserIntent);
-            }
-        });
-
-
+    }
+    //when back button is pressed, return to pie chart activity
+    @Override
+    public void onBackPressed() {
+        Intent newUserIntent = new Intent(CostSuppliesActivity.this, MainMenu.class);
+        //Log.i("sum", String.valueOf(suppliesSum));
+        newUserIntent.putExtra("suppliesCost", suppliesSum);    //pass the suppliesSum variable along w/ the intent
+        CostSuppliesActivity.this.startActivity(newUserIntent);
     }
 }
