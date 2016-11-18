@@ -147,14 +147,29 @@ public class MainMenu extends AppCompatActivity
             manager.beginTransaction().replace(R.id.content_main_menu,
                     summaryFragment,
                     summaryFragment.getTag()).commit();
-        } else if (id == R.id.nav_cost) {
-            BlankFragment costFragment = new BlankFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.content_main_menu,
-                    costFragment,
-                    costFragment.getTag()).commit();
 
-        } else if (id == R.id.nav_income) {
+        }else if (id == R.id.nav_cost) {
+
+
+        } else if (id == R.id.nav_tuition) {
+
+        } else if (id == R.id.nav_personal) {
+
+        } else if (id == R.id.nav_supplies) {
+
+        } else if (id == R.id.nav_rent) {
+
+        } else if (id == R.id.nav_transport) {
+
+        } else if (id == R.id.nav_loans) {
+
+        } else if (id == R.id.nav_scholar) {
+
+        } else if (id == R.id.nav_job) {
+
+        } else if (id == R.id.nav_grants) {
+
+        } else if (id == R.id.nav_other) {
 
         } else if (id == R.id.nav_settings) {
 
