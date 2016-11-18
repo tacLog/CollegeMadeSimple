@@ -10,13 +10,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="edu.ucsc.makecollegesimple.MainMenu"
-    tools:showIn="@layout/app_bar_main_menu">
+    tools:context="edu.ucsc.makecollegesimple.MainMenu">
+    <!--tools:showIn="@layout/app_bar_main_menu">-->
+
 
     <com.github.mikephil.charting.charts.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/idPieChart"
+        android:id="@+id/CostsPieChart"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
