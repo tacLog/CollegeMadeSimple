@@ -16,6 +16,8 @@ import org.w3c.dom.Text;
  * Created by pokegrace on 11/2/2016.
  */
 
+// technically this activity is invisible. nothing links to this activity!!!
+
 public class StartingSettingsActivity extends AppCompatActivity {
 
     @Override

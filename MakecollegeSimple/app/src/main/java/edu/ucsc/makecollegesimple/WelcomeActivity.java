@@ -24,16 +24,15 @@ public class WelcomeActivity extends AppCompatActivity{
         final TextView tvWelcomeMessage = (TextView) findViewById(R.id.tvWelcomeMessage);
         final TextView tvCredits = (TextView) findViewById(R.id.tvCredits);
         final TextView tvMissionStatement = (TextView) findViewById(R.id.tvMissionStatement);
-        final TextView tvSkipTutorial = (TextView) findViewById(R.id.tvSkipTutorial);
-        final Button bStartingSettings = (Button) findViewById(R.id.bStartingSettings);
+        final Button bConfigureSettings = (Button) findViewById(R.id.bConfigureSettings);
 
-        // when user clicks bTutorial, it takes them to StartingSettingsActivity
-        bStartingSettings.setOnClickListener(new View.OnClickListener() {
+        // when user clicks bTutorial, it takes them to ConfigureSettingsActivity
+        bConfigureSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent tutorialIntent = new Intent(WelcomeActivity.this, StartingSettingsActivity.class);
+                Intent configureIntent = new Intent(WelcomeActivity.this, ConfigureSettingsActivity.class);
 
-                WelcomeActivity.this.startActivity(tutorialIntent);
+                WelcomeActivity.this.startActivity(configureIntent);
             }
         });
 

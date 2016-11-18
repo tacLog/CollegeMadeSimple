@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.ucsc.makecollegesimple">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,11 +25,6 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".RegisterActivity"
-            android:label="Make college Simple"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
             android:name=".WelcomeActivity"
             android:label="Make college Simple"
             android:theme="@style/AppTheme.NoActionBar">
@@ -40,6 +36,11 @@
         </activity>
         <activity
             android:name=".StartingSettingsActivity"
+            android:label="Make college Simple"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ConfigureSettingsActivity"
             android:label="Make college Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
