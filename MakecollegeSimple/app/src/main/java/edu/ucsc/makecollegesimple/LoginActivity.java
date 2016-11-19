@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvName = (TextView) findViewById(R.id.tvName);
         tvEmail = (TextView) findViewById(R.id.tvEmail);
         final TextView tvNewUser = (TextView) findViewById(R.id.tvNewUser);
+        final TextView tvMenuLink = (TextView) findViewById(R.id.tvMenuLink); // temporary
 
         //Initializing google signin option
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -80,6 +81,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        // when user clicks Menu, takes them to the menu activity
+        tvMenuLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent menuIntent = new Intent(LoginActivity.this, MainMenu.class);
+
+                LoginActivity.this.startActivity(menuIntent);
+            }
+        });
     }
 
 

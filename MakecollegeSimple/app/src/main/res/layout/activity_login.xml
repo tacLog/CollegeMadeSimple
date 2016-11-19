@@ -47,4 +47,11 @@
         android:id="@+id/tvNewUser"
         android:textAlignment="center" />
 
+    <TextView
+        android:text="Menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMenuLink"
+        android:textAlignment="center" />
+
 </LinearLayout>
