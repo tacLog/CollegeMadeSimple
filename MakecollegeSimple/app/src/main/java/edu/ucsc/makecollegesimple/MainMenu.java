@@ -141,41 +141,36 @@ public class MainMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            SummaryFragment summaryFragment = new SummaryFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.content_main_menu,
-                    summaryFragment,
-                    summaryFragment.getTag()).commit();
-
-        }else if (id == R.id.nav_cost) {
-
-
-        } else if (id == R.id.nav_tuition) {
-
-        } else if (id == R.id.nav_personal) {
-
-        } else if (id == R.id.nav_supplies) {
-
-        } else if (id == R.id.nav_rent) {
-
-        } else if (id == R.id.nav_transport) {
-
-        } else if (id == R.id.nav_loans) {
-
-        } else if (id == R.id.nav_scholar) {
-
-        } else if (id == R.id.nav_job) {
-
-        } else if (id == R.id.nav_grants) {
-
-        } else if (id == R.id.nav_other) {
-
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_help) {
-
+        switch(id) {
+            case R.id.nav_home:     
+                                    break;
+            case R.id.nav_tuition:
+                                    break;
+            case R.id.nav_personal:
+                                    break;
+            case R.id.nav_supplies:
+                                    break;
+            case R.id.nav_rent:
+                                    break;
+            case R.id.nav_transport:
+                                    break;
+            case R.id.nav_loans:
+                                    break;
+            case R.id.nav_scholar:
+                                    break;
+            case R.id.nav_job:
+                                    break;
+            case R.id.nav_grants:
+                                    break;
+            case R.id.nav_other:
+                                    break;
+            case R.id.nav_settings:
+                                    break;
+            case R.id.nav_help:
+                                    break;
         }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
