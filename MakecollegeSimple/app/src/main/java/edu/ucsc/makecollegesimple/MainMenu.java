@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -183,19 +184,36 @@ public class MainMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch(id) {
+            case R.id.nav_home:
+                                    break;
+            case R.id.nav_tuition:
+                                    break;
+            case R.id.nav_personal:
+                                    break;
+            case R.id.nav_supplies:
+                                    break;
+            case R.id.nav_rent:
+                                    break;
+            case R.id.nav_transport:
+                                    break;
+            case R.id.nav_loans:
+                                    break;
+            case R.id.nav_scholar:
+                                    break;
+            case R.id.nav_job:
+                                    break;
+            case R.id.nav_grants:
+                                    break;
+            case R.id.nav_other:
+                                    break;
+            case R.id.nav_settings:
+                                    break;
+            case R.id.nav_help:
+                                    break;
         }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

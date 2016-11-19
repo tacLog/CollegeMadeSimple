@@ -3,34 +3,69 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="Home" />
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+            <item   android:id="@+id/nav_cost"
+                    android:title="Cost" >
+                <group android:id="@+id/group_cost">
+                <menu>
+                    <item
+                        android:id="@+id/nav_tuition"
+                        android:icon="@drawable/ic_menu_cost"
+                        android:title="Tuition"/>
+                    <item
+                        android:id="@+id/nav_personal"
+                        android:icon="@drawable/ic_menu_cost"
+                        android:title="Personal"/>
+                    <item
+                        android:id="@+id/nav_supplies"
+                        android:icon="@drawable/ic_menu_cost"
+                        android:title="Supplies"/>
+                    <item
+                        android:id="@+id/nav_rent"
+                        android:icon="@drawable/ic_menu_cost"
+                        android:title="Rent"/>
+                    <item
+                        android:id="@+id/nav_transport"
+                        android:icon="@drawable/ic_menu_cost"
+                        android:title="Transportation"/>
+                </menu>
+                </group>
+            </item>
+        <item android:title="Income" >
+            <menu>
+                <item
+                    android:id="@+id/nav_loans"
+                    android:icon="@drawable/ic_menu_cost"
+                    android:title="Loans"/>
+                <item
+                    android:id="@+id/nav_scholar"
+                    android:icon="@drawable/ic_menu_cost"
+                    android:title="Scholarships"/>
+                <item
+                    android:id="@+id/nav_job"
+                    android:icon="@drawable/ic_menu_cost"
+                    android:title="Job"/>
+                <item
+                    android:id="@+id/nav_grants"
+                    android:icon="@drawable/ic_menu_cost"
+                    android:title="Grants"/>
+                <item
+                    android:id="@+id/nav_other"
+                    android:icon="@drawable/ic_menu_cost"
+                    android:title="Other"/>
+            </menu>
+        </item>
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_menu_help"
+            android:title="Help"/>
+    </group>
 
 </menu>
