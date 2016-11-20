@@ -191,7 +191,9 @@ public class MainMenu extends AppCompatActivity
                                     break;
             case R.id.nav_personal:
                                     break;
-            case R.id.nav_supplies:
+            case R.id.nav_supplies: Intent newUserIntent = new Intent(MainMenu.this, CostSuppliesActivity.class);
+                                    // telling LoginActivity to perform registerIntent
+                                    MainMenu.this.startActivity(newUserIntent);
                                     break;
             case R.id.nav_rent:
                                     break;
