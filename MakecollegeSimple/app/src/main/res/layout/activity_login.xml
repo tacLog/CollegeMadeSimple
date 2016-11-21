@@ -12,7 +12,7 @@
     tools:context="edu.ucsc.makecollegesimple.LoginActivity">
 
     <TextView
-        android:id="@+id/tv_username"
+        android:id="@+id/tvUserName"
         android:layout_marginTop="50dp"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
@@ -21,19 +21,44 @@
         />
 
 
+    <TextView
+        android:text="New User? Click Here"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_in_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:id="@+id/tvNewUser"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+    <TextView
+        android:text="Make College Simple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvUserName"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tvTitle"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-condensed" />
+
     <com.google.android.gms.common.SignInButton
-        android:layout_centerInParent="true"
         android:id="@+id/sign_in_button"
         android:layout_width="120dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_alignLeft="@+id/btn_logout"
+        android:layout_alignStart="@+id/btn_logout"
+        android:layout_marginTop="36dp" />
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:text="Sign out"
-        android:layout_marginBottom="50dp"
         android:layout_width="120dp"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:layout_below="@+id/tvNewUser"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
 
 </RelativeLayout>
