@@ -2,7 +2,9 @@ package edu.ucsc.makecollegesimple;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,25 +15,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.util.ArrayList;
+import com.github.mikephil.charting.charts.PieChart;
 
 public class MainMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PieChartFragment.OnFragmentInteractionListener {
 
     PieChart pieChart;
-    float suppliesCost;
-    float rentCost;
-    float transportationCost;
-    float tuitionCost;
-    float personalCost;
+    private float[] savedCats = new float[5];
     float totalCost;
 
 
@@ -62,7 +53,7 @@ public class MainMenu extends AppCompatActivity
                     float newSuppliesCost = Float.parseFloat(strsuppliesCost);
                     Log.i("bundle3",String.valueOf(newSuppliesCost)); //ignore this, used for debugging
                     //update the Supplies slice on piechart
-                    suppliesCost = newSuppliesCost;
+                    savedCats[flag] = newSuppliesCost;
                     editor.putFloat("saved_suppliesCost",newSuppliesCost);
                     editor.apply();
                 }
@@ -71,66 +62,14 @@ public class MainMenu extends AppCompatActivity
 
 
         }
+        totalCost = savedCats[0]+savedCats[1]+savedCats[2]+savedCats[3]+savedCats[4];
+        PieChartFragment pie1 = PieChartFragment.newInstance(savedCats, totalCost);
+        PieChartFragment pie2 = PieChartFragment.newInstance(savedCats, totalCost);
 
-        //piechart slices are initialized at 10 for now
-        totalCost = suppliesCost + rentCost + transportationCost + tuitionCost + personalCost;
-
-        //Pie chart
-        //I used a library to create the pie chart, please refer to https://github.com/PhilJay/MPAndroidChart for documentation.
-        pieChart = (PieChart) findViewById(R.id.CostsPieChart);
-        //this is the y-axis
-        // first parameter of Entry represents the amount in the category and second parameter is index numbered 0-4
-        final ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(suppliesCost , 0));  //supplies
-        entries.add(new Entry (rentCost, 1));   //rent
-        entries.add(new Entry(transportationCost, 2));   //transportation
-        entries.add(new Entry(tuitionCost, 3));  //tuition
-        entries.add(new Entry(personalCost, 4));   //personal
-
-        PieDataSet dataset = new PieDataSet(entries, "");
-
-        //this is the x-axis
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("Supplies");
-        labels.add("Rent");
-        labels.add("Transportation");
-        labels.add("Tuition");
-        labels.add("Personal");
-
-        PieData data = new PieData(labels, dataset);
-
-        pieChart.setCenterText("Costs: $"  + totalCost);
-        pieChart.setCenterTextSize(15f);
-
-        //appearance
-        data.setValueTextSize(11f);
-        dataset.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        pieChart.setDescription(null);
-        pieChart.setData(data);
-        pieChart.animateY(2500);
-
-        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                Log.i("tag", String.valueOf(e.getXIndex()));
-                int costsCategory = e.getXIndex();
-
-                if (costsCategory == 0){
-                    // creating intent that opens RegisterActivity
-                    Intent newUserIntent = new Intent(MainMenu.this, CostEditActivity.class);
-                    newUserIntent.setFlags(0);
-                    // telling LoginActivity to perform registerIntent
-                    MainMenu.this.startActivity(newUserIntent);
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected() {
-
-            }
-        });
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame1,pie1).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame2,pie2).commit();
+        
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -157,19 +96,19 @@ public class MainMenu extends AppCompatActivity
 
     private void loadValues(SharedPreferences saved, int flag) {
         if (flag != 0){
-            suppliesCost = saved.getFloat("saved_suppliesCost", 10);
+            savedCats[0] = saved.getFloat("saved_suppliesCost", 10);
         }
         if (flag != 1) {
-            rentCost = saved.getFloat("saved_rentCost",10);
+            savedCats[1] = saved.getFloat("saved_rentCost",10);
         }
         if (flag != 2) {
-            transportationCost = saved.getFloat("saved_tranCost",10);
+            savedCats[2] = saved.getFloat("saved_tranCost",10);
         }
         if (flag != 3) {
-            tuitionCost = saved.getFloat("saved_tuitCost",10);
+            savedCats[3] = saved.getFloat("saved_tuitCost",10);
         }
         if (flag != 4) {
-            personalCost = saved.getFloat("saved_perCost",10);
+            savedCats[4] = saved.getFloat("saved_perCost",10);
         }
 
     }
@@ -248,5 +187,10 @@ public class MainMenu extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
