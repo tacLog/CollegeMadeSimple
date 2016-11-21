@@ -1,57 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#3a4f58"
     tools:context="edu.ucsc.makecollegesimple.LoginActivity">
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_marginTop="50dp"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+    <TextView
+        android:text="New User? Click Here"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_in_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:id="@+id/tvNewUser"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+    <TextView
+        android:text="Make College Simple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvUserName"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tvTitle"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-condensed" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_below="@+id/tvTitle"
+        android:layout_alignLeft="@+id/btn_logout"
+        android:layout_alignStart="@+id/btn_logout"
+        android:layout_marginTop="36dp" />
 
-    <TextView
-        android:text="Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tvName"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <TextView
-        android:text="Email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <TextView
-        android:id="@+id/tvEmail"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:text="New User? Configure Settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvNewUser"
-        android:textAlignment="center" />
+    <Button
+        android:id="@+id/btn_logout"
+        android:text="Sign out"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tvNewUser"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
 
     <TextView
         android:text="Menu"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp"
         android:id="@+id/tvMenuLink"
-        android:textAlignment="center" />
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
-</LinearLayout>
+</RelativeLayout>

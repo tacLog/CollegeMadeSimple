@@ -26,13 +26,14 @@ public class WelcomeActivity extends AppCompatActivity{
         final TextView tvMissionStatement = (TextView) findViewById(R.id.tvMissionStatement);
         final Button bConfigureSettings = (Button) findViewById(R.id.bConfigureSettings);
 
-        // when user clicks bTutorial, it takes them to ConfigureSettingsActivity
+        // when user clicks bConfigureSettings, it takes them to ConfigureSettingsActivity
         bConfigureSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent configureIntent = new Intent(WelcomeActivity.this, ConfigureSettingsActivity.class);
 
+                Intent configureIntent = new Intent(WelcomeActivity.this, ConfigureSettingsActivity.class);
                 WelcomeActivity.this.startActivity(configureIntent);
+
             }
         });
 

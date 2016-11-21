@@ -16,50 +16,21 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-// code by Kundan Roy from http://www.androidwarriors.com/2016/02/google-plus-integration-in-android-sign.html
+public class NewUserActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-    // initialize variables
-    TextView tvUserName;
-    TextView tvTitle;
+
     GoogleApiClient mGoogleApiClient;
-    TextView tvNewUser;
-    TextView tvMenuLink;
-
     private static final int RC_SIGN_IN = 9001;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        tvUserName = (TextView) findViewById(R.id.tvUserName);
-        tvNewUser = (TextView) findViewById(R.id.tvNewUser);
-        tvMenuLink = (TextView) findViewById(R.id.tvMenuLink);
+        setContentView(R.layout.activity_new_user_screen);
 
         //Register both button and add click listener
         findViewById(R.id.sign_in_button).setOnClickListener(this);
-        findViewById(R.id.btn_logout).setOnClickListener(this);
 
-        // adding tvTitle to screen
-        findViewById(R.id.tvTitle);
 
-        // new user clicks this to go to new user activity
-        tvNewUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent newUserIntent = new Intent(LoginActivity.this, NewUserActivity.class);
-                LoginActivity.this.startActivity(newUserIntent);
-            }
-        });
-        
-        tvMenuLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent menuLinkIntent = new Intent(LoginActivity.this, MainMenu.class);
-                LoginActivity.this.startActivity(menuLinkIntent);
-            }
-        });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -80,11 +51,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 signIn();
 
                 break;
-            case R.id.btn_logout:
-
-                signOut();
-
-                break;
         }
 
     }
@@ -97,19 +63,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
-
-
     }
 
-    private void signOut() {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(Status status) {
-                        tvUserName.setText("");
-                    }
-                });
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -125,18 +80,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void handleSignInResult(GoogleSignInResult result) {
 
         if (result.isSuccess()) {
-
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            tvUserName.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
 
-            Intent menuIntent = new Intent(LoginActivity.this, MainMenu.class);
-            LoginActivity.this.startActivity(menuIntent);
-
-            Log.i("result:", "pass!");
+            // if google sign in is successful, it'll go to welcome activity
+            Intent welcomeIntent = new Intent(NewUserActivity.this, WelcomeActivity.class);
+            NewUserActivity.this.startActivity(welcomeIntent);
 
         } else {
-            Log.i("result:", "fail...");
             // Signed out, show unauthenticated UI.
             // updateUI(false);
         }

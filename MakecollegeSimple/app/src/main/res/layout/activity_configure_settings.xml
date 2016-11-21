@@ -4,11 +4,35 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Enter Some Basic Numbers"
+        android:text="Menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/tvMenuLink"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp" />
+
+    <TextView
+        android:text="Costs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTitle"
+        android:textSize="28sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/tvTitle"
-        android:textSize="24sp" />
+        android:layout_marginTop="14dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDescription"
+        android:text="Enter some categories and the cost of each item"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_below="@+id/tvTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+
 </RelativeLayout>

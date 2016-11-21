@@ -1,9 +1,13 @@
 package edu.ucsc.makecollegesimple;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by pokegrace on 11/15/2016.
@@ -15,12 +19,22 @@ import android.widget.TextView;
 
 public class ConfigureSettingsActivity extends AppCompatActivity{
 
-    private boolean newUser = true;
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cost_supplies);
+        setContentView(R.layout.activity_configure_settings);
+
+        final TextView tvMenuLink = (TextView) findViewById(R.id.tvMenuLink);
+
+        tvMenuLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent menuIntent = new Intent(ConfigureSettingsActivity.this, MainMenu.class);
+                ConfigureSettingsActivity.this.startActivity(menuIntent);
+
+            }
+        });
 
     }
 }
