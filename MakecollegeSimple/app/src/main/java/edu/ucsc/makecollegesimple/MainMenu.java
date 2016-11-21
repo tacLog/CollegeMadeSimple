@@ -64,7 +64,7 @@ public class MainMenu extends AppCompatActivity
                     //update the Supplies slice on piechart
                     suppliesCost = newSuppliesCost;
                     editor.putFloat("saved_suppliesCost",newSuppliesCost);
-                    //editor.apply(); /broken here
+                    editor.apply();
                 }
 
             }
@@ -157,19 +157,19 @@ public class MainMenu extends AppCompatActivity
 
     private void loadValues(SharedPreferences saved, int flag) {
         if (flag != 0){
-            suppliesCost = saved.getInt("saved_suppliesCost", 10);
+            suppliesCost = saved.getFloat("saved_suppliesCost", 10);
         }
         if (flag != 1) {
-            rentCost = saved.getInt("saved_rentCost",10);
+            rentCost = saved.getFloat("saved_rentCost",10);
         }
         if (flag != 2) {
-            transportationCost = saved.getInt("saved_tranCost",10);
+            transportationCost = saved.getFloat("saved_tranCost",10);
         }
         if (flag != 3) {
-            tuitionCost = saved.getInt("saved_tuitCost",10);
+            tuitionCost = saved.getFloat("saved_tuitCost",10);
         }
         if (flag != 4) {
-            personalCost = saved.getInt("saved_perCost",10);
+            personalCost = saved.getFloat("saved_perCost",10);
         }
 
     }
