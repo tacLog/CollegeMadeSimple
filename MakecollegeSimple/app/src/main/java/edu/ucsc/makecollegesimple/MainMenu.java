@@ -1,12 +1,9 @@
 package edu.ucsc.makecollegesimple;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -36,34 +33,46 @@ public class MainMenu extends AppCompatActivity
     float tuitionCost;
     float personalCost;
     float totalCost;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
+        SharedPreferences saved = getPreferences(MODE_PRIVATE);
         Bundle bundle = getIntent().getExtras(); //get variables that were passed from other activities (if any)
         if (bundle == null) {
             //if no variables were passed
-            suppliesCost = 10;
+            loadValues(saved, 8);/**/
             Log.i("bundle", String.valueOf(bundle)); //ignore this, used for debugging
 
         }else{
-            // if there were variables passed
-            //convert bundle object to string
-            String strsuppliesCost =  String.valueOf(bundle.get("suppliesCost"));
-            Log.i("bundle2",strsuppliesCost); //ignore this, used for debugging
-            //convert string to float
-            float fltsuppliesCost = Float.parseFloat(strsuppliesCost);
-            Log.i("bundle3",String.valueOf(fltsuppliesCost)); //ignore this, used for debugging
-            //update the Supplies slice on piechart
-            suppliesCost = fltsuppliesCost;
+            //start the editor to input new data as we get it
+            SharedPreferences.Editor editor = saved.edit();
+            int flag = getIntent().getFlags();
+
+            switch (flag){
+                case 0: {
+                    loadValues(saved, flag);
+                    // if there were variables passed
+                    //convert bundle object to string
+                    String strsuppliesCost =  String.valueOf(bundle.get("suppliesCost"));
+                    Log.i("bundle2",strsuppliesCost); //ignore this, used for debugging
+                    //convert string to float
+                    float newSuppliesCost = Float.parseFloat(strsuppliesCost);
+                    Log.i("bundle3",String.valueOf(newSuppliesCost)); //ignore this, used for debugging
+                    //update the Supplies slice on piechart
+                    suppliesCost = newSuppliesCost;
+                    editor.putFloat("saved_suppliesCost",newSuppliesCost);
+                    //editor.apply(); /broken here
+                }
+
+            }
+
+
         }
 
         //piechart slices are initialized at 10 for now
-        rentCost = 10;
-        transportationCost = 10;
-        tuitionCost = 10;
-        personalCost = 10;
         totalCost = suppliesCost + rentCost + transportationCost + tuitionCost + personalCost;
 
         //Pie chart
@@ -108,8 +117,8 @@ public class MainMenu extends AppCompatActivity
 
                 if (costsCategory == 0){
                     // creating intent that opens RegisterActivity
-                    Intent newUserIntent = new Intent(MainMenu.this, CostSuppliesActivity.class);
-
+                    Intent newUserIntent = new Intent(MainMenu.this, CostEditActivity.class);
+                    newUserIntent.setFlags(0);
                     // telling LoginActivity to perform registerIntent
                     MainMenu.this.startActivity(newUserIntent);
 
@@ -143,6 +152,25 @@ public class MainMenu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    private void loadValues(SharedPreferences saved, int flag) {
+        if (flag != 0){
+            suppliesCost = saved.getInt("saved_suppliesCost", 10);
+        }
+        if (flag != 1) {
+            rentCost = saved.getInt("saved_rentCost",10);
+        }
+        if (flag != 2) {
+            transportationCost = saved.getInt("saved_tranCost",10);
+        }
+        if (flag != 3) {
+            tuitionCost = saved.getInt("saved_tuitCost",10);
+        }
+        if (flag != 4) {
+            personalCost = saved.getInt("saved_perCost",10);
+        }
 
     }
 
@@ -191,7 +219,7 @@ public class MainMenu extends AppCompatActivity
                                     break;
             case R.id.nav_personal:
                                     break;
-            case R.id.nav_supplies: Intent newUserIntent = new Intent(MainMenu.this, CostSuppliesActivity.class);
+            case R.id.nav_supplies: Intent newUserIntent = new Intent(MainMenu.this, CostEditActivity.class);
                                     // telling LoginActivity to perform registerIntent
                                     MainMenu.this.startActivity(newUserIntent);
                                     break;

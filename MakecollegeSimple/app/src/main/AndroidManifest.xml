@@ -45,7 +45,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".CostSuppliesActivity"
+            android:name=".CostEditActivity"
             android:label="Make college Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
