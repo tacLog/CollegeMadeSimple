@@ -171,7 +171,11 @@ public class MainMenu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_login) {
+
+            Intent loginIntent = new Intent(MainMenu.this, LoginActivity.class);
+            MainMenu.this.startActivity(loginIntent);
+
             return true;
         }
 
