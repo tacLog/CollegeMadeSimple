@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'android'
             keyPassword 'android'
-            storeFile file('C:/Users/Grace/Desktop/college-finance/MakecollegeSimple/debug.keystore')
+            storeFile file("debug.keystore")
             storePassword 'android'
         }
     }
