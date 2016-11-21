@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView tvTitle;
     GoogleApiClient mGoogleApiClient;
     TextView tvNewUser;
+    TextView tvMenuLink;
 
     private static final int RC_SIGN_IN = 9001;
     @Override
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         tvUserName = (TextView) findViewById(R.id.tvUserName);
         tvNewUser = (TextView) findViewById(R.id.tvNewUser);
+        tvMenuLink = (TextView) findViewById(R.id.tvMenuLink);
 
         //Register both button and add click listener
         findViewById(R.id.sign_in_button).setOnClickListener(this);
@@ -48,6 +50,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(View view) {
                 Intent newUserIntent = new Intent(LoginActivity.this, NewUserActivity.class);
                 LoginActivity.this.startActivity(newUserIntent);
+            }
+        });
+        
+        tvMenuLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent menuLinkIntent = new Intent(LoginActivity.this, MainMenu.class);
+                LoginActivity.this.startActivity(menuLinkIntent);
             }
         });
 

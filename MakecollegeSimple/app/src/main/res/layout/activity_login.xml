@@ -61,4 +61,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp" />
 
+    <TextView
+        android:text="Menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp"
+        android:id="@+id/tvMenuLink"
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
 </RelativeLayout>

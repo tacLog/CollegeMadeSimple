@@ -29,7 +29,7 @@ public class ConfigureSettingsActivity extends AppCompatActivity{
         tvMenuLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
                 Intent menuIntent = new Intent(ConfigureSettingsActivity.this, MainMenu.class);
                 ConfigureSettingsActivity.this.startActivity(menuIntent);
 
