@@ -69,7 +69,7 @@ public class MainMenu extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame1,pie1).commit();
         fragmentManager.beginTransaction().replace(R.id.content_frame2,pie2).commit();
-        
+
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
