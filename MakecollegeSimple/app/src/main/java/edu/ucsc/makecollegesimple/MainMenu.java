@@ -15,8 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
 import com.github.mikephil.charting.charts.PieChart;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -222,7 +222,7 @@ public class MainMenu extends AppCompatActivity
         return true;
     }
 
-    private void startCategoryEditActivity(int i) {
+    public void startCategoryEditActivity(int i) {
         Intent newUserIntent = new Intent(MainMenu.this, CategoryEditActivity.class);
         // telling LoginActivity to perform registerIntent
         setSendDataCatEdit(newUserIntent, i);

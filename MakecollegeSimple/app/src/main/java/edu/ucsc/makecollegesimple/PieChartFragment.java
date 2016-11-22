@@ -106,7 +106,7 @@ public class PieChartFragment extends Fragment {
         pieChart.setDescription(null);
         pieChart.setData(data);
         pieChart.animateY(2500);
-
+        //getActivity().startCategoryEditActivity(1);
         return view;
     }
 
