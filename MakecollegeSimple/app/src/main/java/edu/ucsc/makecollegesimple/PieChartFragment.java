@@ -12,6 +12,8 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -106,7 +108,26 @@ public class PieChartFragment extends Fragment {
         pieChart.setDescription(null);
         pieChart.setData(data);
         pieChart.animateY(2500);
+        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
+                //Log.i("tag", String.valueOf(e.getXIndex()));
+                int costsCategory = e.getXIndex();
 
+                MainMenu activity = (MainMenu) getActivity();
+                if (titles[0].equals("Costs:")) {
+                    activity.startCategoryEditActivity(costsCategory);
+                }
+                else {
+                    activity.startCategoryEditActivity(costsCategory+5);
+                }
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
         return view;
     }
 

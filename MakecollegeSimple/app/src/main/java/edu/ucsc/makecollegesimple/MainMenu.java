@@ -222,7 +222,7 @@ public class MainMenu extends AppCompatActivity
         return true;
     }
 
-    private void startCategoryEditActivity(int i) {
+    public void startCategoryEditActivity(int i) {
         Intent newUserIntent = new Intent(MainMenu.this, CategoryEditActivity.class);
         // telling LoginActivity to perform registerIntent
         setSendDataCatEdit(newUserIntent, i);
