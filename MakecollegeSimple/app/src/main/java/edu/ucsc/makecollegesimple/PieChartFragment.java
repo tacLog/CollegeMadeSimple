@@ -30,24 +30,25 @@ public class PieChartFragment extends Fragment {
     private static final String categoriesTotals = "param1";
     private static final String totalPie = "param2";
     private static final String tags = "param3";
-
+    private static final String colorString = "param4";
     private String[] titles;
     private float[] cats = new float[5];
     private float totalCost;
     private PieChart pieChart;
     private OnFragmentInteractionListener mListener;
-
+    private int color;
     public PieChartFragment() {
         // Required empty public constructor
     }
 
 
-    public static PieChartFragment newInstance(String[] tagsIn, float[] in, float Total) {
+    public static PieChartFragment newInstance(String[] tagsIn, float[] in, float Total, int t) {
         PieChartFragment fragment = new PieChartFragment();
         Bundle args = new Bundle();
         args.putStringArray(tags, tagsIn);
         args.putFloatArray(categoriesTotals, in);
         args.putFloat(totalPie, Total);
+        args.putInt(colorString,t);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,6 +60,7 @@ public class PieChartFragment extends Fragment {
             titles = getArguments().getStringArray(tags);
             cats = getArguments().getFloatArray(categoriesTotals);
             totalCost = getArguments().getFloat(totalPie);
+            color = getArguments().getInt(colorString);
         }
 
 
@@ -96,7 +98,11 @@ public class PieChartFragment extends Fragment {
 
         //appearance
         data.setValueTextSize(11f);
-        dataset.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        if (color == 0) {
+            dataset.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        }else if (color == 1){
+            dataset.setColors(ColorTemplate.LIBERTY_COLORS);
+        }
         pieChart.setDescription(null);
         pieChart.setData(data);
         pieChart.animateY(2500);

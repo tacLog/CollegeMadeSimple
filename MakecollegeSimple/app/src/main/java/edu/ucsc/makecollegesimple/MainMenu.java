@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
@@ -90,10 +91,10 @@ public class MainMenu extends AppCompatActivity
         totalIn = savedInCats[0] + savedInCats[1]+savedInCats[2]+savedInCats[3]+savedInCats[4];
         totalCost = savedCostCats[0]+savedCostCats[1]+savedCostCats[2]+savedCostCats[3]+savedCostCats[4];
 
-        PieChartFragment pieCost = PieChartFragment.newInstance(costTags, savedCostCats, totalCost);
-        PieChartFragment pieIn = PieChartFragment.newInstance(inTags, savedCostCats, totalCost);
+        PieChartFragment pieCost = PieChartFragment.newInstance(costTags, savedCostCats, totalCost, 0);
+        PieChartFragment pieIn = PieChartFragment.newInstance(inTags, savedCostCats, totalCost, 1);
 
-        //CategoryEdit suplies = CategoryEdit.newInstance("Supplies", supCatagories,supValues);
+        CategoryEdit suplies = CategoryEdit.newInstance("Supplies", supCatagories,supValues);
 
         FragmentManager manager = getSupportFragmentManager();
         //manager.beginTransaction().replace(R.id.content_frame1,suplies).commit();

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.ucsc.makecollegesimple.CategoryEdit">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="600dp">
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="9"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="114dp"
+            android:id="@+id/newCategory"
+            android:hint="Enter category" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="9"
+            android:id="@+id/newCost"
+            android:layout_alignBaseline="@+id/newCategory"
+            android:layout_alignBottom="@+id/newCategory"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:hint="Enter cost per month" />
+
+        <Button
+            android:text="OK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/newCategory"
+            android:id="@+id/okButton" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="63dp"
+            android:id="@+id/totalSupplies"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="24sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/okButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/displayCategory"
+            android:ems="9"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/okButton"
+            android:layout_toRightOf="@+id/newCategory"
+            android:layout_toEndOf="@+id/newCategory"
+            android:id="@+id/displayCost"
+            android:ems="6"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="22sp" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="20dp"
+            android:id="@+id/editButton0"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_alignBottom="@+id/displayCost"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_height="20dp" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="20dp"
+            android:id="@+id/editButton1"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_height="20dp"
+            android:layout_below="@+id/displayCost"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="20dp"
+            android:id="@+id/editButton2"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_height="20dp"
+            android:layout_below="@+id/editButton1"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>
