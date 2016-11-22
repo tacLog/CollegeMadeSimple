@@ -19,12 +19,19 @@ import android.view.MenuItem;
 
 import com.github.mikephil.charting.charts.PieChart;
 
+import java.util.ArrayList;
+
 public class MainMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, PieChartFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PieChartFragment.OnFragmentInteractionListener, CategoryEdit.OnFragmentInteractionListener {
 
     PieChart pieChart;
     private float[] savedCats = new float[5];
-    float totalCost;
+    private float totalCost;
+
+    //Variables for storage of subcatatgories and thier values
+    //Suplies values
+    private static ArrayList<String> supCatagories = new ArrayList();
+    private static ArrayList<String> supValues = new ArrayList();
 
 
     @Override
@@ -67,9 +74,12 @@ public class MainMenu extends AppCompatActivity
         PieChartFragment pie1 = PieChartFragment.newInstance(savedCats, totalCost);
         PieChartFragment pie2 = PieChartFragment.newInstance(savedCats, totalCost);
 
+        CategoryEdit suplies = CategoryEdit.newInstance("Supplies", supCatagories,supValues);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame1,pie1).commit();
-        fragmentManager.beginTransaction().replace(R.id.content_frame2,pie2).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame1,suplies).commit();
+        //fragmentManager.beginTransaction().replace(R.id.content_frame1,pie1).commit();
+        //fragmentManager.beginTransaction().replace(R.id.content_frame2,pie2).commit();
 
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
