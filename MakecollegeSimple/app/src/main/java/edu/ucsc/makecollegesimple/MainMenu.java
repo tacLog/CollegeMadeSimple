@@ -2,102 +2,110 @@ package edu.ucsc.makecollegesimple;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.audiofx.BassBoost;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
 
 public class MainMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, PieChartFragment.OnFragmentInteractionListener, CategoryEdit.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PieChartFragment.OnFragmentInteractionListener{
+
+    //output string tags:
+    private static final String catIn = "categories";
+    private static final String valuesIn = "values";
+    private static final String masterCatTag = "masterCategories";
+    private static final String masterValTag = "masterValues";
+    private static final String catTotTag = "categoryTotals";
+
 
     PieChart pieChart;
-    private float[] savedCostCats = new float[5];
-    private float[] savedInCats = new float[5];
-    private float totalCost;
-    private float totalIn;
+    private static float totalCost;
+    private static float totalIn;
 
 
     //Variables for storage of subcatatgories and thier values
     private static final String[] costTags = {"Costs:","Supplies","Rent","Transportation","Tution","Personal"};
 
-    //Suplies values
-    private static String[] supCatagories = new String[5];
-    private static String[] supValues = new String[5];
-
-    //rent values
-    private static ArrayList<String> rentCatagories = new ArrayList();
-    private static ArrayList<String> rentValues = new ArrayList();
-
-    //personal expenses values
-    private static ArrayList<String> perCatagories = new ArrayList();
-    private static ArrayList<String> perValues = new ArrayList();
-
-    //Transportation values
-    private static ArrayList<String> tranCatagories = new ArrayList();
-    private static ArrayList<String> tranValues = new ArrayList();
-
-    //Tuition values
-    private static ArrayList<String> tuitCatagories = new ArrayList();
-    private static ArrayList<String> tuitValues = new ArrayList();
-
     //Income Variables
 
     private static final String[] inTags = {"Income:","Loans","Scholarships","Job","Other","Grants"};
 
-    //Suplies values
-    private static ArrayList<String> loansCatagories = new ArrayList();
-    private static ArrayList<String> loansValues = new ArrayList();
+    //subcategory values
+    private static String[][]   masterCategories = new String[10][5];
+    private static String[][]   masterValues = new String[10][5];
+    private static float[]        categoryTotals = new float[10];
 
-    //rent values
-    private static ArrayList<String> scholarCatagories = new ArrayList();
-    private static ArrayList<String> scholarValues = new ArrayList();
 
-    //Job
-    private static ArrayList<String> jobCatagories = new ArrayList();
-    private static ArrayList<String> jobValues = new ArrayList();
-
-    //other values
-    private static ArrayList<String> otherCatagories = new ArrayList();
-    private static ArrayList<String> otherValues = new ArrayList();
-
-    //grant values
-    private static ArrayList<String> grantCatagories = new ArrayList();
-    private static ArrayList<String> grantValues = new ArrayList();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        SharedPreferences saved = getPreferences(MODE_PRIVATE);
 
-        savedCostCats = loadValues(saved, 8, savedCostCats);
-        savedInCats = loadValues(saved, 8, savedInCats);
-        totalIn = savedInCats[0] + savedInCats[1]+savedInCats[2]+savedInCats[3]+savedInCats[4];
-        totalCost = savedCostCats[0]+savedCostCats[1]+savedCostCats[2]+savedCostCats[3]+savedCostCats[4];
+        String[] inCategories = null;
+        String[] inValues   = null;
+        //load setup data
+        int flag = getIntent().getFlags();
+        if(getIntent().getExtras() != null){
+            Bundle bundle = getIntent().getExtras();
+            inCategories = bundle.getStringArray(catIn);
+            inValues = bundle.getStringArray(valuesIn);
+        }
+
+        if(inCategories!=null && inValues != null){
+            int newTotal = 0;
+            for(int i =0; i <5; i++){
+                masterCategories[flag][i]   =inCategories[i];
+                masterValues[flag][i]       =inValues[i];
+                if(inValues[i]!=null){
+                    newTotal +=                 Float.valueOf(inValues[i]);
+                }
+            }
+            categoryTotals[flag]= newTotal;
+
+        }
+/*
+
+        File data = new File(getApplicationContext().getFilesDir(),"data.json");
+        try{
+            data.createNewFile();
+        } catch (Exception e){
+            Log.i.print("We had a porblem making the file... oh shit");
+        }
+        try {
+            InputStream writer =  new In;
+            int size = writer.
+        } catch (Exception e){
+
+        }
+*/
+
+        float[] savedCostCats = Arrays.copyOfRange(categoryTotals, 0, 5);
+        float[] savedInCats =   Arrays.copyOfRange(categoryTotals, 5, 10);
 
         PieChartFragment pieCost = PieChartFragment.newInstance(costTags, savedCostCats, totalCost, 0);
-        PieChartFragment pieIn = PieChartFragment.newInstance(inTags, savedCostCats, totalCost, 1);
+        PieChartFragment pieIn = PieChartFragment.newInstance(inTags, savedInCats, totalCost, 1);
 
-        CategoryEdit suplies = CategoryEdit.newInstance("Supplies", supCatagories,supValues);
 
         FragmentManager manager = getSupportFragmentManager();
-        //manager.beginTransaction().replace(R.id.content_frame1,suplies).commit();
         manager.beginTransaction().replace(R.id.content_frame1,pieCost).commit();
         manager.beginTransaction().replace(R.id.content_frame2,pieIn).commit();
 
@@ -116,29 +124,7 @@ public class MainMenu extends AppCompatActivity
 
     }
 
-    public void saveAll(){
-        SharedPreferences saved = getPreferences(MODE_PRIVATE);
-    }
 
-    private float[] loadValues(SharedPreferences saved, int flag, float[] loaded) {
-        if (flag != 0){
-            loaded[0] = saved.getFloat("saved_suppliesCost", 10);
-        }
-        if (flag != 1) {
-            loaded[1] = saved.getFloat("saved_rentCost",10);
-        }
-        if (flag != 2) {
-            loaded[2] = saved.getFloat("saved_tranCost",10);
-        }
-        if (flag != 3) {
-            loaded[3] = saved.getFloat("saved_tuitCost",10);
-        }
-        if (flag != 4) {
-            loaded[4] = saved.getFloat("saved_perCost",10);
-        }
-        return loaded;
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -192,40 +178,61 @@ public class MainMenu extends AppCompatActivity
         int id = item.getItemId();
 
         switch(id) {
-            case R.id.nav_home:
-                                    break;
-            case R.id.nav_tuition:
-                                    break;
-            case R.id.nav_personal:
-                                    break;
-            case R.id.nav_supplies: Intent newUserIntent = new Intent(MainMenu.this, CostEditActivity.class);
-                                    // telling LoginActivity to perform registerIntent
-                                    MainMenu.this.startActivity(newUserIntent);
-                                    break;
+            case R.id.nav_supplies:
+                startCategoryEditActivity(0);
+                break;
             case R.id.nav_rent:
-                                    break;
+                startCategoryEditActivity(1);
+                break;
             case R.id.nav_transport:
-                                    break;
+                startCategoryEditActivity(2);
+                break;
+            case R.id.nav_tuition:
+                startCategoryEditActivity(3);
+                break;
+            case R.id.nav_personal:
+                startCategoryEditActivity(4);
+                break;
             case R.id.nav_loans:
-                                    break;
+                startCategoryEditActivity(5);
+                break;
             case R.id.nav_scholar:
-                                    break;
+                startCategoryEditActivity(6);
+                break;
             case R.id.nav_job:
-                                    break;
-            case R.id.nav_grants:
-                                    break;
+                startCategoryEditActivity(7);
+                break;
             case R.id.nav_other:
-                                    break;
+                startCategoryEditActivity(8);
+                break;
+            case R.id.nav_grants:
+                startCategoryEditActivity(9);
+                break;
             case R.id.nav_settings:
-                                    break;
+                Intent settingsIntent = new Intent(MainMenu.this, SettingsActivity.class);
+                MainMenu.this.startActivity(settingsIntent);
+                break;
             case R.id.nav_help:
-                                    break;
+                break;
         }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void startCategoryEditActivity(int i) {
+        Intent newUserIntent = new Intent(MainMenu.this, CategoryEditActivity.class);
+        // telling LoginActivity to perform registerIntent
+        setSendDataCatEdit(newUserIntent, i);
+        MainMenu.this.startActivity(newUserIntent);
+    }
+
+    private void setSendDataCatEdit(Intent newUserIntent, int i) {
+        newUserIntent.setFlags(i);
+        newUserIntent.putExtra(catIn, masterCategories[i]);
+        newUserIntent.putExtra(valuesIn, masterValues[i] );
     }
 
     @Override

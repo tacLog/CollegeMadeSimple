@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.ucsc.makecollegesimple.CategoryEdit">
+    tools:context="edu.ucsc.makecollegesimple.CategoryEditActivity">
 
     <RelativeLayout
         android:orientation="vertical"
@@ -12,36 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="600dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:id="@+id/inputArea">
+
+
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="9"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_marginTop="114dp"
             android:id="@+id/newCategory"
-            android:hint="Enter category" />
+            android:hint="Enter category"
+            android:layout_weight="0.5"/>
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="9"
-            android:id="@+id/newCost"
-            android:layout_alignBaseline="@+id/newCategory"
-            android:layout_alignBottom="@+id/newCategory"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:hint="Enter cost per month" />
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="9"
+                android:id="@+id/newCost"
+                android:hint="Enter cost per month"
+                android:layout_weight="0.5"
+                android:layout_marginTop="114dp"/>
+
+        </LinearLayout>
 
         <Button
             android:text="OK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/newCategory"
+            android:layout_below="@+id/inputArea"
             android:id="@+id/okButton" />
 
         <TextView
@@ -55,38 +61,42 @@
             android:layout_alignParentStart="true"
             android:textSize="24sp"
             android:textAlignment="center" />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/okButton"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/displayCategory"
-            android:ems="9"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textSize="22sp" />
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:id="@+id/outputArea"
+            android:layout_below="@+id/okButton">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/okButton"
-            android:layout_toRightOf="@+id/newCategory"
-            android:layout_toEndOf="@+id/newCategory"
-            android:id="@+id/displayCost"
-            android:ems="6"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textSize="22sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/displayCategory"
+                android:ems="9"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="22sp"
+                android:layout_weight="0.45"/>
 
-        <Button
-            android:text="Button"
-            android:layout_width="20dp"
-            android:id="@+id/editButton0"
-            style="@style/Widget.AppCompat.Button.Small"
-            android:layout_alignBottom="@+id/displayCost"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_height="20dp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/displayCost"
+                android:ems="6"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="22sp"
+                android:layout_weight="0.45"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:id="@+id/editButton0"
+                style="@style/Widget.AppCompat.Button.Small"
+                android:layout_height="40dp"
+                android:layout_weight="0.1"
+                android:background="@android:drawable/ic_menu_edit"
+                android:backgroundTint="@android:color/background_dark" />
+        </LinearLayout>
+
 
         <Button
             android:text="Button"
