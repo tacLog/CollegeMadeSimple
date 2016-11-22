@@ -30,8 +30,8 @@ public class MainMenu extends AppCompatActivity
 
     //Variables for storage of subcatatgories and thier values
     //Suplies values
-    private static ArrayList<String> supCatagories = new ArrayList();
-    private static ArrayList<String> supValues = new ArrayList();
+    private static String[] supCatagories = new String[5];
+    private static String[] supValues = new String[5];
 
 
     @Override
