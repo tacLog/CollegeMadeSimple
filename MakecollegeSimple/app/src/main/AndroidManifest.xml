@@ -21,32 +21,32 @@
         </activity>
         <activity
             android:name=".MainMenu"
-            android:label="Make college Simple"
+            android:label="Make College Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".WelcomeActivity"
-            android:label="Make college Simple"
+            android:label="Make College Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".ConfigureSettingsActivity"
-            android:label="Make college Simple"
+            android:label="Make College Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".CostEditActivity"
-            android:label="Make college Simple"
+            android:label="Make College Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".NewUserActivity"
-            android:label="Make college Simple"
+            android:label="Make College Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="Make college Simple"
+            android:label="Make College Simple"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
