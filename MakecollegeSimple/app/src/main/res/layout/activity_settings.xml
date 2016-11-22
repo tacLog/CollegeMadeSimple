@@ -26,25 +26,6 @@
         android:layout_alignLeft="@+id/tvSystem"
         android:layout_alignStart="@+id/tvSystem" />
 
-    <CheckBox
-        android:text="Quarter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvSystem"
-        android:layout_alignLeft="@+id/tvSystem"
-        android:layout_alignStart="@+id/tvSystem"
-        android:layout_marginTop="21dp"
-        android:id="@+id/cbQuarter" />
-
-    <CheckBox
-        android:text="Semester"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/cbQuarter"
-        android:layout_toRightOf="@+id/tvSystem"
-        android:layout_toEndOf="@+id/tvSystem"
-        android:id="@+id/cbSemester" />
-
     <Button
         android:text="Save Changes"
         android:layout_width="wrap_content"
@@ -56,4 +37,25 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <RadioButton
+        android:text="Quarter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rbQuarter"
+        android:layout_alignBaseline="@+id/rbSemester"
+        android:layout_alignBottom="@+id/rbSemester"
+        android:layout_alignLeft="@+id/tvSystem"
+        android:layout_alignStart="@+id/tvSystem" />
+
+    <RadioButton
+        android:text="Semester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/rbSemester"
+        android:layout_below="@+id/tvSystem"
+        android:layout_toRightOf="@+id/tvSystem"
+        android:layout_toEndOf="@+id/tvSystem" />
+
 </RelativeLayout>
