@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 public class categoryEdit extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String Title = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -45,7 +45,7 @@ public class categoryEdit extends Fragment {
     public static categoryEdit newInstance(String param1, String param2) {
         categoryEdit fragment = new categoryEdit();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(Title, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -55,7 +55,7 @@ public class categoryEdit extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getString(Title);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
