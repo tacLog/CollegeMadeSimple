@@ -104,7 +104,7 @@
             android:id="@+id/editButton1"
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_height="20dp"
-            android:layout_below="@+id/displayCost"
+            android:layout_below="@+id/editButton2"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 

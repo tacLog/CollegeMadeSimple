@@ -4,16 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvMenuLink"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="34dp" />
-
-    <TextView
-        android:text="Costs"
+        android:text="Configure Settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvTitle"
@@ -22,17 +13,69 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp" />
 
-    <TextView
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvDescription"
-        android:text="Enter some categories and the cost of each item"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:fontFamily="sans-serif-condensed"
-        android:layout_below="@+id/tvTitle"
+        android:layout_marginTop="21dp"
+        android:id="@+id/rgPortfolioType"
+        android:layout_below="@+id/tvInstructions"
+        android:layout_alignLeft="@+id/tvInstructions"
+        android:layout_alignStart="@+id/tvInstructions">
+
+        <RadioButton
+            android:text="@string/uc_portfolio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/uc_portfolio"
+            android:layout_below="@+id/tvInstructions"
+            android:layout_toRightOf="@+id/tvInstructions"
+            android:layout_toEndOf="@+id/tvInstructions" />
+
+        <RadioButton
+            android:text="@string/cs_portfolio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cs_portfolio"
+            android:layout_below="@+id/tvInstructions"
+            android:layout_toRightOf="@+id/tvInstructions"
+            android:layout_toEndOf="@+id/tvInstructions"/>
+
+        <RadioButton
+            android:text="@string/default_portfolio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/default_portfolio"
+            android:layout_below="@+id/tvInstructions"
+            android:layout_toRightOf="@+id/tvInstructions"
+            android:layout_toEndOf="@+id/tvInstructions"/>
+        <RadioButton
+            android:text="@string/blank_portfolio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/blank_portfolio"
+            android:layout_below="@+id/tvInstructions"
+            android:layout_toRightOf="@+id/tvInstructions"
+            android:layout_toEndOf="@+id/tvInstructions"/>
+    </RadioGroup>
+
+    <Button
+        android:text="Save Changes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rgPortfolioType"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="54dp"
+        android:id="@+id/bSave" />
+
+    <TextView
+        android:text="Please select one of the following"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/tvInstructions"
+        android:textSize="18sp"
+        android:layout_below="@+id/tvTitle"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

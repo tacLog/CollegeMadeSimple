@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -23,8 +24,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // initialize variables
     TextView tvUserName;
     TextView tvTitle;
+    Button bNewUser;
     GoogleApiClient mGoogleApiClient;
-    TextView tvNewUser;
     TextView tvMenuLink;
 
     private static final int RC_SIGN_IN = 9001;
@@ -34,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         tvUserName = (TextView) findViewById(R.id.tvUserName);
-        tvNewUser = (TextView) findViewById(R.id.tvNewUser);
+        bNewUser = (Button) findViewById(R.id.bNewUser);
         tvMenuLink = (TextView) findViewById(R.id.tvMenuLink);
 
         //Register both button and add click listener
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.tvTitle);
 
         // new user clicks this to go to new user activity
-        tvNewUser.setOnClickListener(new View.OnClickListener() {
+        bNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent newUserIntent = new Intent(LoginActivity.this, NewUserActivity.class);
