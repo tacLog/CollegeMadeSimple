@@ -29,9 +29,26 @@ public class MainMenu extends AppCompatActivity
     private float totalCost;
 
     //Variables for storage of subcatatgories and thier values
+
     //Suplies values
     private static ArrayList<String> supCatagories = new ArrayList();
     private static ArrayList<String> supValues = new ArrayList();
+
+    //rent values
+    private static ArrayList<String> rentCatagories = new ArrayList();
+    private static ArrayList<String> rentValues = new ArrayList();
+
+    //Transportation values
+    private static ArrayList<String> tranCatagories = new ArrayList();
+    private static ArrayList<String> tranValues = new ArrayList();
+
+    //Tuition values
+    private static ArrayList<String> tuitCatagories = new ArrayList();
+    private static ArrayList<String> tuitValues = new ArrayList();
+
+    //Personal
+    private static ArrayList<String> perCatagories = new ArrayList();
+    private static ArrayList<String> perValues = new ArrayList();
 
 
     @Override
@@ -39,61 +56,24 @@ public class MainMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         SharedPreferences saved = getPreferences(MODE_PRIVATE);
-        Bundle bundle = getIntent().getExtras(); //get variables that were passed from other activities (if any)
-        if (bundle == null) {
-            //if no variables were passed
-            loadValues(saved, 8);/**/
-            Log.i("bundle", String.valueOf(bundle)); //ignore this, used for debugging
-
-        }else{
-            //start the editor to input new data as we get it
-            SharedPreferences.Editor editor = saved.edit();
-            int flag = getIntent().getFlags();
-
-            switch (flag){
-                case 0: {
-                    loadValues(saved, flag);
-                    // if there were variables passed
-                    //convert bundle object to string
-                    String strsuppliesCost =  String.valueOf(bundle.get("suppliesCost"));
-                    Log.i("bundle2",strsuppliesCost); //ignore this, used for debugging
-                    //convert string to float
-                    float newSuppliesCost = Float.parseFloat(strsuppliesCost);
-                    Log.i("bundle3",String.valueOf(newSuppliesCost)); //ignore this, used for debugging
-                    //update the Supplies slice on piechart
-                    savedCats[flag] = newSuppliesCost;
-                    editor.putFloat("saved_suppliesCost",newSuppliesCost);
-                    editor.apply();
-                }
-
-            }
 
 
-        }
+
         totalCost = savedCats[0]+savedCats[1]+savedCats[2]+savedCats[3]+savedCats[4];
         PieChartFragment pie1 = PieChartFragment.newInstance(savedCats, totalCost);
         PieChartFragment pie2 = PieChartFragment.newInstance(savedCats, totalCost);
 
         CategoryEdit suplies = CategoryEdit.newInstance("Supplies", supCatagories,supValues);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame1,suplies).commit();
-        //fragmentManager.beginTransaction().replace(R.id.content_frame1,pie1).commit();
-        //fragmentManager.beginTransaction().replace(R.id.content_frame2,pie2).commit();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.content_frame1,suplies).commit();
+        //manager.beginTransaction().replace(R.id.content_frame1,pie1).commit();
+        //manager.beginTransaction().replace(R.id.content_frame2,pie2).commit();
 
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-*/
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -105,6 +85,10 @@ public class MainMenu extends AppCompatActivity
 
     }
 
+    public void saveAll() {
+
+    }
+    
     private void loadValues(SharedPreferences saved, int flag) {
         if (flag != 0){
             savedCats[0] = saved.getFloat("saved_suppliesCost", 10);
