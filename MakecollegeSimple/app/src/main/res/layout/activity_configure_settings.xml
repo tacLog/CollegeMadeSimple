@@ -4,15 +4,6 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvMenuLink"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="34dp" />
-
-    <TextView
         android:text="Costs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,6 +24,15 @@
         android:layout_below="@+id/tvTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp" />
+
+    <Button
+        android:text="Finished! Let's get started"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="79dp"
+        android:id="@+id/bFinished"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -22,10 +23,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     // initialize variables
     TextView tvUserName;
-    TextView tvTitle;
     GoogleApiClient mGoogleApiClient;
-    TextView tvNewUser;
     TextView tvMenuLink;
+
+    private String signIn = "";
 
     private static final int RC_SIGN_IN = 9001;
     @Override
@@ -34,25 +35,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         tvUserName = (TextView) findViewById(R.id.tvUserName);
-        tvNewUser = (TextView) findViewById(R.id.tvNewUser);
         tvMenuLink = (TextView) findViewById(R.id.tvMenuLink);
+
+        Button bNewUser = (Button) findViewById(R.id.bNewUser);
 
         //Register both button and add click listener
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.btn_logout).setOnClickListener(this);
 
-        // adding tvTitle to screen
-        findViewById(R.id.tvTitle);
-
         // new user clicks this to go to new user activity
-        tvNewUser.setOnClickListener(new View.OnClickListener() {
+        bNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent newUserIntent = new Intent(LoginActivity.this, NewUserActivity.class);
                 LoginActivity.this.startActivity(newUserIntent);
             }
         });
-        
+
+        // for debugging purposes
         tvMenuLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,8 +97,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
-
-
     }
 
     private void signOut() {
@@ -130,6 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             GoogleSignInAccount acct = result.getSignInAccount();
             tvUserName.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
 
+            // going to main menu
             Intent menuIntent = new Intent(LoginActivity.this, MainMenu.class);
             LoginActivity.this.startActivity(menuIntent);
 

@@ -8,10 +8,8 @@ import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -61,8 +59,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void load(){
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-
         int selectedID = sharedPreferences.getInt("check", 0);
+
         if(selectedID > 0){
             RadioButton rbtn = (RadioButton) findViewById(selectedID);
             rbtn.setChecked(true);
