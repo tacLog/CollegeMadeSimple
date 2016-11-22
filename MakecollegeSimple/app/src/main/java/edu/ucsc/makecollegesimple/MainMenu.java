@@ -2,6 +2,7 @@ package edu.ucsc.makecollegesimple;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.audiofx.BassBoost;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -130,6 +131,7 @@ public class MainMenu extends AppCompatActivity
         return true;
     }
 
+    // takes user back to login activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -138,7 +140,19 @@ public class MainMenu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_login) {
+
+            Intent loginIntent = new Intent(MainMenu.this, LoginActivity.class);
+            MainMenu.this.startActivity(loginIntent);
+
+            return true;
+        }
+
+        if(id == R.id.action_settings){
+
+            Intent settingsIntent = new Intent(MainMenu.this, SettingsActivity.class);
+            MainMenu.this.startActivity(settingsIntent);
+
             return true;
         }
 
@@ -181,7 +195,6 @@ public class MainMenu extends AppCompatActivity
             case R.id.nav_help:
                                     break;
         }
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

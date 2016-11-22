@@ -133,10 +133,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent menuIntent = new Intent(LoginActivity.this, MainMenu.class);
             LoginActivity.this.startActivity(menuIntent);
 
-            Log.i("result:", "pass!");
-
         } else {
-            Log.i("result:", "fail...");
             // Signed out, show unauthenticated UI.
             // updateUI(false);
         }
