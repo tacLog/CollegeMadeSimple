@@ -97,9 +97,9 @@ public class MainMenu extends AppCompatActivity
         CategoryEdit suplies = CategoryEdit.newInstance("Supplies", supCatagories,supValues);
 
         FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.content_frame1,suplies).commit();
-        //manager.beginTransaction().replace(R.id.content_frame1,pieCost).commit();
-        //manager.beginTransaction().replace(R.id.content_frame2,pieIn).commit();
+        //manager.beginTransaction().replace(R.id.content_frame1,suplies).commit();
+        manager.beginTransaction().replace(R.id.content_frame1,pieCost).commit();
+        manager.beginTransaction().replace(R.id.content_frame2,pieIn).commit();
 
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
