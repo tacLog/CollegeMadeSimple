@@ -19,7 +19,7 @@
         <RelativeLayout
             android:id="@+id/titleView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context="edu.ucsc.makecollegesimple.MainMenu"
             android:layout_alignParentTop="true"
@@ -34,7 +34,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="60dp"
                 android:id="@+id/inText"
-                android:textSize="36sp" />
+                android:textSize="26sp" />
 
             <TextView
                 android:text="- 4000 Cost"
@@ -45,19 +45,8 @@
                 android:layout_alignEnd="@+id/inText"
                 android:layout_marginTop="0dp"
                 android:id="@+id/costsText"
-                android:textSize="36sp" />
-            <!--
-                        <View
-                            android:layout_width="210dp"
-                            android:layout_height="2dp"
-                            android:layout_below="@+id/costsText"
-                            android:layout_alignRight="@+id/inText"
-                            android:layout_alignEnd="@+id/inText"
-                            android:layout_marginTop="5dp"
-                            android:id="@+id/lineSum"
-                            android:background="@android:color/darker_gray"/>
-                            />v
-            -->
+                android:textSize="26sp" />
+
             <TextView
                 android:text="1000 Net"
                 android:layout_width="wrap_content"
@@ -67,7 +56,16 @@
                 android:layout_alignEnd="@+id/inText"
                 android:layout_marginTop="1dp"
                 android:id="@+id/sum"
-                android:textSize="48sp" />
+                android:textSize="30sp"
+                android:textColor="@android:color/holo_green_dark" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/sum"
+                android:layout_marginTop="5dp"
+                android:id="@+id/lineSum"
+                android:background="@android:color/darker_gray"/>
+            />v
 
         </RelativeLayout>
 
@@ -75,7 +73,9 @@
             android:id="@+id/content_frame1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/titleView">
+            android:layout_below="@id/titleView"
+            android:layout_marginTop="-40dp">
+
 
 
         </FrameLayout>
