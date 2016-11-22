@@ -4,11 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ListViewAutoScrollHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,8 +29,10 @@ public class CategoryEdit extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static String Title = "param1";
-    private static ArrayList<String> catagories = new ArrayList();
-    private static ArrayList<String> values = new ArrayList();
+   // private static ArrayList<String> catagories = new ArrayList();
+    private static String[] catagories = new String[5];
+    //private static ArrayList<String> values = new ArrayList();
+    private static String[] values = new String[5];
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String header = "param1";
@@ -48,16 +53,16 @@ public class CategoryEdit extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param Title Parameter 1.
-     * @param catagoriesIn Parameter 2.
+     * @param categoriesIn Parameter 2.
      * @return A new instance of fragment CategoryEdit.
      */
     // TODO: Rename and change types and number of parameters
-    public static CategoryEdit newInstance(String Title, ArrayList<String> catagoriesIn, ArrayList<String> values) {
+    public static CategoryEdit newInstance(String Title, String[] categoriesIn, String[] values) {
         CategoryEdit fragment = new CategoryEdit();
         Bundle args = new Bundle();
         args.putString(header, Title);
-        args.putStringArrayList(catagoriesInString, catagoriesIn);
-        args.putStringArrayList(valuesString,values);
+        args.putStringArray(catagoriesInString, categoriesIn);
+        args.putStringArray(valuesString,values);
         fragment.setArguments(args);
         return fragment;
     }
@@ -67,8 +72,8 @@ public class CategoryEdit extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             Title = getArguments().getString(header);
-            catagories = getArguments().getStringArrayList(catagoriesInString);
-            values = getArguments().getStringArrayList(valuesString);
+            catagories = getArguments().getStringArray(catagoriesInString);
+            values = getArguments().getStringArray(valuesString);
 
         }
     }
@@ -82,9 +87,15 @@ public class CategoryEdit extends Fragment {
         final EditText costAmount = (EditText) view.findViewById(R.id.newCost);
         final TextView displayCategory = (TextView) view.findViewById(R.id.displayCategory);
         final TextView displayCost = (TextView) view.findViewById(R.id.displayCost);
+
         final TextView totalSupplies = (TextView) view.findViewById(R.id.totalSupplies);
         final Button okButton = (Button) view.findViewById(R.id.okButton);
-        upDateList(displayCategory, displayCost, totalSupplies);
+
+
+        //upDateList(displayCategory, displayCost, totalSupplies);
+
+
+
         okButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v) {
@@ -96,8 +107,32 @@ public class CategoryEdit extends Fragment {
                     String amount = costAmount.getText().toString();
 
                     //add the entered values into the lists
-                    catagories.add(name);
-                    values.add(amount);
+                   // catagories.add(name);
+                    // values.add(amount);
+                    int currentIndex = -1;
+                    for(int i =0; i < catagories.length; i++) {
+                        if (catagories[i] != null) {
+                            if (catagories[i].length() > 0) {
+                                continue;
+                            } else {
+                                currentIndex = i;
+                                break;
+                            }
+                        }
+                        else {
+                            currentIndex =i;
+                            break;
+                        }
+                    }
+                    if (currentIndex == -1){
+                        
+                        currentIndex=0;
+                    }
+
+                    catagories[currentIndex]= name;
+                    values[currentIndex]= amount;
+
+
 
                     //reset the forms to blank
                     categoryName.setText("");
@@ -116,16 +151,29 @@ public class CategoryEdit extends Fragment {
     private void upDateList(TextView displayCategory, TextView displayCost, TextView totalSupplies) {
         //loop through the categories list, convert each to string and concatenate them
         String currentCategory = "";
-        for (int i = 0; i < catagories.size(); i ++ ) {
-            currentCategory = currentCategory + catagories.get(i).toString() + "\n";
+        String currentEdit = "";
+        for (int i = 0; i < 5; i ++ ) {
+            if (catagories[i]!= null ){
+                currentCategory = currentCategory + catagories[i].toString() + "\n";
+
+
+            }
+            else{
+                currentCategory = currentCategory+ "\n";
+            }
         }
+
 
         //loop through the cost list, convert each to string and concatenate them
         String currentCost = "";
         double currentcostSum = 0;
-        for (int i =0; i< values.size(); i++){
-            currentcostSum = currentcostSum + Float.valueOf(values.get(i));
-            currentCost = currentCost + "$" + String.format("%.2f", Double.valueOf(values.get(i)))+"\n";  //add each item in cost list to get the sum
+        for (int i =0; i< 5; i++) {
+            if (values[i] != null) {
+                currentcostSum = currentcostSum + Float.valueOf(values[i]);
+                currentCost = currentCost + "$" + String.format("%.2f", Double.valueOf(values[i])) + "\n";  //add each item in cost list to get the sum
+            } else {
+                currentCost = currentCost + "\n";
+            }
         }
 
         //display each list on the screen

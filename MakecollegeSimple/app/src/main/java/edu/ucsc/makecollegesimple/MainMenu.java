@@ -35,8 +35,8 @@ public class MainMenu extends AppCompatActivity
     private static final String[] costTags = {"Costs:","Supplies","Rent","Transportation","Tution","Personal"};
 
     //Suplies values
-    private static ArrayList<String> supCatagories = new ArrayList();
-    private static ArrayList<String> supValues = new ArrayList();
+    private static String[] supCatagories = new String[5];
+    private static String[] supValues = new String[5];
 
     //rent values
     private static ArrayList<String> rentCatagories = new ArrayList();
