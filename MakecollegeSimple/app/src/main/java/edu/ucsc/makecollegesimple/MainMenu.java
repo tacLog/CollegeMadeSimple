@@ -25,10 +25,14 @@ public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PieChartFragment.OnFragmentInteractionListener, CategoryEdit.OnFragmentInteractionListener {
 
     PieChart pieChart;
-    private float[] savedCats = new float[5];
+    private float[] savedCostCats = new float[5];
+    private float[] savedInCats = new float[5];
     private float totalCost;
+    private float totalIn;
+
 
     //Variables for storage of subcatatgories and thier values
+    private static final String[] costTags = {"Costs:","Supplies","Rent","Transportation","Tution","Personal"};
 
     //Suplies values
     private static ArrayList<String> supCatagories = new ArrayList();
@@ -38,6 +42,10 @@ public class MainMenu extends AppCompatActivity
     private static ArrayList<String> rentCatagories = new ArrayList();
     private static ArrayList<String> rentValues = new ArrayList();
 
+    //personal expenses values
+    private static ArrayList<String> perCatagories = new ArrayList();
+    private static ArrayList<String> perValues = new ArrayList();
+
     //Transportation values
     private static ArrayList<String> tranCatagories = new ArrayList();
     private static ArrayList<String> tranValues = new ArrayList();
@@ -46,9 +54,29 @@ public class MainMenu extends AppCompatActivity
     private static ArrayList<String> tuitCatagories = new ArrayList();
     private static ArrayList<String> tuitValues = new ArrayList();
 
-    //Personal
-    private static ArrayList<String> perCatagories = new ArrayList();
-    private static ArrayList<String> perValues = new ArrayList();
+    //Income Variables
+
+    private static final String[] inTags = {"Income:","Loans","Scholarships","Job","Other","Grants"};
+
+    //Suplies values
+    private static ArrayList<String> loansCatagories = new ArrayList();
+    private static ArrayList<String> loansValues = new ArrayList();
+
+    //rent values
+    private static ArrayList<String> scholarCatagories = new ArrayList();
+    private static ArrayList<String> scholarValues = new ArrayList();
+
+    //Job
+    private static ArrayList<String> jobCatagories = new ArrayList();
+    private static ArrayList<String> jobValues = new ArrayList();
+
+    //other values
+    private static ArrayList<String> otherCatagories = new ArrayList();
+    private static ArrayList<String> otherValues = new ArrayList();
+
+    //grant values
+    private static ArrayList<String> grantCatagories = new ArrayList();
+    private static ArrayList<String> grantValues = new ArrayList();
 
 
     @Override
@@ -57,18 +85,20 @@ public class MainMenu extends AppCompatActivity
         setContentView(R.layout.activity_main_menu);
         SharedPreferences saved = getPreferences(MODE_PRIVATE);
 
+        savedCostCats = loadValues(saved, 8, savedCostCats);
+        savedInCats = loadValues(saved, 8, savedInCats);
+        totalIn = savedInCats[0] + savedInCats[1]+savedInCats[2]+savedInCats[3]+savedInCats[4];
+        totalCost = savedCostCats[0]+savedCostCats[1]+savedCostCats[2]+savedCostCats[3]+savedCostCats[4];
 
+        PieChartFragment pieCost = PieChartFragment.newInstance(costTags, savedCostCats, totalCost);
+        PieChartFragment pieIn = PieChartFragment.newInstance(inTags, savedCostCats, totalCost);
 
-        totalCost = savedCats[0]+savedCats[1]+savedCats[2]+savedCats[3]+savedCats[4];
-        PieChartFragment pie1 = PieChartFragment.newInstance(savedCats, totalCost);
-        PieChartFragment pie2 = PieChartFragment.newInstance(savedCats, totalCost);
-
-        CategoryEdit suplies = CategoryEdit.newInstance("Supplies", supCatagories,supValues);
+        //CategoryEdit suplies = CategoryEdit.newInstance("Supplies", supCatagories,supValues);
 
         FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.content_frame1,suplies).commit();
-        //manager.beginTransaction().replace(R.id.content_frame1,pie1).commit();
-        //manager.beginTransaction().replace(R.id.content_frame2,pie2).commit();
+        //manager.beginTransaction().replace(R.id.content_frame1,suplies).commit();
+        manager.beginTransaction().replace(R.id.content_frame1,pieCost).commit();
+        manager.beginTransaction().replace(R.id.content_frame2,pieIn).commit();
 
         //toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -85,26 +115,27 @@ public class MainMenu extends AppCompatActivity
 
     }
 
-    public void saveAll() {
-
+    public void saveAll(){
+        SharedPreferences saved = getPreferences(MODE_PRIVATE);
     }
-    
-    private void loadValues(SharedPreferences saved, int flag) {
+
+    private float[] loadValues(SharedPreferences saved, int flag, float[] loaded) {
         if (flag != 0){
-            savedCats[0] = saved.getFloat("saved_suppliesCost", 10);
+            loaded[0] = saved.getFloat("saved_suppliesCost", 10);
         }
         if (flag != 1) {
-            savedCats[1] = saved.getFloat("saved_rentCost",10);
+            loaded[1] = saved.getFloat("saved_rentCost",10);
         }
         if (flag != 2) {
-            savedCats[2] = saved.getFloat("saved_tranCost",10);
+            loaded[2] = saved.getFloat("saved_tranCost",10);
         }
         if (flag != 3) {
-            savedCats[3] = saved.getFloat("saved_tuitCost",10);
+            loaded[3] = saved.getFloat("saved_tuitCost",10);
         }
         if (flag != 4) {
-            savedCats[4] = saved.getFloat("saved_perCost",10);
+            loaded[4] = saved.getFloat("saved_perCost",10);
         }
+        return loaded;
 
     }
 

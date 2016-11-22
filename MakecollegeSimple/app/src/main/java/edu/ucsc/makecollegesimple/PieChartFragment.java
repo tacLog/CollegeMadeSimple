@@ -29,7 +29,9 @@ public class PieChartFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String categoriesTotals = "param1";
     private static final String totalPie = "param2";
+    private static final String tags = "param3";
 
+    private String[] titles;
     private float[] cats = new float[5];
     private float totalCost;
     private PieChart pieChart;
@@ -40,9 +42,10 @@ public class PieChartFragment extends Fragment {
     }
 
 
-    public static PieChartFragment newInstance(float[] in, float Total) {
+    public static PieChartFragment newInstance(String[] tagsIn, float[] in, float Total) {
         PieChartFragment fragment = new PieChartFragment();
         Bundle args = new Bundle();
+        args.putStringArray(tags, tagsIn);
         args.putFloatArray(categoriesTotals, in);
         args.putFloat(totalPie, Total);
         fragment.setArguments(args);
@@ -53,6 +56,7 @@ public class PieChartFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            titles = getArguments().getStringArray(tags);
             cats = getArguments().getFloatArray(categoriesTotals);
             totalCost = getArguments().getFloat(totalPie);
         }
@@ -73,25 +77,21 @@ public class PieChartFragment extends Fragment {
         //this is the y-axis
         // first parameter of Entry represents the amount in the category and second parameter is index numbered 0-4
         final ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(cats[0] , 0));  //supplies
-        entries.add(new Entry (cats[1], 1));   //rent
-        entries.add(new Entry(cats[2], 2));   //transportation
-        entries.add(new Entry(cats[3], 3));  //tuition
-        entries.add(new Entry(cats[4], 4));   //personal
+        for(int i = 0; i < cats.length; i++){
+            entries.add(new Entry((cats[i]), i));
+        }
 
         PieDataSet dataset = new PieDataSet(entries, "");
 
         //this is the x-axis
         ArrayList<String> labels = new ArrayList<String>();
-        labels.add("Supplies");
-        labels.add("Rent");
-        labels.add("Transportation");
-        labels.add("Tuition");
-        labels.add("Personal");
+        for(int i = 1; i< titles.length; i++){
+            labels.add(titles[i]);
+        }
 
         PieData data = new PieData(labels, dataset);
 
-        pieChart.setCenterText("Costs: $"  + totalCost);
+        pieChart.setCenterText(titles[0]+" $"  + totalCost);
         pieChart.setCenterTextSize(15f);
 
         //appearance

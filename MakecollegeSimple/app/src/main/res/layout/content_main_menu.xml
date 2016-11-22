@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -14,12 +16,67 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="edu.ucsc.makecollegesimple.MainMenu">
 
+        <RelativeLayout
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="edu.ucsc.makecollegesimple.MainMenu"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
+            <TextView
+                android:text="5000 In"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:id="@+id/inText"
+                android:textSize="36sp" />
+
+            <TextView
+                android:text="- 4000 Cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/inText"
+                android:layout_alignRight="@+id/inText"
+                android:layout_alignEnd="@+id/inText"
+                android:layout_marginTop="0dp"
+                android:id="@+id/costsText"
+                android:textSize="36sp" />
+            <!--
+                        <View
+                            android:layout_width="210dp"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/costsText"
+                            android:layout_alignRight="@+id/inText"
+                            android:layout_alignEnd="@+id/inText"
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/lineSum"
+                            android:background="@android:color/darker_gray"/>
+                            />v
+            -->
+            <TextView
+                android:text="1000 Net"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/costsText"
+                android:layout_alignRight="@+id/inText"
+                android:layout_alignEnd="@+id/inText"
+                android:layout_marginTop="1dp"
+                android:id="@+id/sum"
+                android:textSize="48sp" />
+
+        </RelativeLayout>
 
         <FrameLayout
             android:id="@+id/content_frame1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/titleView">
+
 
         </FrameLayout>
 
