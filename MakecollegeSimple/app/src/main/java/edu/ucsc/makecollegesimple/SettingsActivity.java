@@ -21,6 +21,5 @@ public class SettingsActivity extends AppCompatActivity {
         TextView tvSystem = (TextView) findViewById(R.id.tvSystem);
         CheckBox cbQuarter = (CheckBox) findViewById(R.id.cbQuarter);
         CheckBox cbSemester = (CheckBox) findViewById(R.id.cbSemester);
-
     }
 }
