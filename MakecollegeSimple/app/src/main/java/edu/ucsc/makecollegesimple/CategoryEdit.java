@@ -29,7 +29,7 @@ public class CategoryEdit extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static String Title = "param1";
-   // private static ArrayList<String> catagories = new ArrayList();
+    // private static ArrayList<String> catagories = new ArrayList();
     private static String[] catagories = new String[5];
     //private static ArrayList<String> values = new ArrayList();
     private static String[] values = new String[5];
@@ -107,7 +107,7 @@ public class CategoryEdit extends Fragment {
                     String amount = costAmount.getText().toString();
 
                     //add the entered values into the lists
-                   // catagories.add(name);
+                    // catagories.add(name);
                     // values.add(amount);
                     int currentIndex = -1;
                     for(int i =0; i < catagories.length; i++) {
@@ -125,7 +125,7 @@ public class CategoryEdit extends Fragment {
                         }
                     }
                     if (currentIndex == -1){
-                        
+
                         currentIndex=0;
                     }
 
