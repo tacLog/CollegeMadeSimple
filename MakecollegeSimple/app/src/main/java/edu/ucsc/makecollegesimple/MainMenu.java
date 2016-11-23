@@ -1,5 +1,6 @@
 package edu.ucsc.makecollegesimple;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -59,7 +60,7 @@ public class MainMenu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
+        SharedPreferences saver = getPreferences(Context.MODE_PRIVATE);
         String[] inCategories = null;
         String[] inValues   = null;
         //load setup data
@@ -68,6 +69,9 @@ public class MainMenu extends AppCompatActivity
             Bundle bundle = getIntent().getExtras();
             inCategories = bundle.getStringArray(catIn);
             inValues = bundle.getStringArray(valuesIn);
+        }
+        else {
+            saver.getString(masterCatTag, "Fail");
         }
 
         if(inCategories!=null && inValues != null){
@@ -83,7 +87,7 @@ public class MainMenu extends AppCompatActivity
 
         }
 
-        
+
 
 
         float[] savedCostCats = Arrays.copyOfRange(categoryTotals, 0, 5);
