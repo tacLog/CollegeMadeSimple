@@ -16,4 +16,12 @@ Michael:
 	with entire app and had friends try as well to have different
 	people and their usages be tested.
 Eduardo:
-	Usablity
+	I tested the usability of the app. I tested how reliable the
+	app actually is. I tested the menu and checked if each of the buttons
+	worked and did what they were suppose to do. The button I mostly focused
+	on was the help button. The button lead to a page with other buttons and
+	I made sure those buttons lead to the right information based on which
+	financial aid the user wanted to learn more about. Checked
+	if the app ran smoothly and if there were any crashes or lags in the program.
+	Played with the input a bit to see if the app was saving data, such as picking
+	semester or quarter system.
