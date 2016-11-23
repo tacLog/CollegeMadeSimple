@@ -4,6 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="edu.ucsc.makecollegesimple.CategoryEditActivity">
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/categoryTitle"
+        android:layout_weight="0.5"
+        android:background="@color/colorPrimary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="34sp" />
 
     <RelativeLayout
         android:orientation="vertical"
@@ -11,6 +22,8 @@
         android:paddingRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="600dp">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,6 +63,68 @@
             android:layout_below="@+id/inputArea"
             android:id="@+id/okButton" />
 
+        <Button
+            android:id="@+id/editButton0"
+            android:layout_width="25dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/okButton"
+            android:background="@android:drawable/ic_menu_edit"
+            android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_height="25dp" />
+
+        <Button
+            android:id="@+id/editButton1"
+            android:layout_width="25dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editButton0"
+            android:background="@android:drawable/ic_menu_edit"
+            android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
+            android:visibility="visible"
+            android:layout_height="25dp" />
+
+        <Button
+            android:id="@+id/editButton2"
+            android:layout_width="25dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editButton1"
+            android:background="@android:drawable/ic_menu_edit"
+            android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
+            android:visibility="visible"
+            android:layout_height="25dp" />
+
+        <Button
+            android:id="@+id/editButton3"
+            android:layout_width="25dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editButton2"
+            android:background="@android:drawable/ic_menu_edit"
+            android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
+            android:visibility="visible"
+            android:layout_height="25dp" />
+
+        <Button
+            android:id="@+id/editButton4"
+            android:layout_width="25dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editButton3"
+            android:background="@android:drawable/ic_menu_edit"
+            android:backgroundTint="@color/common_google_signin_btn_text_dark_focused"
+            android:visibility="visible"
+            android:layout_height="25dp" />
+
+
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,7 +148,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/displayCategory"
-                android:ems="9"
+                android:ems="6"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textSize="22sp"
                 android:layout_weight="0.45"/>
@@ -87,36 +162,7 @@
                 android:textSize="22sp"
                 android:layout_weight="0.45"/>
 
-            <Button
-                android:layout_width="0dp"
-                android:id="@+id/editButton0"
-                style="@style/Widget.AppCompat.Button.Small"
-                android:layout_height="40dp"
-                android:layout_weight="0.1"
-                android:background="@android:drawable/ic_menu_edit"
-                android:backgroundTint="@android:color/background_dark" />
         </LinearLayout>
-
-
-        <Button
-            android:text="Button"
-            android:layout_width="20dp"
-            android:id="@+id/editButton1"
-            style="@style/Widget.AppCompat.Button.Small"
-            android:layout_height="20dp"
-            android:layout_below="@+id/displayCost"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <Button
-            android:text="Button"
-            android:layout_width="20dp"
-            android:id="@+id/editButton2"
-            style="@style/Widget.AppCompat.Button.Small"
-            android:layout_height="20dp"
-            android:layout_below="@+id/editButton1"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
 
 
     </RelativeLayout>
