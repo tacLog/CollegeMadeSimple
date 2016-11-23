@@ -1,9 +1,11 @@
 package edu.ucsc.makecollegesimple;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,7 +20,6 @@ import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -32,20 +33,24 @@ public class SettingsActivity extends AppCompatActivity {
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // gets the selected radio button from the group
                 int selectedID = rgRadioSystemGroup.getCheckedRadioButtonId();
 
                 // rbSelectedButton is the button that was selected from the group
                 RadioButton rbSelectedButton = (RadioButton) findViewById(selectedID);
 
+                Intent saveIntent = new Intent(SettingsActivity.this, MainMenu.class);
+                SettingsActivity.this.startActivity(saveIntent);
+
                 // displays what the user selected
                 Toast.makeText(SettingsActivity.this,
-                        rbSelectedButton.getText(), Toast.LENGTH_SHORT).show();
+                      rbSelectedButton.getText(), Toast.LENGTH_SHORT).show();
                 save(selectedID);
             }
         });
 
-        load();
+        //load();
     }
 
     // save and load methods below make sure the same radio button is pressed when exiting the app
@@ -57,6 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
         editor.commit();
     }
 
+    /* ***broken code***
     private void load(){
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         int selectedID = sharedPreferences.getInt("check", 0);
@@ -66,4 +72,6 @@ public class SettingsActivity extends AppCompatActivity {
             rbtn.setChecked(true);
         }
     }
+    */
 }
+
