@@ -33,6 +33,7 @@ public class WelcomeActivity extends AppCompatActivity{
 
                 Intent configureIntent = new Intent(WelcomeActivity.this, ConfigureSettingsActivity.class);
                 WelcomeActivity.this.startActivity(configureIntent);
+                finish();
 
             }
         });

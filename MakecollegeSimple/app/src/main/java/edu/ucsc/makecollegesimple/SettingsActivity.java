@@ -43,10 +43,12 @@ public class SettingsActivity extends AppCompatActivity {
                 Intent saveIntent = new Intent(SettingsActivity.this, MainMenu.class);
                 SettingsActivity.this.startActivity(saveIntent);
 
+
                 // displays what the user selected
                 Toast.makeText(SettingsActivity.this,
                       rbSelectedButton.getText(), Toast.LENGTH_SHORT).show();
                 save(selectedID);
+                finish();
             }
         });
 

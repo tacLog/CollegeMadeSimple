@@ -86,6 +86,7 @@ public class NewUserActivity extends AppCompatActivity implements View.OnClickLi
             // if google sign in is successful, it'll go to welcome activity
             Intent welcomeIntent = new Intent(NewUserActivity.this, WelcomeActivity.class);
             NewUserActivity.this.startActivity(welcomeIntent);
+            finish();
 
         } else {
             // Signed out, show unauthenticated UI.

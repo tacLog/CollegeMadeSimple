@@ -44,10 +44,6 @@
             android:name=".SettingsActivity"
             android:label="Make college Simple"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Summary"
-            android:label="@string/title_activity_summary"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".helpActivity" />
         <activity android:name=".scholarship" />
         <activity android:name=".grant" />
