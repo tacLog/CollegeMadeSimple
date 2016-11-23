@@ -59,7 +59,6 @@ public class MainMenu extends AppCompatActivity
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +79,7 @@ public class MainMenu extends AppCompatActivity
             inValues = bundle.getStringArray(valuesIn);
         }
         else {
-            saver.getString(masterCatTag, "Fail");
+            loadAll(saver);
         }
 
         if(inCategories!=null && inValues != null){
@@ -95,14 +94,13 @@ public class MainMenu extends AppCompatActivity
             categoryTotals[flag]= newTotal;
         }
 
+
         totalCost = categoryTotals[0] + categoryTotals[1] + categoryTotals [2] + categoryTotals[3] + categoryTotals[4];
         totalIn = categoryTotals[5] + categoryTotals[6] + categoryTotals [7] + categoryTotals[8] + categoryTotals[9];
         inText.setText(String.format("%.2f",totalIn) + " Costs");
         costsText.setText(String.format("%.2f",totalCost) + " Costs");
         float total = totalIn - totalCost;
         sum.setText(String.format("%.2f",total) + " Net");
-
-
 
 
 
@@ -131,9 +129,32 @@ public class MainMenu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        saveAll(saver);
 
     }
 
+    private void saveAll(SharedPreferences saver) {
+        SharedPreferences.Editor editor = saver.edit();
+
+        for(int i = 0; i < 50; i++){
+            editor.putString(masterCatTag+i,masterCategories[i%10][i%5]);
+            editor.putString(masterValTag+i,masterValues[i%10][i%5]);
+        }
+        for (int i = 0; i < 10; i++){
+            editor.putFloat(catTotTag+i,categoryTotals[i]);
+        }
+        editor.commit();
+    }
+
+    private void loadAll(SharedPreferences saver) {
+        for(int i = 0; i < 50; i++){
+            masterCategories[i%10][i%5]= saver.getString(masterCatTag+i, null);
+            masterValues[i%10][i%5]= saver.getString(masterValTag+i, null);
+        }
+        for (int i = 0; i < 10; i++){
+            categoryTotals[i] = saver.getFloat(catTotTag+i, 10);
+        }
+    }
 
 
     @Override

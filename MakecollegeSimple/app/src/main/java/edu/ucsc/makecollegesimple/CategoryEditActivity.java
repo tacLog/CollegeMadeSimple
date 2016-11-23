@@ -198,13 +198,11 @@ public class CategoryEditActivity extends Activity {
         String currentCategory = "";
         String currentEdit = "";
         for (int i = 0; i < 5; i ++ ) {
-            if (categories[i]!= null ){
-                currentCategory = currentCategory + categories[i].toString() + "\n";
-
-
+            if (categories[i]== null || categories[i].equals("")){
+                currentCategory = currentCategory+ "\n";
             }
             else{
-                currentCategory = currentCategory+ "\n";
+                currentCategory = currentCategory + categories[i] + "\n";
             }
         }
 
@@ -213,11 +211,11 @@ public class CategoryEditActivity extends Activity {
         String currentCost = "";
         double currentcostSum = 0;
         for (int i =0; i< 5; i++) {
-            if (values[i] != null) {
+            if (values[i] == null || values[i].equals("")) {
+                currentCost = currentCost + "\n";
+            } else {
                 currentcostSum = currentcostSum + Float.valueOf(values[i]);
                 currentCost = currentCost + "$" + String.format("%.2f", Double.valueOf(values[i])) + "\n";  //add each item in cost list to get the sum
-            } else {
-                currentCost = currentCost + "\n";
             }
         }
 
