@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_loan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.ucsc.makecollegesimple.loan">
+
+    <TextView
+        android:id="@+id/Loan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp"
+        android:text="Loans"/>
+
+    <TextView
+        android:id="@+id/Loan1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Loan"
+        android:textStyle="italic"
+        android:text="Unsubsidized Loan"/>
+
+    <TextView
+        android:id="@+id/UL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Loan1"
+        android:layout_marginBottom="25dp"
+        android:text="The Federal Government pays the interest for Direct Subsidized Loans while the student is in college or while the loan is in deferment. Interest begins accruing for Direct Unsubsidized Loans as soon as the loan is taken out."/>
+
+    <TextView
+        android:id="@+id/Loan2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/UL"
+        android:textStyle="italic"
+        android:text="Subsidized Loan"/>
+
+
+    <TextView
+        android:id="@+id/SL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Loan2"
+        android:layout_marginBottom="25dp"
+        android:text="The Federal Government pays the interest for Direct Subsidized Loans while the student is in college or while the loan is in deferment. Interest begins accruing for Direct Unsubsidized Loans as soon as the loan is taken out."/>
+
+
+    <TextView
+        android:id="@+id/Loan3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SL"
+        android:textStyle="italic"
+        android:text="Parent-Student Loan"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Loan3"
+        android:text="PLUS loans are federal loans that graduate or professional students and parents of dependent undergraduate students can use to help pay for college or career school. PLUS loans can help pay for education expenses not covered by other financial aid."/>
+
+
+
+</RelativeLayout>

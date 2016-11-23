@@ -59,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("check", selectedID);
-        editor.commit();
+        editor.apply();
     }
 
     /* ***broken code***
