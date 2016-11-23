@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 
@@ -41,6 +42,9 @@ public class MainMenu extends AppCompatActivity
     private static float totalIn;
 
 
+
+
+
     //Variables for storage of subcatatgories and thier values
     private static final String[] costTags = {"Costs:","Supplies","Rent","Transportation","Tution","Personal"};
 
@@ -63,6 +67,11 @@ public class MainMenu extends AppCompatActivity
         SharedPreferences saver = getPreferences(Context.MODE_PRIVATE);
         String[] inCategories = null;
         String[] inValues   = null;
+
+        final TextView inText = (TextView) findViewById(R.id.inText);
+        final TextView costsText = (TextView) findViewById(R.id.costsText);
+        final TextView sum = (TextView) findViewById(R.id.sum);
+
         //load setup data
         int flag = getIntent().getFlags();
         if(getIntent().getExtras() != null){
@@ -84,8 +93,17 @@ public class MainMenu extends AppCompatActivity
                 }
             }
             categoryTotals[flag]= newTotal;
-
         }
+
+        totalCost = categoryTotals[0] + categoryTotals[1] + categoryTotals [2] + categoryTotals[3] + categoryTotals[4];
+        totalIn = categoryTotals[5] + categoryTotals[6] + categoryTotals [7] + categoryTotals[8] + categoryTotals[9];
+        inText.setText(String.format("%.2f",totalIn) + " Costs");
+        costsText.setText(String.format("%.2f",totalCost) + " Costs");
+        float total = totalIn - totalCost;
+        sum.setText(String.format("%.2f",total) + " Net");
+
+
+
 
 
 

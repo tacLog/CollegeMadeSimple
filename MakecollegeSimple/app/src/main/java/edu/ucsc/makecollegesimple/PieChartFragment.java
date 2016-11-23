@@ -114,7 +114,6 @@ public class PieChartFragment extends Fragment {
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                //Log.i("tag", String.valueOf(e.getXIndex()));
                 int costsCategory = e.getXIndex();
 
                 MainMenu activity = (MainMenu) getActivity();
