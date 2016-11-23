@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.ucsc.makecollegesimple">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -22,38 +23,35 @@
         <activity
             android:name=".MainMenu"
             android:label="Make college Simple"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WelcomeActivity"
             android:label="Make college Simple"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ConfigureSettingsActivity"
             android:label="Make college Simple"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CategoryEditActivity"
             android:label="Make college Simple"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewUserActivity"
             android:label="Make college Simple"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SettingsActivity"
             android:label="Make college Simple"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Summary"
             android:label="@string/title_activity_summary"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        </application>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".helpActivity" />
+        <activity android:name=".scholarship" />
+        <activity android:name=".grant" />
+        <activity android:name=".loan"></activity>
+    </application>
 
 </manifest>

@@ -83,7 +83,7 @@ public class MainMenu extends AppCompatActivity
 
         }
 
-        
+
 
 
         float[] savedCostCats = Arrays.copyOfRange(categoryTotals, 0, 5);
@@ -201,6 +201,8 @@ public class MainMenu extends AppCompatActivity
                 MainMenu.this.startActivity(settingsIntent);
                 break;
             case R.id.nav_help:
+                Intent helpIntent = new Intent(MainMenu.this, helpActivity.class);
+                MainMenu.this.startActivity(helpIntent);
                 break;
         }
 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_grant"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.ucsc.makecollegesimple.grant">
+
+
+    <TextView
+        android:id="@+id/grants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:textStyle="bold"
+        android:text="GRANTS:"/>
+
+    <TextView
+        android:id="@+id/Type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/grants"
+        android:textStyle="italic"
+        android:text="University Grants"/>
+
+    <TextView
+        android:id="@+id/def1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Type"
+        android:layout_marginBottom="25dp"
+        android:text="A student grant is a need-based form of financial aid given to college students to help pay for their college expenses. The money can be used in paying tuition, fees, room and board, books, and anything else students may need money for."/>
+
+    <TextView
+        android:id="@+id/Type1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/def1"
+        android:textStyle="italic"
+        android:text="Cal Grant"/>
+
+    <TextView
+    android:id="@+id/def2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Type1"
+        android:layout_marginBottom="25dp"
+    android:text="Cal Grant is a financial aid program administrated by the California Student Aid Commission (CSAC) providing aid to California undergraduates, vocational training students, and those in teacher certification programs. Cal Grants are the largest source of California state funded student financial aid."/>
+
+    <TextView
+        android:id="@+id/Title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/def2"
+        android:textStyle="italic"
+        android:text="Middle-Class Scholarship"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Title3"
+        android:text="The Middle Class Scholarship (MCS) provides undergraduate students, including students pursuing a teaching credential, with family incomes and assets up to $156,000 a scholarship to attend University of California (UC) or California State University (CSU) campuses."/>
+</RelativeLayout>
