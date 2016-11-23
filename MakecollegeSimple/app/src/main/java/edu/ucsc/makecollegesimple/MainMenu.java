@@ -82,27 +82,15 @@ public class MainMenu extends AppCompatActivity
             categoryTotals[flag]= newTotal;
 
         }
-/*
 
-        File data = new File(getApplicationContext().getFilesDir(),"data.json");
-        try{
-            data.createNewFile();
-        } catch (Exception e){
-            Log.i.print("We had a porblem making the file... oh shit");
-        }
-        try {
-            InputStream writer =  new In;
-            int size = writer.
-        } catch (Exception e){
+        
 
-        }
-*/
 
         float[] savedCostCats = Arrays.copyOfRange(categoryTotals, 0, 5);
         float[] savedInCats =   Arrays.copyOfRange(categoryTotals, 5, 10);
 
         PieChartFragment pieCost = PieChartFragment.newInstance(costTags, savedCostCats, totalCost, 0);
-        PieChartFragment pieIn = PieChartFragment.newInstance(inTags, savedInCats, totalCost, 1);
+        PieChartFragment pieIn = PieChartFragment.newInstance(inTags, savedInCats, totalIn, 1);
 
 
         FragmentManager manager = getSupportFragmentManager();
@@ -227,6 +215,7 @@ public class MainMenu extends AppCompatActivity
         // telling LoginActivity to perform registerIntent
         setSendDataCatEdit(newUserIntent, i);
         MainMenu.this.startActivity(newUserIntent);
+        finish();
     }
 
     private void setSendDataCatEdit(Intent newUserIntent, int i) {
