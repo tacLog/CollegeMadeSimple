@@ -26,18 +26,6 @@
         android:layout_alignLeft="@+id/tvSystem"
         android:layout_alignStart="@+id/tvSystem" />
 
-    <Button
-        android:text="Save Changes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="78dp"
-        android:id="@+id/bSave"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,26 +33,38 @@
         android:layout_alignLeft="@+id/tvSystem"
         android:layout_alignStart="@+id/tvSystem"
         android:layout_marginTop="14dp"
-        android:id="@+id/rgRadioGroup">
+        android:id="@+id/rgRadioSystemGroup">
         <RadioButton
-            android:text="Quarter"
+            android:text="@string/rb_quarter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rbQuarter"
-            android:layout_alignBaseline="@+id/rbSemester"
-            android:layout_alignBottom="@+id/rbSemester"
+            android:id="@+id/rb_quarter"
+            android:layout_alignBaseline="@+id/rb_semester"
+            android:layout_alignBottom="@+id/rb_semester"
             android:layout_alignLeft="@+id/tvSystem"
             android:layout_alignStart="@+id/tvSystem" />
 
         <RadioButton
-            android:text="Semester"
+            android:text="@string/rb_semester"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:id="@+id/rbSemester"
+            android:id="@+id/rb_semester"
             android:layout_below="@+id/tvSystem"
             android:layout_toRightOf="@+id/tvSystem"
             android:layout_toEndOf="@+id/tvSystem"/>
     </RadioGroup>
+
+    <Button
+        android:text="Save Changes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="127dp"
+        android:id="@+id/bSave"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
