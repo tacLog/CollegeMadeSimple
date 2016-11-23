@@ -198,7 +198,7 @@ public class CategoryEditActivity extends Activity {
         String currentCategory = "";
         String currentEdit = "";
         for (int i = 0; i < 5; i ++ ) {
-            if (categories[i]== null || categories[i].equals("")){
+            if (categories[i]== null || categories[i].equals("") || categories[i].isEmpty()){
                 currentCategory = currentCategory+ "\n";
             }
             else{
@@ -211,7 +211,7 @@ public class CategoryEditActivity extends Activity {
         String currentCost = "";
         double currentcostSum = 0;
         for (int i =0; i< 5; i++) {
-            if (values[i] == null || values[i].equals("")) {
+            if (values[i] == null || values[i].equals("") || values[i].isEmpty()) {
                 currentCost = currentCost + "\n";
             } else {
                 currentcostSum = currentcostSum + Float.valueOf(values[i]);

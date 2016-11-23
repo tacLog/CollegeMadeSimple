@@ -87,7 +87,10 @@ public class MainMenu extends AppCompatActivity
             for(int i =0; i <5; i++){
                 masterCategories[flag][i]   =inCategories[i];
                 masterValues[flag][i]       =inValues[i];
-                if(inValues[i]!=null){
+                if(inValues[i]==null || inValues[i].equals("")){
+
+                }
+                else {
                     newTotal +=                 Float.valueOf(inValues[i]);
                 }
             }
@@ -137,8 +140,8 @@ public class MainMenu extends AppCompatActivity
         SharedPreferences.Editor editor = saver.edit();
 
         for(int i = 0; i < 50; i++){
-            editor.putString(masterCatTag+i,masterCategories[i%10][i%5]);
-            editor.putString(masterValTag+i,masterValues[i%10][i%5]);
+            editor.putString(masterCatTag+i,masterCategories[i/5][i%5]);
+            editor.putString(masterValTag+i,masterValues[i/5][i%5]);
         }
         for (int i = 0; i < 10; i++){
             editor.putFloat(catTotTag+i,categoryTotals[i]);
@@ -148,8 +151,8 @@ public class MainMenu extends AppCompatActivity
 
     private void loadAll(SharedPreferences saver) {
         for(int i = 0; i < 50; i++){
-            masterCategories[i%10][i%5]= saver.getString(masterCatTag+i, null);
-            masterValues[i%10][i%5]= saver.getString(masterValTag+i, null);
+            masterCategories[i/5][i%5]= saver.getString(masterCatTag+i, "");
+            masterValues[i/5][i%5]= saver.getString(masterValTag+i, "");
         }
         for (int i = 0; i < 10; i++){
             categoryTotals[i] = saver.getFloat(catTotTag+i, 10);
