@@ -1,0 +1,19 @@
+Thomas(PO):
+	Fragment and everything that is android
+Tiffany:
+	Pie chart implentation
+Grace:
+	Tested google sign in
+Michael:
+	Used app like a normal would user. Filled in all fields in
+	the app with different amounts numbers and categories also 
+	with different amounts of numbers. Constantly changed 
+	between fragments and activties to see if a crash would 
+	occur. played with menus and navigation drawers 
+	constantly to ensure no lag occurred. Chose all items on 
+	navigation drawer to ensure all send to correct form and 
+	were saved in apporpriate variable. Overall just played 
+	with entire app and had friends try as well to have different
+	people and their usages be tested.
+Eduardo:
+	Usablity
