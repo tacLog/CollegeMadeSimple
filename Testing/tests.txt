@@ -1,7 +1,14 @@
 Thomas(PO):
 	Fragment and everything that is android
 Tiffany:
-	Pie chart implentation
+	Implemented the initial pie chart.
+	Created and implemented the app icon.  
+	Worked with Thomas to create main menu activity.
+	Worked with Thomas to create the activity to edit each category in the pie chart.  
+	Implemented edit function for each subcategory item.
+	Worked with Michael to write the system and unit test report (Testing.pdf).
+	Tested every function of the app (inputted values in app and view their outputs in pie chart, sign in, navigation drawer, crashes, etc) 
+
 Grace:
 	Tested google sign in
 Michael:
