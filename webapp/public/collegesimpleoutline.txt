@@ -1,0 +1,25 @@
+SETTINGS/PROFILE page ->
+
+name, drop down for schools (UCSC), email, major, graduation year, link sharing
+
+HOME page ->
+
+Income, expenses, pie charts
+Yr vs Quarter incomes, expenses
+
+Incomes page ->
+Loans
+Grants
+Scholarships
+Job
+Grants
+Other
+
+Costs page ->
+Tuition
+Personal
+Supplies
+Rent
+Transportation
+
+
