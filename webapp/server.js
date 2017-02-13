@@ -1,3 +1,4 @@
+var port = 8080
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
@@ -15,5 +16,5 @@ app.get('/userlist', function(req, res) {
 
 });
 
-app.listen(3000);
-console.log("Server running on port 3000");
+app.listen(port);
+console.log("Server running on port"+port);
