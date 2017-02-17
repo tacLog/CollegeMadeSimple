@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/pad.css" media="screen,projection"/>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+
+  <script src="/javascripts/angularApp.js"></script>
+</head>
+
+<body np-app="magicNumbers" ng-controller="MainCtrl">
+  <!--side nav-->
+  <nav class="blue lighten-2" role="navigation">
+    <div class="nav-wrapper container"><header><a id="logo-container" href="#" class="brand-logo">College Made Simple</a></header>
+      <div>
+        <ul id="slide-out" class="side-nav fixed">
+          <li>
+            <div class="userView">
+              <a href="#!user"><img height="250" width="250" src="images/ucsc.jpg"></a>
+              <a href="#!name"><span class="grey-text name"><font size="+3">Sammy Slug</font></span></a>
+              <a href="#!email"><span class="grey-text email">sslug@ucsc.edu</span></a>
+            </div></li>
+            <li><div class="divider"></div></li>
+            <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
+            <li><a class="waves-effect" href="#!">Link 2</a></li>
+            <li><a class="waves-effect" href="#!">Link 3</a></li>
+          </ul>
+          <a href="#" data-activates="slide-out" class="button-collapse "><i class="large material-icons black-text">menu</i></a>
+        </div>
+      </div>
+    </nav>
+    <!--end side nav-->
+    <main>
+      <div class="cointainer">
+        <div class="section">
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="card-panel grey darken-2">
+                <span class="white-text">
+                    {{test}}
+                </span>
+              </div>
+            </div>
+            <div class="col s12 m6">
+              <div class="card-panel grey darken-2">
+                <span class="white-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat, libero quis feugiat sagittis, libero felis ornare erat, malesuada mattis mauris eros et erat. Sed aliquet tellus sit amet blandit rutrum. Praesent convallis ullamcorper mauris, quis hendrerit massa pellentesque eu. Suspendisse vehicula, turpis a bibendum malesuada, magna sem vulputate augue, ut luctus augue neque ac nisl. Cras suscipit fringilla enim sed semper.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="section">
+          <div class="row">
+            <div class="col s12 m6">
+              <div id="chartContainer1" style="height: 500px; width: 100%;"></div><!-- chart 1 -->
+            </div>
+            <div class="col s12 m6">
+              <div id="chartContainer2" style="height: 500px; width: 100%;"></div><!-- chart 2 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="js/charts.js"></script>
+    <script type="text/javascript" src="js/chartmaker.js"></script>
+  </body>
+  </html>
