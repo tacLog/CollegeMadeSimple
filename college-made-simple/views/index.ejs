@@ -1,20 +1,24 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <!--Import Google Icon Font-->
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-  <link type="text/css" rel="stylesheet" href="css/pad.css" media="screen,projection"/>
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <title>College made simple</title>
 
-  <script src="/javascripts/angularApp.js"></script>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/pad.css">
+
+    <!-- JavaScript for: jQuery, angular, materialize, and angular-materialize. All of which are needed. -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
+
+    <!-- Your app -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <script type="text/javascript" src="javascripts/angularApp.js"></script>
 </head>
 
-<body np-app="magicNumbers" ng-controller="MainCtrl">
+
+<body ng-app="materializeApp" ng-controller="SumController">
   <!--side nav-->
   <nav class="blue lighten-2" role="navigation">
     <div class="nav-wrapper container"><header><a id="logo-container" href="#" class="brand-logo">College Made Simple</a></header>
@@ -25,55 +29,86 @@
               <a href="#!user"><img height="250" width="250" src="images/ucsc.jpg"></a>
               <a href="#!name"><span class="grey-text name"><font size="+3">Sammy Slug</font></span></a>
               <a href="#!email"><span class="grey-text email">sslug@ucsc.edu</span></a>
-            </div></li>
-            <li><div class="divider"></div></li>
-            <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
-            <li><a class="waves-effect" href="#!">Link 2</a></li>
-            <li><a class="waves-effect" href="#!">Link 3</a></li>
-          </ul>
-          <a href="#" data-activates="slide-out" class="button-collapse "><i class="large material-icons black-text">menu</i></a>
-        </div>
+          </div></li>
+          <li><div class="divider"></div></li>
+          <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
+          <li><a class="waves-effect" href="#!">Link 2</a></li>
+          <li><a class="waves-effect" href="#!">Link 3</a></li>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse "><i class="large material-icons black-text">Menu</i></a>
+  </div>
+</div>
+</nav>
+<!--end side nav-->
+<main>
+  <div class="cointainer">
+    <div class="section">
+      <ui-view></ui-view>
+  </div>
+</div>
+<div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 m6">
+          <div id="chartContainer1" style="height: 500px; width: 100%;"></div><!-- chart 1 -->
       </div>
-    </nav>
-    <!--end side nav-->
-    <main>
-      <div class="cointainer">
-        <div class="section">
-          <div class="row">
-            <div class="col s12 m6">
-              <div class="card-panel grey darken-2">
-                <span class="white-text">
-                    {{test}}
-                </span>
+      <div class="col s12 m6">
+          <div id="chartContainer2" style="height: 500px; width: 100%;"></div><!-- chart 2 -->
+      </div>
+  </div>
+</div>
+
+
+<script type="text/ng-template" id="/home.html">
+    <div class="row">
+        <div class="col s12 m6">
+          <div class="card-panel grey darken-2">
+            <span class="white-text">
+                {{test}}
+            </span>
+        </div>
+    </div>
+    <div class="col s12 m6">
+      <div class="card-panel grey darken-2">
+        <span class="white-text"><a href="/#/edit">Edit</a>
+        </span>
+    </div>
+
+
+</script>
+
+<script type="text/ng-template" id="/edit.html">
+    <div class="row">
+        <div class="col s12">
+          <div class="card-panel grey darken-2">
+            <span class="white-text">
+                <form ng-submit="edit()"
+                style="margin-top:30px;">
+                <h4>Edit Your Data</h4>
+
+                <div class="form-group">Name:
+                  <input type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  ng-model="name"></input>
               </div>
-            </div>
-            <div class="col s12 m6">
-              <div class="card-panel grey darken-2">
-                <span class="white-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat, libero quis feugiat sagittis, libero felis ornare erat, malesuada mattis mauris eros et erat. Sed aliquet tellus sit amet blandit rutrum. Praesent convallis ullamcorper mauris, quis hendrerit massa pellentesque eu. Suspendisse vehicula, turpis a bibendum malesuada, magna sem vulputate augue, ut luctus augue neque ac nisl. Cras suscipit fringilla enim sed semper.
-                </span>
+              <div class="form-group">Jobs:
+                  <input type="number"
+                  class="form-control"
+                  placeholder="0"
+                  ng-model="jobs"></input>
               </div>
-            </div>
-          </div>
-        </div>
+              <button type="submit" class="btn btn-primary">Save</button>
+          </span>
       </div>
-      <div class="container">
-        <div class="section">
-          <div class="row">
-            <div class="col s12 m6">
-              <div id="chartContainer1" style="height: 500px; width: 100%;"></div><!-- chart 1 -->
-            </div>
-            <div class="col s12 m6">
-              <div id="chartContainer2" style="height: 500px; width: 100%;"></div><!-- chart 2 -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/init.js"></script>
-    <script type="text/javascript" src="js/charts.js"></script>
-    <script type="text/javascript" src="js/chartmaker.js"></script>
-  </body>
-  </html>
+  </div>
+</script>
+</main>
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+<script type="text/javascript" src="js/charts.js"></script>
+<script type="text/javascript" src="js/chartmaker.js"></script>
+</body>
+</html>

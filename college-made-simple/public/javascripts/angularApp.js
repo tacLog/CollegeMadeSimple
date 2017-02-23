@@ -1,59 +1,73 @@
-var app = angular.module('magicNumbers', []);
+var app = angular.module('materializeApp', ['ui.materialize','ui.router'])
 
-
-app.factory('numbers' ['$http', '$window', function($http, $window){
+app.factory('numbers', ['$http', function($http){
 	var o = {
-		title: "Welcome",
-		jobs: 0,
-		/*
-		scholarships: 0,
-		other: 0,
-		grants: 0,
-		parents: 0,
-		job: 0,
-		utilities: 0,
-		other: 0,
-		books: 0,
-		food: 0,
-		rent: 0,
-		*/
+		old: {},
+		current: {}
 	};
 
 	o.getAll = function() {
+		//error here
+		return 0;
 		return $http.get('/numbers').success(function(data){
-			angular.copy(data, o)
+			angular.copy(data, o);
 		});
 	};
 
-	o.create = function(post) {
+	o.create = function(numbers) {
 		return $http.post('/numbers', numbers).success(function(data){
-			//o.numbers.push(data);
+			angular.copy(o.current, o.old);
+			angular.copy(data, o.current);
 		});
 	};
 
 	return o;
 }]);
 
+app.controller('SumController', ["$scope", 
+	'numbers',
+	function ($scope, numbers) {
+	$scope.test = 'Hello world';
+	$scope.numbers = numbers.current;
+}]);
 
-
-
-app.controller('MainCtrl', [
+app.controller('EditController', [
 	'$scope',
 	'numbers',
-	function($scope){
-		//$scope.numbers = posts.posts;
+	function ($scope, numbers) {
+	$scope.test = 'Hello world';
+	$scope.edit = function(){
+		if(!$scope.name || $scope.name === ''){return;}
+		numbers.create({
+			title: $scope.name,
+			jobs: $scope.jobs,
+		});
+	}
+}]);
 
-		$scope.test = 'Hello world!';
-		
+app.config([
+  '$stateProvider',
+  '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
 
-		$scope.addPost = function(){
-			if(!$scope.title || $scope.ttle === '') {return;}
-			posts.create({
-				title: $scope.title,
-				link: $scope.link,
-				upvotes: 0,
-			});
-		}
-		
+    $stateProvider
+    .state('home', {
+      url: '/home',
+      templateUrl: '/home.html',
+      controller: 'SumController',
+      resolve: {
+      	postPromise: ['numbers', function(numbers){
+      		return numbers.getAll();
+      	}]
+      }
+    });
 
-	}]);
+    $stateProvider
+    .state('edit', {
+    	url: '/edit',
+    	templateUrl: '/edit.html',
+    	controller: 'EditController'
+    });
+
+    $urlRouterProvider.otherwise('home');
+  }]);

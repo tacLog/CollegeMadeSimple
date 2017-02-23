@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Numbers = mongoose.model('Numbers');
 
 router.get('/numbers', function(req, res, next) {
-	Numbers.find(function(err, numbers){
+	Numbers.find().sort('_id','descending').limit(1).find(function(err, numbers){
 		if(err) {return next(err);}
 
 		res.json(numbers);
