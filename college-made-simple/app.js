@@ -1,13 +1,18 @@
 var express = require('express');
+var app = express();
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var flash    = require('connect-flash');
+var session      = require('express-session');
 
 //database setup
 var mongoose = require('mongoose');
 require('./models/Numbers');
+require('./models/user')
 mongoose.connect('mongodb://localhost/testCollege');
 
 //routes setup
@@ -16,7 +21,7 @@ var index = require('./routes/index');
 //to be used for auth
 var users = require('./routes/users');
 
-var app = express();
+require('./config/passport')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,5 +55,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 module.exports = app;
