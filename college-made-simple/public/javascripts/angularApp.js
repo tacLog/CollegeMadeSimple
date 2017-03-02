@@ -7,8 +7,14 @@ app.factory('numbers', ['$http', function($http){
 	};
 
 	o.getAll = function() {
-		return $http.get('/numbers').success(function(data){
-			angular.copy(data, o.current);
+		if (true){
+			$http.get('data/test.json')
+				.success(function(data){
+					angular.copy(data.numbers, o.default);
+				})
+		}
+			return $http.get('/numbers').success(function(data){
+				angular.copy(data, o.current);
 			//console.log(data);
 		});
 	};
@@ -29,6 +35,8 @@ app.controller('SideBar', [
 		$scope.test1 = "Hello navbar";
 		$scope.onSignIn=function(response){
 			console.log(response);
+			var currentUser = gapi.auth2.getBasicProfile();
+			console.log(currentUser);
 		}
 	}]);
 
@@ -50,6 +58,7 @@ app.directive('googleSignInButton',function(){
                             $scope.onSignInButtonClick=function(){//add a function to the controller so ng-click can bind to it
                                 GoogleAuth.signIn().then(function(response){//request to sign in
                                 	$scope.callback({response:response});
+                                	console.log(response);
                                 });
                             };
                         });
@@ -58,7 +67,7 @@ app.directive('googleSignInButton',function(){
             });
 
 
-app.controller('SumController', ["$scope", 
+app.controller('SumController', ['$scope', 
 	'numbers',
 	function ($scope, numbers) {
 		$scope.test = 'Hello world';

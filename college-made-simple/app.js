@@ -21,7 +21,7 @@ var index = require('./routes/index');
 //to be used for auth
 var users = require('./routes/users');
 
-require('./config/passport')
+var pass = require('./config/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
