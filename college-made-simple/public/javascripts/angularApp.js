@@ -1,7 +1,8 @@
-var app = angular.module('materializeApp', ['ui.materialize','ui.router'])
+var app = angular.module('materializeApp', ['ui.materialize','ui.router','chart.js'])
 
 app.factory('numbers', ['$http', function($http){
 	var o = {
+		default: [],
 		current: [],
 		old: []
 	};
@@ -9,12 +10,13 @@ app.factory('numbers', ['$http', function($http){
 	o.getAll = function() {
 		if (true){
 			$http.get('data/test.json')
-				.success(function(data){
-					angular.copy(data.numbers, o.default);
-				})
+			.success(function(data){
+				angular.copy(data.numbers, o.default);
+				//console.log('Test Data loaded');
+			})
 		}
-			return $http.get('/numbers').success(function(data){
-				angular.copy(data, o.current);
+		return $http.get('/numbers').success(function(data){
+			angular.copy(data, o.current);
 			//console.log(data);
 		});
 	};
@@ -71,9 +73,15 @@ app.controller('SumController', ['$scope',
 	'numbers',
 	function ($scope, numbers) {
 		$scope.test = 'Hello world';
-		$scope.numbers = numbers.current;
-	//console.log($scope.numbers);
-}]);
+		$scope.numbers = numbers.default;
+		$scope.display = {};
+		$scope.lables = ["scholarships", "grants", "job", "parents", "other", "utilities", "books", "food", "rent", "tuition"];
+		$scope.labelsIN = ["Scholarships", "Grants", "Job", "Parents", "Other"];
+		$scope.dataIN = [$scope.numbers.scholarships.total,$scope.numbers.grants.total,$scope.numbers.job.total,$scope.numbers.parents.total,$scope.numbers.other.total];
+		$scope.labelsOUT = ["Utilities", "Books", "Food", "Rent", "Tuition"];
+		$scope.dataOUT = [$scope.numbers.utilities.total,$scope.numbers.books.total,$scope.numbers.food.total,$scope.numbers.rent.total,$scope.numbers.tuition.total];
+		console.log($scope.numbers);
+	}]);
 
 app.controller('EditController', [
 	'$scope',

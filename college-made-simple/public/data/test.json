@@ -3,6 +3,7 @@
     "ID":"NONE",
     "numbers": {
       "scholarships": {
+        "total":"50",
 
         "Scholarships1": "10",
         "ScholarshipsTitle1": "Sample Title",
@@ -17,6 +18,7 @@
 
     },
     "other": {
+        "total":"50",
         
         "Other1": "10",
         "OtherTitle1": "Sample Title",
@@ -31,6 +33,7 @@
 
     },
     "grants":{
+        "total":"50",
 
         "Grants1": "10",
         "GrantsTitle1": "Sample Title",
@@ -45,6 +48,7 @@
 
     },
     "parents":{
+        "total":"50",
 
         "Parents1": "10",
         "ParentsTitle1": "Sample Title",
@@ -59,6 +63,7 @@
 
     },
     "job": {
+        "total":"50",
 
         "Job1": "10",
         "JobTitle1": "Sample Title",
@@ -73,6 +78,7 @@
 
     },
     "utilities": {
+        "total":"50",
 
         "Utilities1": "10",
         "UtilitiesTitle1": "Sample Title",
@@ -87,6 +93,7 @@
     },
     
     "books": {
+        "total":"50",
 
         "Books1": "10",
         "BooksTitle1": "Sample Title",
@@ -101,6 +108,7 @@
 
     },
     "food": {
+        "total":"50",
 
         "Food1": "10",
         "FoodTitle1": "Sample Title",
@@ -115,6 +123,7 @@
 
     },
     "rent": {
+        "total":"50",
 
         "Rent1": "10",
         "RentTitle1": "Sample Title",
@@ -126,6 +135,21 @@
         "RentTitle4": "Sample Title",
         "Rent5": "10",
         "RentTitle5": "Sample Title"
+
+    },
+    "tuition": {
+        "total":"50",
+
+        "Tuition1": "10",
+        "TuitionTitle1": "Sample Title",
+        "Tuition2": "10",
+        "TuitionTitle2": "Sample Title",
+        "Tuition3": "10",
+        "TuitionTitle3": "Sample Title",
+        "Tuition4": "10",
+        "TuitionTitle4": "Sample Title",
+        "Tuition5": "10",
+        "TuitionTitle5": "Sample Title"
 
     }
 }

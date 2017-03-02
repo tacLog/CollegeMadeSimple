@@ -18,7 +18,10 @@
   <meta name="google-signin-client_id" content="805467826310-4pm5ke6uhnplc5tsm02no22a54n01tau.apps.googleusercontent.com">
   <!-- Your app -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+  <script src="javascripts/Chart.min.js"></script>
+  <script src="javascripts/angular-chart.min.js"></script>
   <script type="text/javascript" src="javascripts/angularApp.js"></script>
+
 </head>
 
 
@@ -30,9 +33,9 @@
         <ul id="slide-out" class="side-nav fixed">
           <li>
             <div class="userView">
-              <a href="#!user"><img height="250" width="250" src="images/ucsc.jpg"></a>
-              <a href="#!name"><span class="grey-text name"><font size="+3">Sammy Slug</font></span></a>
-              <a href="#!email"><span class="grey-text email">sslug@ucsc.edu</span></a>
+              <a href="#/profile"><img height="250" width="250" src="images/ucsc.jpg"></a>
+              <a href="#/profile"><span class="grey-text name"><font size="+3">Sammy Slug</font></span></a>
+              <a href="#!email"><span class="grey-text email">sslug@ucsc.edu {{gClientId}}</span></a>
               <!--
               <div class="g-signin2" data-onsuccess="onSignIn"></div>
               <a href="#" onclick="signOut();">Sign out</a>
@@ -44,96 +47,106 @@
                   });
                 }
               </script>
-              -->
-              <google-sign-in-button button-id="signin" options="options"></google-sign-in-button>
-              {{test1}}
-            </div></li>
-            <li><div class="divider"></div></li>
-            <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
-            <li><a class="waves-effect" href="#!">Link 2</a></li>
-            <li><a class="waves-effect" href="#!">Link 3</a></li>
-          </ul>
-          <a href="#" data-activates="slide-out" class="button-collapse "><i class="material-icons black-text">menu</i></a>
-        </div>
+            -->
+            <google-sign-in-button button-id="signin" options="options"></google-sign-in-button>
+            {{test1}}
+          </div></li>
+          <li><div class="divider"></div></li>
+          <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
+          <li><a class="waves-effect" href="#!">Link 2</a></li>
+          <li><a class="waves-effect" href="#!">Link 3</a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse "><i class="material-icons black-text">menu</i></a>
       </div>
-    </nav>
-    <!--end side nav-->
-    <main>
-      <div class="cointainer">
-        <div class="section">
-          <ui-view></ui-view>
+    </div>
+  </nav>
+  <!--end side nav-->
+  <main>
+    <div class="cointainer">
+      <div class="section">
+        <ui-view></ui-view>
+      </div>
+    </div>
+
+
+
+    <script type="text/ng-template" id="/home.html">
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card-panel grey darken-2">
+            <span class="white-text">
+              <div ng-repeat="post in numbers">
+                {{post.title}}
+                <span>
+                  {{post.jobs}}
+
+                </span>
+              </div>
+            </span>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="card-panel grey darken-2">
+            <span class="white-text"><a href="/#/edit">Edit</a>
+            </span>
+          </div>
         </div>
       </div>
       <div class="container">
         <div class="section">
           <div class="row">
             <div class="col s12 m6">
-              <div id="chartContainer1" style="height: 500px; width: 100%;"></div><!-- chart 1 -->
-            </div>
-            <div class="col s12 m6">
-              <div id="chartContainer2" style="height: 500px; width: 100%;"></div><!-- chart 2 -->
-            </div>
+              <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataIN"
+              chart-labels="labelsIN" chart-click="onClickIN">
+            </canvas>
           </div>
+          <div class="col s12 m6">
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataOUT"
+            chart-labels="labelsOUT" chart-click="onClickOUT">
+          </canvas>
         </div>
+      </div>
+    </div>
+  </div>
 
 
-        <script type="text/ng-template" id="/home.html">
-          <div class="row">
-            <div class="col s12 m6">
-              <div class="card-panel grey darken-2">
-                <span class="white-text">
-                  <div ng-repeat="post in numbers">
-                    {{post.title}}
-                    <span>
-                      {{post.jobs}}
-                      
-                    </span>
-                  </div>
-                </span>
-              </div>
-            </div>
-            <div class="col s12 m6">
-              <div class="card-panel grey darken-2">
-                <span class="white-text"><a href="/#/edit">Edit</a>
-                </span>
-              </div>
+</script>
 
+<script type="text/ng-template" id="/edit.html">
+  <div class="row">
+    <div class="col s12">
+      <div class="card-panel grey darken-2">
+        <span class="white-text">
+          <form ng-submit="edit()"
+          style="margin-top:30px;">
+          <h4>Edit Your Data</h4>
 
-            </script>
-
-            <script type="text/ng-template" id="/edit.html">
-              <div class="row">
-                <div class="col s12">
-                  <div class="card-panel grey darken-2">
-                    <span class="white-text">
-                      <form ng-submit="edit()"
-                      style="margin-top:30px;">
-                      <h4>Edit Your Data</h4>
-
-                      <div class="form-group">Name:
-                        <input type="text"
-                        class="form-control"
-                        placeholder="Name"
-                        ng-model="name"></input>
-                      </div>
-                      <div class="form-group">Jobs:
-                        <input type="number"
-                        class="form-control"
-                        placeholder="0"
-                        ng-model="jobs"></input>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Save</button>
-                      <a ng-href="#/home">Back</a>
-                    </span>
-                  </div>
-                </div>
-              </script>
-            </main>
-            <!--Import jQuery before materialize.js-->
-            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-            <script type="text/javascript" src="js/materialize.min.js"></script>
-            <script type="text/javascript" src="js/init.js"></script>
-            <script type="text/javascript" src="js/charts.js"></script>
-            <script type="text/javascript" src="js/chartmaker.js"></script>
-          </body>
-          </html>
+          <div class="form-group">Name:
+            <input type="text"
+            class="form-control"
+            placeholder="Name"
+            ng-model="name"></input>
+          </div>
+          <div class="form-group">Jobs:
+            <input type="number"
+            class="form-control"
+            placeholder="0"
+            ng-model="jobs"></input>
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a ng-href="#/home">Back</a>
+        </span>
+      </div>
+    </div>
+  </script>
+</main>
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<!--
+<script type="text/javascript" src="js/init.js"></script>
+<script type="text/javascript" src="js/charts.js"></script>
+<script type="text/javascript" src="js/chartmaker.js"></script>
+-->
+</body>
+</html>
