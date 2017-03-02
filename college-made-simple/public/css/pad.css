@@ -10,3 +10,14 @@ header, main, footer {
 .canvasjs-chart-credit {
    display: none;
 }
+table { border: none; border-collapse: collapse; }
+table td { border-left: 1px solid white; }
+table td:first-child { border-left: none; }
+table td:last-child { border-left: none; }
+table th { border-left: 1px solid white; }
+table th:first-child { border-left: none; }
+table th:last-child { border-left: none; }
+td.lastCol {
+	text-align: right;
+}
+

@@ -48,7 +48,7 @@ app.directive('googleSignInButton',function(){
 			gClientId:'@',
 			callback: '&onSignIn'
 		},
-		template: '<button ng-click="onSignInButtonClick()">Sign in</button>',
+		template: '<button class="btn blue lighten-2 waves-effect waves-light" ng-click="onSignInButtonClick()">Sign in</button>',
 		controller: ['$scope','$attrs',function($scope, $attrs){
                         gapi.load('auth2', function() {//load in the auth2 api's, without it gapi.auth2 will be undefined
                         	gapi.auth2.init(
