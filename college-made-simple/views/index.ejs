@@ -25,14 +25,23 @@
 <body ng-app="materializeApp">
   <!--side nav-->
   <nav class="blue lighten-2" role="navigation" ng-controller="SideBar">
-    <div class="nav-wrapper container"><header><a id="logo-container" href="#" class="brand-logo">College Made Simple</a></header>
+    <div class="nav-wrapper container"><header><a id="logo-container" href="#" class="brand-logo">College Made Simple Alpha 0.0.1</a></header>
       <div>
         <ul id="slide-out" class="side-nav fixed">
           <li>
             <div class="userView">
-              <a href="#!user"><img height="250" width="250" src="images/ucsc.jpg"></a>
-              <a href="#!name"><span class="grey-text name"><font size="+3">Sammy Slug</font></span></a>
-              <a href="#!email"><span class="grey-text email">sslug@ucsc.edu</span></a>
+              <a href="#!school"><img height="200" width="236" src="images/ucsc.jpg"></a>
+              <a href="#!user">
+                <div class="row valigh-wrapper">
+                  <div class="col s4">
+                    <img src="images/icon.png" alt="" height="50" width="50" class="responsive-img"> <!-- notice the "circle" class -->
+                  </div>
+                  <div class="col s8">
+                    <span class="grey-text">Sammy Slug</span>
+                  </div>
+                </div>
+              </a>
+              <a><span class="grey-text email">SamSlug@ucsc.edu</span></a>
               <!--
               <div class="g-signin2" data-onsuccess="onSignIn"></div>
               <a href="#" onclick="signOut();">Sign out</a>
@@ -44,96 +53,185 @@
                   });
                 }
               </script>
-              -->
-              <google-sign-in-button button-id="signin" options="options"></google-sign-in-button>
-              {{test1}}
-            </div></li>
-            <li><div class="divider"></div></li>
-            <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
-            <li><a class="waves-effect" href="#!">Link 2</a></li>
-            <li><a class="waves-effect" href="#!">Link 3</a></li>
-          </ul>
-          <a href="#" data-activates="slide-out" class="button-collapse "><i class="material-icons black-text">menu</i></a>
+            -->
+            <google-sign-in-button button-id="signin" options="options"></google-sign-in-button>
+            {{test1}}
+          </div>
+        </li>
+        <li><div class="divider"></div></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
+        <li><a class="waves-effect" href="#!">Link 2</a></li>
+        <li><a class="waves-effect" href="#!">Link 3</a></li>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse "><i class="material-icons black-text">menu</i></a>
+    </div>
+  </div>
+</nav>
+<!--end side nav-->
+<main>
+  <div class="cointainer">
+    <div class="section">
+      <ui-view></ui-view>
+    </div>
+  </div>
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 m6">
+          <div id="chartContainer1" style="height: 500px; width: 100%;"></div><!-- chart 1 -->
+        </div>
+        <div class="col s12 m6">
+          <div id="chartContainer2" style="height: 500px; width: 100%;"></div><!-- chart 2 -->
         </div>
       </div>
-    </nav>
-    <!--end side nav-->
-    <main>
-      <div class="cointainer">
-        <div class="section">
-          <ui-view></ui-view>
+    </div>
+
+
+    <script type="text/ng-template" id="/home.html">
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card-panel grey darken-2">
+            <span class="white-text">
+              <div ng-repeat="post in numbers">
+                {{post.title}}
+                <span>
+                  {{post.jobs}}
+
+                </span>
+              </div>
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="container">
-        <div class="section">
-          <div class="row">
-            <div class="col s12 m6">
-              <div id="chartContainer1" style="height: 500px; width: 100%;"></div><!-- chart 1 -->
+        <div class="col s12 m6">
+          <div class="card-panel grey darken-2">
+            <div class="center">
+              <span class="white-text"><font size=+3>Cost</font></span>
             </div>
-            <div class="col s12 m6">
-              <div id="chartContainer2" style="height: 500px; width: 100%;"></div><!-- chart 2 -->
+            <table class="white-text">
+              <thead>
+                <tr>
+                  <th data-field="id">Name</th>
+                  <th data-field="price">Price</th>
+                  <th data-field="edit"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tuition</td>
+                  <td>{{tuition}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Personal</td>
+                  <td>{{personal}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Supplies</td>
+                  <td>{{supplies}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Rent</td>
+                  <td>{{rent}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Transportation</td>
+                  <td>{{transportation}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Other</td>
+                  <td>{{other}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <th datafield>Total: ${{total}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/ng-template" id="/edit.html">
+      <div class="row">
+        <div class="col s12">
+          <div class="card-panel grey white-text darken-2">
+            <!-- Edit Form Starts Here -->
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="input1" type="text" class="validate">
+                    <label for="input1">Test Placeholder</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="input2" type="text" class="validate">
+                    <label for="input2">Test Placeholder2</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="input3" type="text" class="validate">
+                    <label for="input3">Test Placeholder</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="input4" type="text" class="validate">
+                    <label for="input4">Test Placeholder2</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="input5" type="text" class="validate">
+                    <label for="input5">Test Placeholder</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="input6" type="text" class="validate">
+                    <label for="input6">Test Placeholder2</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="input7" type="text" class="validate">
+                    <label for="input7">Test Placeholder</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="input8" type="text" class="validate">
+                    <label for="input8">Test Placeholder2</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="input9" type="text" class="validate">
+                    <label for="input9">Test Placeholder</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="input10" type="text" class="validate">
+                    <label for="input10">Test Placeholder2</label>
+                  </div>
+                </div>
+                <a ng-href="#/home">
+                  <button class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Save and Return
+                    <i class="material-icons right">send</i>
+                  </button>
+                </a>
+              </form>
             </div>
           </div>
         </div>
-
-
-        <script type="text/ng-template" id="/home.html">
-          <div class="row">
-            <div class="col s12 m6">
-              <div class="card-panel grey darken-2">
-                <span class="white-text">
-                  <div ng-repeat="post in numbers">
-                    {{post.title}}
-                    <span>
-                      {{post.jobs}}
-                      
-                    </span>
-                  </div>
-                </span>
-              </div>
-            </div>
-            <div class="col s12 m6">
-              <div class="card-panel grey darken-2">
-                <span class="white-text"><a href="/#/edit">Edit</a>
-                </span>
-              </div>
-
-
-            </script>
-
-            <script type="text/ng-template" id="/edit.html">
-              <div class="row">
-                <div class="col s12">
-                  <div class="card-panel grey darken-2">
-                    <span class="white-text">
-                      <form ng-submit="edit()"
-                      style="margin-top:30px;">
-                      <h4>Edit Your Data</h4>
-
-                      <div class="form-group">Name:
-                        <input type="text"
-                        class="form-control"
-                        placeholder="Name"
-                        ng-model="name"></input>
-                      </div>
-                      <div class="form-group">Jobs:
-                        <input type="number"
-                        class="form-control"
-                        placeholder="0"
-                        ng-model="jobs"></input>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Save</button>
-                      <a ng-href="#/home">Back</a>
-                    </span>
-                  </div>
-                </div>
-              </script>
-            </main>
-            <!--Import jQuery before materialize.js-->
-            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-            <script type="text/javascript" src="js/materialize.min.js"></script>
-            <script type="text/javascript" src="js/init.js"></script>
-            <script type="text/javascript" src="js/charts.js"></script>
-            <script type="text/javascript" src="js/chartmaker.js"></script>
-          </body>
-          </html>
+      </div>
+    </script>
+  </main>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/init.js"></script>
+  <script type="text/javascript" src="js/charts.js"></script>
+  <script type="text/javascript" src="js/chartmaker.js"></script>
+</body>
+</html>
