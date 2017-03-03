@@ -18,7 +18,10 @@
   <meta name="google-signin-client_id" content="805467826310-4pm5ke6uhnplc5tsm02no22a54n01tau.apps.googleusercontent.com">
   <!-- Your app -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+  <script src="javascripts/Chart.min.js"></script>
+  <script src="javascripts/angular-chart.min.js"></script>
   <script type="text/javascript" src="javascripts/angularApp.js"></script>
+
 </head>
 
 
@@ -30,7 +33,7 @@
         <ul id="slide-out" class="side-nav fixed">
           <li>
             <div class="userView">
-              <a href="#!school"><img height="200" width="236" src="images/ucsc.jpg"></a>
+             <a href="#!school"><img height="200" width="236" src="images/ucsc.jpg"></a>
               <a href="#!user">
                 <div class="row valigh-wrapper">
                   <div class="col s4">
@@ -55,36 +58,24 @@
               </script>
             -->
             <google-sign-in-button button-id="signin" options="options"></google-sign-in-button>
-            {{test1}}
-          </div>
-        </li>
-        <li><div class="divider"></div></li>
-        <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
-        <li><a class="waves-effect" href="#!">Link 2</a></li>
-        <li><a class="waves-effect" href="#!">Link 3</a></li>
-      </ul>
-      <a href="#" data-activates="slide-out" class="button-collapse "><i class="material-icons black-text">menu</i></a>
-    </div>
-  </div>
-</nav>
-<!--end side nav-->
-<main>
-  <div class="cointainer">
-    <div class="section">
-      <ui-view></ui-view>
-    </div>
-  </div>
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 m6">
-          <div id="chartContainer1" style="height: 500px; width: 100%;"></div><!-- chart 1 -->
-        </div>
-        <div class="col s12 m6">
-          <div id="chartContainer2" style="height: 500px; width: 100%;"></div><!-- chart 2 -->
-        </div>
+          </div></li>
+          <li><div class="divider"></div></li>
+          <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
+          <li><a class="waves-effect" href="#!">Link 2</a></li>
+          <li><a class="waves-effect" href="#!">Link 3</a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse "><i class="material-icons black-text">menu</i></a>
       </div>
     </div>
+  </nav>
+  <!--end side nav-->
+  <main>
+    <div class="cointainer">
+      <div class="section">
+        <ui-view></ui-view>
+      </div>
+    </div>
+
 
 
     <script type="text/ng-template" id="/home.html">
@@ -154,9 +145,29 @@
               </tbody>
             </table>
           </div>
+          </div>
+      </div>
+      <div class="container">
+        <div class="section">
+          <div class="row">
+            <div class="col s12 m6">
+              <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataIN"
+              chart-labels="labelsIN" chart-click="onClickIN">
+            </canvas>
+          </div>
+          <div class="col s12 m6">
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataOUT"
+            chart-labels="labelsOUT" chart-click="onClickOUT">
+          </canvas>
         </div>
       </div>
-    </script>
+    </div>
+  </div>
+
+
+</script>
+
+
 
     <script type="text/ng-template" id="/edit.html">
       <div class="row">
@@ -226,12 +237,13 @@
         </div>
       </div>
     </script>
-  </main>
-  <!--Import jQuery before materialize.js-->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script type="text/javascript" src="js/init.js"></script>
-  <script type="text/javascript" src="js/charts.js"></script>
-  <script type="text/javascript" src="js/chartmaker.js"></script>
+</main>
+
+<!--
+<script type="text/javascript" src="js/init.js"></script>
+<script type="text/javascript" src="js/charts.js"></script>
+<script type="text/javascript" src="js/chartmaker.js"></script>
+-->
+
 </body>
 </html>
