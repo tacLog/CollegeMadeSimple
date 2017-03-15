@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>College made simple</title>
+  <title>College Made Simple</title>
 
   <!-- Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
@@ -82,15 +82,55 @@
       <div class="row">
         <div class="col s12 m6">
           <div class="card-panel grey darken-2">
-            <span class="white-text">
-              <div ng-repeat="post in numbers">
-                {{post.title}}
-                <span>
-                  {{post.jobs}}
-
-                </span>
-              </div>
-            </span>
+            <div class="center">
+              <span class="white-text"><font size=+3>Income</font></span>
+            </div>
+            <table class="white-text">
+              <thead>
+                <tr>
+                  <th data-field="id">Name</th>
+                  <th data-field="price">Price</th>
+                  <th data-field="edit"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tuition</td>
+                  <td>{{tuition}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Personal</td>
+                  <td>{{personal}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Supplies</td>
+                  <td>{{supplies}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Rent</td>
+                  <td>{{rent}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Transportation</td>
+                  <td>{{transportation}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                </tr>
+                <tr>
+                  <td>Personal</td>
+                  <td>{{personal}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/personal">Edit</a></span></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <th datafield>Total: ${{totalOut}}</th>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <div class="col s12 m6">
@@ -133,14 +173,14 @@
                   <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
                 </tr>
                 <tr>
-                  <td>Other</td>
-                  <td>{{other}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit">Edit</a></span></td>
+                  <td>Personal</td>
+                  <td>{{personal}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/personal">Edit</a></span></td>
                 </tr>
               </tbody>
               <tbody>
                 <tr>
-                  <th datafield>Total: ${{total}}</th>
+                  <th datafield>Total: ${{totalOut}}</th>
                 </tr>
               </tbody>
             </table>
@@ -156,7 +196,7 @@
             </canvas>
           </div>
           <div class="col s12 m6">
-            <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataOUT"
+            <canvas id="pie" class="chart chart-pie" chart-data="dataOUT"
             chart-labels="labelsOUT" chart-click="onClickOUT">
           </canvas>
         </div>
@@ -178,60 +218,59 @@
               <form class="col s12">
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="input1" type="text" class="validate">
-                    <label for="input1">Test Placeholder</label>
+                    <input ng-model="title1" type="text" class="validate">
+                    <label for="input1">Catagory Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input id="input2" type="text" class="validate">
-                    <label for="input2">Test Placeholder2</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s6">
-                    <input id="input3" type="text" class="validate">
-                    <label for="input3">Test Placeholder</label>
-                  </div>
-                  <div class="input-field col s6">
-                    <input id="input4" type="text" class="validate">
-                    <label for="input4">Test Placeholder2</label>
+                    <input ng-model="value1" type="text" class="validate">
+                    <label for="input2">Value</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="input5" type="text" class="validate">
-                    <label for="input5">Test Placeholder</label>
+                    <input ng-model="title2" type="text" class="validate">
+                    <label for="input3">Catagory Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input id="input6" type="text" class="validate">
-                    <label for="input6">Test Placeholder2</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s6">
-                    <input id="input7" type="text" class="validate">
-                    <label for="input7">Test Placeholder</label>
-                  </div>
-                  <div class="input-field col s6">
-                    <input id="input8" type="text" class="validate">
-                    <label for="input8">Test Placeholder2</label>
+                    <input ng-model="value2" type="text" class="validate">
+                    <label for="input4">Value</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="input9" type="text" class="validate">
-                    <label for="input9">Test Placeholder</label>
+                    <input ng-model="title3" type="text" class="validate">
+                    <label for="input5">Catagory Name</label>
                   </div>
                   <div class="input-field col s6">
-                    <input id="input10" type="text" class="validate">
-                    <label for="input10">Test Placeholder2</label>
+                    <input ng-model="value3" type="text" class="validate">
+                    <label for="input6">Value</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input ng-model="title4" type="text" class="validate">
+                    <label for="input7">Catagory Name</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input ng-model="value4" type="text" class="validate">
+                    <label for="input8">Value</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input ng-model="title5" type="text" class="validate">
+                    <label for="input9">Catagory Name</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input ng-model="value5" type="text" class="validate">
+                    <label for="input10">Value</label>
                   </div>
                 </div>
                 <a ng-href="#/home">
-                  <button class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Save and Return
+                  <button ng-click="update()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Save and Return
                     <i class="material-icons right">send</i>
                   </button>
                 </a>
-              </form>
             </div>
           </div>
         </div>

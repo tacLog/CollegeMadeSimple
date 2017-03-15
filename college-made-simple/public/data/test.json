@@ -1,156 +1,201 @@
 
 {
     "ID":"NONE",
-    "numbers": {
-      "scholarships": {
+    "numbers": [
+        {"id" : "error",
         "total":"50",
 
-        "Scholarships1": "10",
-        "ScholarshipsTitle1": "Sample Title",
-        "Scholarships2": "10",
-        "ScholarshipsTitle2": "Sample Title",
-        "Scholarships3": "10",
-        "ScholarshipsTitle3": "Sample Title",
-        "Scholarships4": "10",
-        "ScholarshipsTitle4": "Sample Title",
-        "Scholarships5": "10",
-        "ScholarshipsTitle5": "Sample Title"
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
 
     },
-    "other": {
+      {"id" : "scholarships",
+        "total":"50",
+
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
+
+    },
+    {"id" : "otherIn",
         "total":"50",
         
-        "Other1": "10",
-        "OtherTitle1": "Sample Title",
-        "Other2": "10",
-        "OtherTitle2": "Sample Title",
-        "Other3": "10",
-        "OtherTitle3": "Sample Title",
-        "Other4": "10",
-        "OtherTitle4": "Sample Title",
-        "Other5": "10",
-        "OtherTitle5": "Sample Title"
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
 
     },
-    "grants":{
+    {"id" : "grants",
         "total":"50",
 
-        "Grants1": "10",
-        "GrantsTitle1": "Sample Title",
-        "Grants2": "10",
-        "GrantsTitle2": "Sample Title",
-        "Grants3": "10",
-        "GrantsTitle3": "Sample Title",
-        "Grants4": "10",
-        "GrantsTitle4": "Sample Title",
-        "Grants5": "10",
-        "GrantsTitle5": "Sample Title"
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
 
     },
-    "parents":{
+    {"id" : "parents",
         "total":"50",
 
-        "Parents1": "10",
-        "ParentsTitle1": "Sample Title",
-        "Parents2": "10",
-        "ParentsTitle2": "Sample Title",
-        "Parents3": "10",
-        "ParentsTitle3": "Sample Title",
-        "Parents4": "10",
-        "ParentsTitle4": "Sample Title",
-        "Parents5": "10",
-        "ParentsTitle5": "Sample Title"
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
 
     },
-    "job": {
+    {"id" : "job",
         "total":"50",
 
-        "Job1": "10",
-        "JobTitle1": "Sample Title",
-        "Job2": "10",
-        "JobTitle2": "Sample Title",
-        "Job3": "10",
-        "JobTitle3": "Sample Title",
-        "Job4": "10",
-        "JobTitle4": "Sample Title",
-        "Job5": "10",
-        "JobTitle5": "Sample Title"
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
 
     },
-    "utilities": {
+    {"id" : "utilities",
         "total":"50",
 
-        "Utilities1": "10",
-        "UtilitiesTitle1": "Sample Title",
-        "Utilities2": "10",
-        "UtilitiesTitle2": "Sample Title",
-        "Utilities3": "10",
-        "UtilitiesTitle3": "Sample Title",
-        "Utilities4": "10",
-        "UtilitiesTitle4": "Sample Title",
-        "Utilities5": "10",
-        "UtilitiesTitle5": "Sample Title"
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
     },
     
-    "books": {
-        "total":"50",
+    {"id" : "personal",
+        "total":"150",
 
-        "Books1": "10",
-        "BooksTitle1": "Sample Title",
-        "Books2": "10",
-        "BooksTitle2": "Sample Title",
-        "Books3": "10",
-        "BooksTitle3": "Sample Title",
-        "Books4": "10",
-        "BooksTitle4": "Sample Title",
-        "Books5": "10",
-        "BooksTitle5": "Sample Title"
-
-    },
-    "food": {
-        "total":"50",
-
-        "Food1": "10",
-        "FoodTitle1": "Sample Title",
-        "Food2": "10",
-        "FoodTitle2": "Sample Title",
-        "Food3": "10",
-        "FoodTitle3": "Sample Title",
-        "Food4": "10",
-        "FoodTitle4": "Sample Title",
-        "Food5": "10",
-        "FoodTitle5": "Sample Title"
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
 
     },
-    "rent": {
+    {"id" : "food",
         "total":"50",
 
-        "Rent1": "10",
-        "RentTitle1": "Sample Title",
-        "Rent2": "10",
-        "RentTitle2": "Sample Title",
-        "Rent3": "10",
-        "RentTitle3": "Sample Title",
-        "Rent4": "10",
-        "RentTitle4": "Sample Title",
-        "Rent5": "10",
-        "RentTitle5": "Sample Title"
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
 
     },
-    "tuition": {
+    {"id" : "rent",
         "total":"50",
 
-        "Tuition1": "10",
-        "TuitionTitle1": "Sample Title",
-        "Tuition2": "10",
-        "TuitionTitle2": "Sample Title",
-        "Tuition3": "10",
-        "TuitionTitle3": "Sample Title",
-        "Tuition4": "10",
-        "TuitionTitle4": "Sample Title",
-        "Tuition5": "10",
-        "TuitionTitle5": "Sample Title"
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
+
+    },
+    {"id" : "tuition",
+        "total":"50",
+
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
+
+    },
+     {"id" : "supplies",
+        "total":"50",
+
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
+
+    },
+    {"id" : "transportation",
+        "total":"50",
+
+        "value1": "10",
+        "title1": "Sample Title",
+        "value2": "10",
+        "title2": "Sample Title",
+        "value3": "10",
+        "title3": "Sample Title",
+        "value4": "10",
+        "title4": "Sample Title",
+        "value5": "10",
+        "title5": "Sample Title"
 
     }
-}
+]
 }
