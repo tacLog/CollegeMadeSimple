@@ -15,54 +15,155 @@ MyHelpers.helpers = {
 
 var app = angular.module('materializeApp', ['ui.materialize','ui.router','chart.js'])
 
-app.factory('numbers', ['$http', function($http){
+app.factory('numbers', ['$http','auth', function($http, auth){
 	var o = {
 		default: [],
-		current: [],
 		old: []
 	};
 
-	o.getAll = function() {
-		if (true){
-			$http.get('data/test.json')
+	o.getAll = function(id) {
+		if(!auth.isLoggedIn()){
+			
+			return $http.get('data/test.json')
 			.success(function(data){
 				angular.copy(data.numbers, o.default);
-				//console.log('Test Data loaded');
-			})
+					//console.log('Test Data loaded');
+				})
 		}
-		return $http.get('/numbers').success(function(data){
-			angular.copy(data, o.current);
-			//console.log(data);
-		});
+		else{
+			return $http({
+				headers: {Authorization: 'Bearer '+auth.getToken()},
+				method:"GET",
+				url:'/numbers/'+auth.currentUser()
+			}).then(function successCallback(data){
+				angular.copy(data.data[0].numbers, o.default);
+				//console.log(data);
+				//console.log(data.data[0].numbers);
+				//console.log(o.default);
+			}, function errorCallback(response){
+				console.log('Failed to get user data, error:');
+				console.log(response);
+				$http.get('data/test.json')
+				.success(function(data){
+					angular.copy(data.numbers, o.default);
+					console.log('Test Data loaded Because Failure loading user data');
+				}
+				)
+
+			});
+		}
 	};
 
 	o.create = function(numbers) {
-		return $http.post('/numbers', numbers).success(function(data){
-			angular.copy(o.current, o.old);
-			angular.copy(data, o.current);
+		console.log('ok we are now posting:');
+		console.log(numbers);
+		$http.post('/numbers', numbers, {
+			headers: {Authorization: 'Bearer '+auth.getToken()}
+		}).then(function successCallback(data){
+			console.log('Returned from post numbers: ');
+			console.log(data);
+			angular.copy(o.default, o.old);
+			angular.copy(data, o.default);
+		}, function errorCallback(response){
+			console.log(response);
 		});
 	};
 
 	o.update = function(section, id){
 		this.default[id]= section;
-		return $http.post('/numbers', this.default).success(function(data){
-			console.log(data);
-		})
+		if(auth.isLoggedIn()){
+			this.create(this.default);
+		}
 	}
 
 	return o;
 }]);
 
-app.controller('SideBar', [
-	'$scope',
-	function($scope){
-		$scope.test1 = "Hello navbar";
-		$scope.onSignIn=function(response){
-			console.log(response);
-			var currentUser = gapi.auth2.getBasicProfile();
-			console.log(currentUser);
+app.factory('auth', ['$http', '$window', function($http, $window){
+	var auth = {};
+
+	auth.saveToken = function (token){
+		$window.localStorage['college-made-simple-token'] = token;
+	};
+
+	auth.getToken = function (){
+		return $window.localStorage['college-made-simple-token'];
+	}
+
+	auth.isLoggedIn = function(){
+		var token = auth.getToken();
+
+		if(token){
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+			return payload.exp > Date.now() / 1000;
+		} else {
+			return false;
 		}
+	};
+
+	auth.currentUser = function(){
+		if(auth.isLoggedIn()){
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+			return payload.username;
+		}
+	};
+
+	auth.register = function(user){
+		return $http.post('/register', user).success(function(data){
+			auth.saveToken(data.token);
+		});
+	};
+
+	auth.logIn = function(user){
+		return $http.post('/login', user).success(function(data){
+			auth.saveToken(data.token);
+		});
+	};
+
+	auth.logOut = function(){
+		$window.localStorage.removeItem('college-made-simple-token');
+	};
+	return auth;
+}])
+
+app.controller('AuthCtrl', [
+	'$scope',
+	'$state',
+	'auth',
+	function($scope, $state, auth){
+		$scope.user = {};
+
+		$scope.register = function(){
+			auth.register($scope.user).error(function(error){
+				console.log(error);
+				$scope.error = error;
+			}).then(function(){
+				$state.go('home');
+			});
+		};
+
+		$scope.logIn = function(){
+			auth.logIn($scope.user).error(function(error){
+				$scope.error = error;
+			}).then(function(){
+				$state.go('home');
+			});
+		};
+	}])
+
+app.controller('NavCtrl', [
+	'$scope',
+	'auth',
+	function($scope, auth){
+		$scope.isLoggedIn = auth.isLoggedIn;
+		$scope.currentUser = auth.currentUser;
+		$scope.logOut = auth.logOut;
 	}]);
+
+
 
 app.directive('googleSignInButton',function(){
 	return {
@@ -134,6 +235,7 @@ app.controller('EditController', [
 		//load my helpers
 		$scope.helpers = MyHelpers.helpers;
 		$scope.numbers = numbers.default;
+		$scope.title = sourceId;
 		//testing
 		//console.log($scope.numbers);
 		//console.log(sourceId);
@@ -174,7 +276,7 @@ app.controller('EditController', [
 				"title5": $scope.title5
 
 			};
-			numbers.update(temp,sourceId)
+			numbers.update(temp,id);
 			console.log(temp);
 		}
 	}]);
@@ -209,6 +311,28 @@ app.config([
 					return numbers.getAll();
 				}]
 			}
+		});
+		$stateProvider
+		.state('login', {
+			url: '/login',
+			templateUrl: '/login.html',
+			controller: 'AuthCtrl',
+			onEnter: ['$state', 'auth', function($state, auth){
+				if(auth.isLoggedIn()){
+					$state.go('home');
+				}
+			}]
+		});
+		$stateProvider
+		.state('register', {
+			url: '/register',
+			templateUrl: '/register.html',
+			controller: 'AuthCtrl',
+			onEnter: ['$state', 'auth', function($state, auth){
+				if(auth.isLoggedIn()){
+					$state.go('home');
+				}
+			}]
 		});
 
 		$urlRouterProvider.otherwise('home');
