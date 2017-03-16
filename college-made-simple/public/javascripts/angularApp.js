@@ -211,19 +211,39 @@ app.controller('SumController', ['$scope',
 		$scope.dataIN = [$scope.numbers[$scope.helpers.loadById($scope.numbers,"scholarships")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"grants")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"job")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"parents")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"otherIn")].total];
 		//graph for the out side
 		$scope.labelsOUT = ["Utilities", "Personal", "Food", "Rent", "Tuition", "Supplies", "Transportation"];
-		$scope.dataOUT = [$scope.numbers[$scope.helpers.loadById($scope.numbers,"utilities")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"personal")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"food")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"rent")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].supplies,$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].transportation];
+		$scope.dataOUT = [$scope.numbers[$scope.helpers.loadById($scope.numbers,"utilities")].total,
+		$scope.numbers[$scope.helpers.loadById($scope.numbers,"personal")].total,
+		$scope.numbers[$scope.helpers.loadById($scope.numbers,"food")].total,
+		$scope.numbers[$scope.helpers.loadById($scope.numbers,"rent")].total,
+		$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total,
+		$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total,
+		$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total];
 		
 		//loading the sumary screen
+		//in data
+		$scope.scholarships = $scope.numbers[$scope.helpers.loadById($scope.numbers,"scholarships")].total;
+		$scope.grants =$scope.numbers[$scope.helpers.loadById($scope.numbers,"grants")].total;
+		$scope.job = $scope.numbers[$scope.helpers.loadById($scope.numbers,"job")].total;
+		$scope.parents = $scope.numbers[$scope.helpers.loadById($scope.numbers,"parents")].total;
+		$scope.other = $scope.numbers[$scope.helpers.loadById($scope.numbers,"other")].total; 
+		$scope.totalIn = 
+		($scope.grants-0) 
+		+ ($scope.scholarships-0) 
+		+ ($scope.job-0)
+		+ ($scope.parents-0) 
+		+ ($scope.other-0);
+		//out data
 		$scope.tuition = $scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total;
 		$scope.personal =$scope.numbers[$scope.helpers.loadById($scope.numbers,"personal")].total;
 		$scope.supplies = $scope.numbers[$scope.helpers.loadById($scope.numbers,"supplies")].total;
 		$scope.rent = $scope.numbers[$scope.helpers.loadById($scope.numbers,"rent")].total;
 		$scope.transportation = $scope.numbers[$scope.helpers.loadById($scope.numbers,"transportation")].total; 
+		$scope.food = $scope.numbers[$scope.helpers.loadById($scope.numbers,"food")].total; 
 		$scope.personal = $scope.numbers[$scope.helpers.loadById($scope.numbers,"personal")].total;
-		$scope.totalOut = ($scope.tuition-0) + ($scope.personal-0) + ($scope.supplies-0) + ($scope.rent-0)
+		$scope.totalOut = ($scope.tuition-0) + ($scope.supplies-0) + ($scope.rent-0)
 		+ ($scope.transportation-0) + ($scope.personal-0);
 
-		console.log($scope.numbers);
+		//console.log($scope.numbers);
 		
 	}]);
 
