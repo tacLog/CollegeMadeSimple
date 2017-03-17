@@ -211,7 +211,8 @@ app.controller('SumController', ['$scope',
 		$scope.dataIN = [$scope.numbers[$scope.helpers.loadById($scope.numbers,"scholarships")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"grants")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"job")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"parents")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"otherIn")].total];
 		//graph for the out side
 		$scope.labelsOUT = ["Utilities", "Personal", "Food", "Rent", "Tuition", "Supplies", "Transportation"];
-		$scope.dataOUT = [$scope.numbers[$scope.helpers.loadById($scope.numbers,"utilities")].total,
+		$scope.dataOUT = [
+		$scope.numbers[$scope.helpers.loadById($scope.numbers,"utilities")].total,
 		$scope.numbers[$scope.helpers.loadById($scope.numbers,"personal")].total,
 		$scope.numbers[$scope.helpers.loadById($scope.numbers,"food")].total,
 		$scope.numbers[$scope.helpers.loadById($scope.numbers,"rent")].total,
@@ -220,6 +221,38 @@ app.controller('SumController', ['$scope',
 		$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total];
 		
 		//loading the sumary screen
+		//new way of loading the data:
+		$scope.dataIn =[];
+		$scope.dataOut=[];
+		$scope.totalIn = 0;
+		$scope.totalOut = 0;
+		for (var cat in $scope.numbers){
+			var obj = $scope.numbers[cat];
+			if (obj.id == "error"){
+				continue;
+			}
+			//console.log(obj.type);
+			if (obj.type =="in") {
+				$scope.dataIn.push({
+					title: obj.id.charAt(0).toUpperCase() + obj.id.slice(1),
+					link: obj.id,
+					total: obj.total,
+				})
+				$scope.totalIn = $scope.totalIn + (obj.total- 0);
+			}
+			if (obj.type =="out") {
+				$scope.dataOut.push({
+					title: obj.id.charAt(0).toUpperCase() + obj.id.slice(1),
+					link: obj.id,
+					total: obj.total,
+				})
+				$scope.totalOut = $scope.totalOut + (obj.total -0) ;
+			}
+		}
+
+		//console.log('scope.in:');
+		//console.log($scope.in);
+		/* Old way of loading shit
 		//in data
 		$scope.scholarships = $scope.numbers[$scope.helpers.loadById($scope.numbers,"scholarships")].total;
 		$scope.grants =$scope.numbers[$scope.helpers.loadById($scope.numbers,"grants")].total;
@@ -242,8 +275,8 @@ app.controller('SumController', ['$scope',
 		$scope.personal = $scope.numbers[$scope.helpers.loadById($scope.numbers,"personal")].total;
 		$scope.totalOut = ($scope.tuition-0) + ($scope.supplies-0) + ($scope.rent-0)
 		+ ($scope.transportation-0) + ($scope.personal-0);
-
-		//console.log($scope.numbers);
+		*/
+		console.log($scope.numbers);
 		
 	}]);
 
@@ -298,6 +331,10 @@ app.controller('EditController', [
 			};
 			numbers.update(temp,id);
 			console.log(temp);
+		}
+		$scope.clearAll = function(){
+			console.log('clearing all data from '+ sourceId);
+			$scope.value1
 		}
 	}]);
 

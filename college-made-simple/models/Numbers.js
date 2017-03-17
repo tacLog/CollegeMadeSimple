@@ -5,25 +5,19 @@ var NumbersSchema = new mongoose.Schema(
 
 {
 	author:String,
-	ID:String,
+	VID:{type:Number, default:0},
+	date:{type:Date, default: Date.now},
 	numbers: [
-				{id : String,
-				total:Number,
-
-				value1: Number,
-				title1: String,
-				value2: Number,
-				title2: String,
-				value3: Number,
-				title3: String,
-				value4: Number,
-				title4: String,
-				value5: Number,
-				title5: String
-				}
-			]
+	{id : String,
+		total:Number,
+		type:String,
+		fields: [{
+			value:Number,
+			title:String,
+			}]
+	}
+	]
 }
 );
-
 
 mongoose.model('Numbers', NumbersSchema);

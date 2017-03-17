@@ -100,30 +100,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Scholarships</td>
-                  <td>{{scholarships}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/scholarships">Edit</a></span></td>
-                </tr>
-                <tr>
-                  <td>Grants</td>
-                  <td>{{grants}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/grants">Edit</a></span></td>
-                </tr>
-                <tr>
-                  <td>Job</td>
-                  <td>{{job}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/job">Edit</a></span></td>
-                </tr>
-                <tr>
-                  <td>Parents</td>
-                  <td>{{parents}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/parents">Edit</a></span></td>
-                </tr>
-                <tr>
-                  <td>Other</td>
-                  <td>{{other}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/other">Edit</a></span></td>
+                <tr ng-repeat="post in dataIn">
+                  <td>{{post.title}}</td>
+                  <td>{{post.total}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/{{post.link}}">Edit</a></span></td>
                 </tr>
               </tbody>
               <tbody>
@@ -148,37 +128,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Tuition</td>
-                  <td>{{tuition}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/tuition">Edit</a></span></td>
-                </tr>
-                <tr>
-                  <td>Supplies</td>
-                  <td>{{supplies}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/supplies">Edit</a></span></td>
-                </tr>
-                <tr>
-                  <td>Rent</td>
-                  <td>{{rent}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/rent">Edit</a></span></td>
-                </tr>
-                <tr>
-                  <td>Transportation</td>
-                  <td>{{transportation}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/transportation">Edit</a></span></td>
-
-                </tr>
-                <tr>
-                  <td>Food</td>
-                  <td>{{food}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/food">Edit</a></span></td>
-                  
-                </tr>
-                <tr>
-                  <td>Personal</td>
-                  <td>{{personal}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/personal">Edit</a></span></td>
+              <tr ng-repeat="post in dataOut">
+                  <td>{{post.title}}</td>
+                  <td>{{post.total}}</td>
+                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/{{post.link}}">Edit</a></span></td>
                 </tr>
               </tbody>
               <tbody>
@@ -191,107 +144,136 @@
             </div>
           </div>
         </div>
-      <div class="row">
-            <div class="col s12 m6">
-              <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataIN"
-              chart-labels="labelsIN" chart-click="onClickIN">
-            </canvas>
-          </div>
-          <div class="col s12 m6">
-            <canvas id="pie" class="chart chart-doughnut" chart-data="dataOUT"
-            chart-labels="labelsOUT" chart-click="onClickOUT">
-          </canvas>
-    </div>
-  </div>
-
-
-</script>
-
-
-
-<script type="text/ng-template" id="/edit.html">
-  <div class="row">
-    <div class="col s12">
-      <div class="card-panel grey white-text darken-2">
-        <div class="center">
-          <span class="white-text"><font size=+3>{{title}}</font></span>
-        </div>
-        <!-- Edit Form Starts Here -->
         <div class="row">
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s6">
-                <input ng-model="title1" type="text" class="validate">
-                <label for="input1">Catagory Name</label>
+          <div class="col s12 m6">
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataIN"
+            chart-labels="labelsIN" chart-click="onClickIN">
+          </canvas>
+        </div>
+        <div class="col s12 m6">
+          <canvas id="pie" class="chart chart-doughnut" chart-data="dataOUT"
+          chart-labels="labelsOUT" chart-click="onClickOUT">
+        </canvas>
+      </div>
+    </div>
+
+
+  </script>
+
+
+
+  <script type="text/ng-template" id="/edit.html">
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey white-text darken-2">
+          <div class="center">
+            <span class="white-text"><font size=+3>{{title}}</font></span>
+          </div>
+          <!-- Edit Form Starts Here -->
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input ng-model="title1" type="text" class="validate">
+                  <label for="input1">Catagory Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input ng-model="value1" type="text" class="validate">
+                  <label for="input2">Value</label>
+                </div>
               </div>
-              <div class="input-field col s6">
-                <input ng-model="value1" type="text" class="validate">
-                <label for="input2">Value</label>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input ng-model="title2" type="text" class="validate">
+                  <label for="input3">Catagory Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input ng-model="value2" type="text" class="validate">
+                  <label for="input4">Value</label>
+                </div>
               </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input ng-model="title3" type="text" class="validate">
+                  <label for="input5">Catagory Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input ng-model="value3" type="text" class="validate">
+                  <label for="input6">Value</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input ng-model="title4" type="text" class="validate">
+                  <label for="input7">Catagory Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input ng-model="value4" type="text" class="validate">
+                  <label for="input8">Value</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input ng-model="title5" type="text" class="validate">
+                  <label for="input9">Catagory Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input ng-model="value5" type="text" class="validate">
+                  <label for="input10">Value</label>
+                </div>
+              </div>
+              <a ng-href="#/home">
+                <button ng-click="update()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Save and Return
+                  <i class="material-icons right">send</i>
+                </button>
+              </a>
             </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <input ng-model="title2" type="text" class="validate">
-                <label for="input3">Catagory Name</label>
-              </div>
-              <div class="input-field col s6">
-                <input ng-model="value2" type="text" class="validate">
-                <label for="input4">Value</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <input ng-model="title3" type="text" class="validate">
-                <label for="input5">Catagory Name</label>
-              </div>
-              <div class="input-field col s6">
-                <input ng-model="value3" type="text" class="validate">
-                <label for="input6">Value</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <input ng-model="title4" type="text" class="validate">
-                <label for="input7">Catagory Name</label>
-              </div>
-              <div class="input-field col s6">
-                <input ng-model="value4" type="text" class="validate">
-                <label for="input8">Value</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <input ng-model="title5" type="text" class="validate">
-                <label for="input9">Catagory Name</label>
-              </div>
-              <div class="input-field col s6">
-                <input ng-model="value5" type="text" class="validate">
-                <label for="input10">Value</label>
-              </div>
-            </div>
-            <a ng-href="#/home">
-              <button ng-click="update()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Save and Return
-                <i class="material-icons right">send</i>
-              </button>
-            </a>
           </div>
         </div>
       </div>
-    </div>
+    </script>
+
+    <script type="text/ng-template" id="/register.html">
+      <div class="page-header">
+        <h1>College Made Simple</h1>
+      </div>
+
+      <div ng-show="error" class="alert alert-danger row">
+        <span>{{ error.message }}</span>
+      </div>
+
+      <form ng-submit="register()"
+      style="margin-top:30px;">
+      <h3>Register</h3>
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="Username"
+        ng-model="user.username"></input>
+      </div>
+      <div class="form-group">
+        <input type="password"
+        class="form-control"
+        placeholder="Password"
+        ng-model="user.password"></input>
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
   </script>
 
-  <script type="text/ng-template" id="/register.html">
+  <script type="text/ng-template" id="/login.html">
     <div class="page-header">
-      <h1>College Made Simple</h1>
+      <h1>Flapper News</h1>
     </div>
 
     <div ng-show="error" class="alert alert-danger row">
       <span>{{ error.message }}</span>
     </div>
 
-    <form ng-submit="register()"
+    <form ng-submit="logIn()"
     style="margin-top:30px;">
-    <h3>Register</h3>
+    <h3>Log In</h3>
 
     <div class="form-group">
       <input type="text"
@@ -305,37 +287,8 @@
       placeholder="Password"
       ng-model="user.password"></input>
     </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-primary">Log In</button>
   </form>
-</script>
-
-<script type="text/ng-template" id="/login.html">
-  <div class="page-header">
-    <h1>Flapper News</h1>
-  </div>
-
-  <div ng-show="error" class="alert alert-danger row">
-    <span>{{ error.message }}</span>
-  </div>
-
-  <form ng-submit="logIn()"
-  style="margin-top:30px;">
-  <h3>Log In</h3>
-
-  <div class="form-group">
-    <input type="text"
-    class="form-control"
-    placeholder="Username"
-    ng-model="user.username"></input>
-  </div>
-  <div class="form-group">
-    <input type="password"
-    class="form-control"
-    placeholder="Password"
-    ng-model="user.password"></input>
-  </div>
-  <button type="submit" class="btn btn-primary">Log In</button>
-</form>
 </script>
 </main>
 
