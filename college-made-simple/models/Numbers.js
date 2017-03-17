@@ -9,7 +9,9 @@ var NumbersSchema = new mongoose.Schema(
 	//date:{type:Date, default: Date.now},
 	numbers: [
 	{   id: String,
-		total:Number,
+		totalYear:Number,
+		totalUnit:Number,
+		totalMonth:Number,
 		type:String,
 		fields: [{
 			order:Number,

@@ -1,10 +1,12 @@
 
 {
     "author":"tester",
-    "VID":"0",
+    "VID":"-1",
     "numbers": [
         {"id" : "error",
-        "total":"50",
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"error",
         "fields":[{
             "year":"120",
@@ -16,8 +18,9 @@
 
     },
       {"id" : "scholarships",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"in",
         "fields":[{
             "year":"120",
@@ -29,8 +32,9 @@
 
     },
     {"id" : "other",
-        "total":"50",
-        
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",        
         "type":"in",
         "fields":[{
             "year":"120",
@@ -42,8 +46,9 @@
 
     },
     {"id" : "grants",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"in",
         "fields":[{
             "year":"120",
@@ -55,8 +60,9 @@
 
     },
     {"id" : "parents",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"in",
         "fields":[{
             "year":"120",
@@ -68,8 +74,9 @@
 
     },
     {"id" : "job",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"in",
         "fields":[{
             "year":"120",
@@ -81,8 +88,9 @@
 
     },
     {"id" : "utilities",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"out",
         "fields":[{
             "year":"120",
@@ -94,8 +102,9 @@
     },
     
     {"id" : "personal",
-        "total":"150",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"out",
         "fields":[{
             "year":"120",
@@ -107,8 +116,9 @@
 
     },
     {"id" : "food",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"out",
         "fields":[{
             "year":"120",
@@ -120,8 +130,9 @@
 
     },
     {"id" : "rent",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"out",
         "fields":[{
             "year":"120",
@@ -133,8 +144,9 @@
 
     },
     {"id" : "tuition",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"out",
         "fields":[{
             "year":"120",
@@ -146,8 +158,9 @@
 
     },
      {"id" : "supplies",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"out",
         "fields":[{
             "year":"120",
@@ -159,8 +172,9 @@
 
     },
     {"id" : "transportation",
-        "total":"50",
-
+        "totalYear":"50",
+        "totalUnit":"40",
+        "totalMonth":"10",
         "type":"out",
         "fields":[{
             "year":"120",

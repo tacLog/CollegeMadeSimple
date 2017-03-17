@@ -32,11 +32,14 @@ app.factory('numbers', ['$http','auth', function($http, auth){
 				url:'/numbers/'+auth.currentUser()
 			}).then(function successCallback(data){
 				console.log(data);
-				if (data.data.VID=="0"){
-					angular.copy(data.data, o.default);
-					//console.log('this should have worked')
+				if (data.data.VID=="-1"){
+					//console.log(data);
+					angular.copy(data.data[0], o.default);
+					console.log('this should have worked')
 				}
 				else{
+					console.log('else condition of getAll');
+					console.log(data.data[0]);
 					angular.copy(data.data[0].numbers, o.default);
 				}
 			}, function errorCallback(response){
@@ -49,7 +52,8 @@ app.factory('numbers', ['$http','auth', function($http, auth){
 	o.getDef= function(){
 		return $http.get('data/test.json')
 		.success(function(data){
-			angular.copy(data.numbers, o.default);
+			console.log(data);
+			angular.copy(data, o.default);
 					//console.log('Test Data loaded');
 				})
 	}
@@ -70,7 +74,9 @@ app.factory('numbers', ['$http','auth', function($http, auth){
 	};
 
 	o.update = function(section, id){
+		console.log(this.default);
 		this.default.numbers[id]= section;
+		this.default.VID = ((this.default.VID-0)+1);
 		if(auth.isLoggedIn()){
 			this.create(this.default);
 		}
@@ -199,6 +205,7 @@ app.controller('SumController', ['$scope',
 		$scope.test = 'Hello world';
 		//load the numbers
 		$scope.numbers = numbers.default.numbers;
+		//console.log($scope.numbers);
 		//load my helpers
 		$scope.helpers = MyHelpers.helpers;
 		//console.log($scope.numbers);
@@ -225,8 +232,12 @@ app.controller('SumController', ['$scope',
 		//new way of loading the data:
 		$scope.dataIn =[];
 		$scope.dataOut=[];
-		$scope.totalIn = 0;
-		$scope.totalOut = 0;
+		$scope.totalInY = 0;
+		$scope.totalInM = 0;
+		$scope.totalInU = 0;
+		$scope.totalOutY = 0;
+		$scope.totalOutU = 0;
+		$scope.totalOutM = 0;
 		for (var cat in $scope.numbers){
 			var obj = $scope.numbers[cat];
 			if (obj.id == "error"){
@@ -237,17 +248,25 @@ app.controller('SumController', ['$scope',
 				$scope.dataIn.push({
 					title: obj.id.charAt(0).toUpperCase() + obj.id.slice(1),
 					link: obj.id,
-					total: obj.total,
+					totalY: obj.totalYear,
+					totalU: obj.totalUnit,
+					totalM: obj.totalMonth
 				})
-				$scope.totalIn = $scope.totalIn + (obj.total- 0);
+				$scope.totalInY = $scope.totalInY + (obj.totalYear- 0);
+				$scope.totalInU = $scope.totalInU + (obj.totalUnit- 0);
+				$scope.totalInM = $scope.totalInM + (obj.totalMonth- 0);
 			}
 			if (obj.type =="out") {
 				$scope.dataOut.push({
 					title: obj.id.charAt(0).toUpperCase() + obj.id.slice(1),
 					link: obj.id,
-					total: obj.total,
+					totalY: obj.totalYear,
+					totalU: obj.totalUnit,
+					totalM: obj.totalMonth
 				})
-				$scope.totalOut = $scope.totalOut + (obj.total -0) ;
+				$scope.totalOutY = $scope.totalOutY + (obj.totalYear- 0);
+				$scope.totalOutU = $scope.totalOutU + (obj.totalUnit- 0);
+				$scope.totalOutM = $scope.totalOutM + (obj.totalMonth- 0);
 			}
 		}
 
@@ -289,7 +308,7 @@ app.controller('EditController', [
 		//load my helpers
 		$scope.helpers = MyHelpers.helpers;
 		$scope.numbers = numbers.default.numbers;
-		$scope.title = sourceId;
+		$scope.title = sourceId.charAt(0).toUpperCase() + sourceId.slice(1);
 		//testing
 		//console.log($scope.numbers);
 		//console.log(sourceId);
@@ -322,23 +341,33 @@ app.controller('EditController', [
 		//the saving function
 		$scope.update = function(){
 			//console.log("it works");
-			var total = 0;
+			var totalYear = 0;
+			var totalMonth = 0;
+			var totalUnit= 0;
 			var newFields =[];
 			for (var cat in $scope.subcat){
 				obj = $scope.subcat[cat];
-				total = total + (obj.year-0);
+				totalYear = totalYear + (obj.year-0);
+				totalMonth = totalMonth + (obj.month-0);
+				totalUnit = totalUnit + (obj.unit-0);
 				newFields.push(obj);
 			}
-			total = total.toString();
+			totalYear = totalYear.toString();
+			totalUnit = totalUnit.toString();
+			totalMonth = totalMonth.toString();
 			var temp = {
 				"id" : sourceId,
-				"total":total,
+				"totalYear":totalYear,
+				"totalUnit":totalUnit,
+				"totalMonth":totalMonth,
 				"type":$scope.numbers[id].type,
 				"fields":newFields
 
 			};
+			console.log('This is what we are posting:')
+			console.log(temp);
 			numbers.update(temp,id);
-			//console.log(temp);
+
 		}
 		$scope.addOne = function(){
 			$scope.subcat.push({

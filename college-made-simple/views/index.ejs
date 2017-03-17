@@ -95,20 +95,27 @@
               <thead>
                 <tr>
                   <th data-field="id">Name</th>
-                  <th data-field="price">Price</th>
+                  <th data-field="price">Month Total</th>
+                  <th data-field="price">Unit Total</th>
+                  <th data-field="price">Year Total</th>
                   <th data-field="edit"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="post in dataIn">
                   <td>{{post.title}}</td>
-                  <td>{{post.total}}</td>
+                  <td>${{post.totalM}}</td>
+                  <td>${{post.totalU}}</td>
+                  <td>${{post.totalY}}</td>
                   <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/{{post.link}}">Edit</a></span></td>
                 </tr>
               </tbody>
               <tbody>
                 <tr>
-                  <th datafield>Total: ${{totalIn}}</th>
+                  <td>Total:</td>
+                  <td>${{totalInM}}</td>
+                  <td>${{totalInU}}</td>
+                  <td>${{totalInY}}</td>
                 </tr>
               </tbody>
             </table>
@@ -123,22 +130,29 @@
               <thead>
                 <tr>
                   <th data-field="id">Name</th>
-                  <th data-field="price">Price</th>
+                  <th data-field="price">Month Total</th>
+                  <th data-field="price">Unit Total</th>
+                  <th data-field="price">Year Total</th>
                   <th data-field="edit"></th>
                 </tr>
               </thead>
               <tbody>
               <tr ng-repeat="post in dataOut">
                   <td>{{post.title}}</td>
-                  <td>{{post.total}}</td>
+                   <td>${{post.totalM}}</td>
+                  <td>${{post.totalU}}</td>
+                  <td>${{post.totalY}}</td>
                   <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/{{post.link}}">Edit</a></span></td>
                 </tr>
               </tbody>
               <tbody>
                 <tbody>
                   <tr>
-                    <th datafield>Total: ${{totalOut}}</th>
-                  </tr>
+                  <td>Total:</td>
+                  <td>${{totalOutM}}</td>
+                  <td>${{totalOutU}}</td>
+                  <td>${{totalOutY}}</td>
+                </tr>
                 </tbody>
               </table>
             </div>
@@ -192,6 +206,10 @@
                 </div>
                 </ng-form>
               </div>
+              <a ng-href="#/home">
+                <button ng-click="update()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Cancel
+                </button>
+              </a>
               <button ng-click="addOne()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Add One
                   <i class="material-icons right">send</i>
                 </button>
