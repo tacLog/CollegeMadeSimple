@@ -12,7 +12,10 @@ var NumbersSchema = new mongoose.Schema(
 		total:Number,
 		type:String,
 		fields: [{
-			value:Number,
+			order:Number,
+			year:Number,
+			month:Number,
+			unit:Number,
 			title:String,
 			}]
 	}

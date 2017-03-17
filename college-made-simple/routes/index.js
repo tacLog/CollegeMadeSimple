@@ -11,6 +11,7 @@ var User = mongoose.model('User');
 var jwt = require('express-jwt');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
+var test = require('../public/data/test.json');
 router.get('/numbers', auth, function(req, res, next) {
 	Numbers.find(function(err, numbers){
 		if(err) {return next(err);}
@@ -43,6 +44,9 @@ router.get('/numbers/:id', auth, function(req, res, next) {
     if (!numbers) { return next(new Error('can\'t find numbers for user: '+id)); }
 
     req.post = numbers;
+    if (numbers.length==0){
+      numbers = test;
+    }
     res.json(numbers);
   });
 });

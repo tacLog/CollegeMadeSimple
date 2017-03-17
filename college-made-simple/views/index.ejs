@@ -172,55 +172,25 @@
           <!-- Edit Form Starts Here -->
           <div class="row">
             <form class="col s12">
-              <div class="row">
+              <div class="row" ng-repeat="post in subcat">
+                <ng-form name="subcat">
                 <div class="input-field col s6">
-                  <input ng-model="title1" type="text" class="validate">
-                  <label for="input1">Catagory Name</label>
+                  <input ng-model="post.title" type="text" class="validate">
+                  <label for="input1">Subcatagory Name</label>
                 </div>
-                <div class="input-field col s6">
-                  <input ng-model="value1" type="text" class="validate">
-                  <label for="input2">Value</label>
+                <div class="input-field col s2">
+                  <input ng-model="post.month" ng-change="changeMonth(post)" type="text" class="validate">
+                  <label for="input2">Per Month</label>
                 </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6">
-                  <input ng-model="title2" type="text" class="validate">
-                  <label for="input3">Catagory Name</label>
+                <div class="input-field col s2">
+                  <input ng-model="post.unit" ng-change="changeUnit(post)" type="text" class="validate">
+                  <label for="input2">Per Unit</label>
                 </div>
-                <div class="input-field col s6">
-                  <input ng-model="value2" type="text" class="validate">
-                  <label for="input4">Value</label>
+                <div class="input-field col s2">
+                  <input ng-model="post.year" ng-change="changeYear(post)" type="text" class="validate">
+                  <label for="input2">Per Year</label>
                 </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6">
-                  <input ng-model="title3" type="text" class="validate">
-                  <label for="input5">Catagory Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <input ng-model="value3" type="text" class="validate">
-                  <label for="input6">Value</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6">
-                  <input ng-model="title4" type="text" class="validate">
-                  <label for="input7">Catagory Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <input ng-model="value4" type="text" class="validate">
-                  <label for="input8">Value</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6">
-                  <input ng-model="title5" type="text" class="validate">
-                  <label for="input9">Catagory Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <input ng-model="value5" type="text" class="validate">
-                  <label for="input10">Value</label>
-                </div>
+                </ng-form>
               </div>
               <a ng-href="#/home">
                 <button ng-click="update()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Save and Return
