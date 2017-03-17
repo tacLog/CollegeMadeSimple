@@ -31,9 +31,9 @@ app.factory('numbers', ['$http','auth', function($http, auth){
 				method:"GET",
 				url:'/numbers/'+auth.currentUser()
 			}).then(function successCallback(data){
-				//console.log(data);
-				if (data.data.VID=="NONE"){
-					angular.copy(data.data.numbers, o.default);
+				console.log(data);
+				if (data.data.VID=="0"){
+					angular.copy(data.data, o.default);
 					//console.log('this should have worked')
 				}
 				else{
@@ -70,7 +70,7 @@ app.factory('numbers', ['$http','auth', function($http, auth){
 	};
 
 	o.update = function(section, id){
-		this.default[id]= section;
+		this.default.numbers[id]= section;
 		if(auth.isLoggedIn()){
 			this.create(this.default);
 		}
@@ -198,7 +198,7 @@ app.controller('SumController', ['$scope',
 	function ($scope, numbers) {
 		$scope.test = 'Hello world';
 		//load the numbers
-		$scope.numbers = numbers.default;
+		$scope.numbers = numbers.default.numbers;
 		//load my helpers
 		$scope.helpers = MyHelpers.helpers;
 		//console.log($scope.numbers);
@@ -288,7 +288,7 @@ app.controller('EditController', [
 	function ($scope, numbers, sourceId) {
 		//load my helpers
 		$scope.helpers = MyHelpers.helpers;
-		$scope.numbers = numbers.default;
+		$scope.numbers = numbers.default.numbers;
 		$scope.title = sourceId;
 		//testing
 		//console.log($scope.numbers);
@@ -326,7 +326,7 @@ app.controller('EditController', [
 			var newFields =[];
 			for (var cat in $scope.subcat){
 				obj = $scope.subcat[cat];
-				total = total + obj.year;
+				total = total + (obj.year-0);
 				newFields.push(obj);
 			}
 			total = total.toString();
@@ -337,13 +337,17 @@ app.controller('EditController', [
 				"fields":newFields
 
 			};
-			$scope.numbers[id] = temp;
-			numbers.update(temp,$scope.numbers);
-			console.log(temp);
+			numbers.update(temp,id);
+			//console.log(temp);
 		}
-		$scope.clearAll = function(){
-			console.log('clearing all data from '+ sourceId);
-			$scope.value1
+		$scope.addOne = function(){
+			$scope.subcat.push({
+				"year":"120",
+            "month":"10",
+            "unit":"40",
+            "title":"",
+            "order":$scope.subcat.length.toString
+			})
 		}
 	}]);
 

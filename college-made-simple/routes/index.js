@@ -53,10 +53,12 @@ router.get('/numbers/:id', auth, function(req, res, next) {
 
 router.post('/numbers', auth, function(req, res, next) {
 	var numbers = new Numbers();
+  numbers.numbers = req.body;
 	numbers.author = req.payload.username;
-	numbers.numbers = req.body;
 	numbers.save(function(err, numbers){
-		if(err){ return next(err); }
+		if(err){ 
+      console.log('I found you');
+      return next(err); }
 
 		res.json(numbers);
 	});

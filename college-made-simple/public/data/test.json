@@ -1,7 +1,7 @@
 
 {
     "author":"tester",
-    "VID":"NONE",
+    "VID":"0",
     "numbers": [
         {"id" : "error",
         "total":"50",
