@@ -28,8 +28,8 @@
 <body ng-app="materializeApp">
   <!--side nav-->
   <nav class="blue lighten-2" role="navigation" ng-controller="NavCtrl">
-    <div class="nav-wrapper container"><header><a id="logo-container" href="#" class="brand-logo">College Made Simple Alpha 0.0.1</a></header>
-      <ul class="nav navbar-nav">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">College Made Simple Alpha 0.0.1</a>
+      <ul class="nav navbar-nav right">
         <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
         <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
         <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
@@ -46,7 +46,7 @@
                   <img src="images/icon.png" alt="" height="50" width="50" class="responsive-img"> <!-- notice the "circle" class -->
                 </div>
                 <div class="col s8">
-                  <span class="grey-text">Sammy Slug</span>
+                  <span class="grey-text">{{ currentUser() }}</span>
                 </div>
               </div>
             </a>
@@ -70,7 +70,7 @@
           <li><a class="waves-effect" href="#!">Link 2</a></li>
           <li><a class="waves-effect" href="#!">Link 3</a></li>
         </ul>
-        <a href="#" data-activates="slide-out" class="button-collapse "><i class="material-icons black-text">menu</i></a>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons black-text">menu</i></a>
       </div>
     </div>
   </nav>
@@ -203,8 +203,6 @@
           </canvas>
     </div>
   </div>
-
-
 </script>
 
 
@@ -274,76 +272,87 @@
                 <i class="material-icons right">send</i>
               </button>
             </a>
-          </div>
+          </form>  
         </div>
       </div>
     </div>
-  </script>
+  </div>
+</script>
 
-  <script type="text/ng-template" id="/register.html">
-    <div class="page-header">
-      <h1>College Made Simple</h1>
-    </div>
+<script type="text/ng-template" id="/register.html">
+  <div class="container">
+    <div class="col s12 m6">
+       <div class="page-header">
+         <h1>College Made Simple</h1>
+       </div>
 
-    <div ng-show="error" class="alert alert-danger row">
-      <span>{{ error.message }}</span>
-    </div>
+        <div ng-show="error" class="alert alert-danger row">
+          <span>{{ error.message }}</span>
+        </div>
 
-    <form ng-submit="register()"
-    style="margin-top:30px;">
-    <h3>Register</h3>
-
-    <div class="form-group">
-      <input type="text"
-      class="form-control"
-      placeholder="Username"
-      ng-model="user.username"></input>
+        <form ng-submit="register()" style="margin-top:30px;">
+          <h3>Register</h3>
+          <div class="input-field">
+            <div class="form-group">
+              <input type="text"
+              class="form-control"
+              id="username"
+              ng-model="user.username">
+              <label for="username">Username</label>
+            </div>
+          </div>
+          <div class="input-field">
+            <div class="form-group">
+              <input type="password"
+              class="form-control"
+              id="password"
+              ng-model="user.password">
+              <label for="password">Password</label>
+            </div>
+          </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
     </div>
-    <div class="form-group">
-      <input type="password"
-      class="form-control"
-      placeholder="Password"
-      ng-model="user.password"></input>
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-  </form>
+  </div>
 </script>
 
 <script type="text/ng-template" id="/login.html">
-  <div class="page-header">
-    <h1>Flapper News</h1>
-  </div>
+  <div class="container">
+    <div class="col s12 m6">
+      <div class="page-header">
+        <h1></h1>
+      </div>
 
-  <div ng-show="error" class="alert alert-danger row">
-    <span>{{ error.message }}</span>
-  </div>
+      <div ng-show="error" class="alert alert-danger row">
+        <span>{{ error.message }}</span>
+      </div>
 
-  <form ng-submit="logIn()"
-  style="margin-top:30px;">
-  <h3>Log In</h3>
-
-  <div class="form-group">
-    <input type="text"
-    class="form-control"
-    placeholder="Username"
-    ng-model="user.username"></input>
+      <form ng-submit="logIn()" style="margin-top:30px;">
+        <h3>Log In</h3>
+        <div class="input-field">
+          <div class="form-group">
+            <input type="text"
+            id="username"
+            class="form-control validate"
+            ng-model="user.username">
+            <label for="username">Username</label>
+          </div>
+        </div>
+        <div class="input-field">
+          <div class="form-group">
+            <input type="password"
+            id="password"
+            class="form-control"
+            ng-model="user.password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <button type="submit" class="btn blue lighten-2 btn-primary">Log In</button>
+      </form>
+    </div>
   </div>
-  <div class="form-group">
-    <input type="password"
-    class="form-control"
-    placeholder="Password"
-    ng-model="user.password"></input>
-  </div>
-  <button type="submit" class="btn btn-primary">Log In</button>
-</form>
 </script>
 </main>
-
-<!--
-<script type="text/javascript" src="js/init.js"></script>
-<script type="text/javascript" src="js/charts.js"></script>
-<script type="text/javascript" src="js/chartmaker.js"></script>
--->
 
 </body>
 </html>
