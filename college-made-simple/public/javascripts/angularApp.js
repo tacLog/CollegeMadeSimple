@@ -21,12 +21,12 @@ app.factory('numbers', ['$http','auth', function($http, auth){
 		old: []
 	};
 
-	o.getAll = function(id) {
+	o.getAll = function(override) {
 		if(!auth.isLoggedIn()){
 			return this.getDef();
 		}
 		else{
-			if (this.default.numbers == undefined){
+			if (this.default.numbers == undefined || override){
 				return $http({
 					headers: {Authorization: 'Bearer '+auth.getToken()},
 					method:"GET",
@@ -80,6 +80,18 @@ app.factory('numbers', ['$http','auth', function($http, auth){
 		}).then(function successCallback(data){
 			//console.log('Returned from POST:numbers:');
 			//console.log(data);
+		}, function errorCallback(response){
+			console.log('This is the error recieved from POST:numbers');
+			console.log(response);
+		});
+	};
+
+	o.save = function(){
+		$http.post('/numbers', this.default, {
+			headers: {Authorization: 'Bearer '+auth.getToken()}
+		}).then(function successCallback(data){
+			console.log('SAVEER: Returned from POST:numbers:');
+			console.log(data);
 		}, function errorCallback(response){
 			console.log('This is the error recieved from POST:numbers');
 			console.log(response);
@@ -191,18 +203,30 @@ app.controller('AuthCtrl', [
 app.controller('NavCtrl', [
 	'$scope',
 	'$rootScope',
+	'$state',
 	'numbers',
 	'auth',
-	function($scope, $rootScope, numbers, auth){
+	function($scope, $rootScope, $state, numbers, auth){
 		$scope.isLoggedIn = auth.isLoggedIn;
 		$scope.currentUser = auth.currentUser;
 		$scope.logOut = auth.logOut;
-		$scope.version = 0;
+		$scope.version = -1;
 		$scope.revert = function(dirction){
-			$scope.version = $scope.version +1;
-			numbers.revert($scope.version);
-			console.log('we reverted to ' +$scope.version);
-			$rootScope.$emit('updateValues',{});
+			$scope.version = $scope.version +dirction;
+			if($scope.version > -1){
+				numbers.revert($scope.version);
+				console.log('we reverted to ' +$scope.version);
+				$state.reload();
+			}
+			else{
+				$scope.version = -1;
+			}
+		}
+		$scope.save = function(){
+			$scope.version=-1;
+			console.log('starting save');
+			numbers.save();
+			numbers.getAll(true);
 		}
 	}]);
 
@@ -434,7 +458,7 @@ app.config([
 			controller: 'SumController',
 			resolve: {
 				postPromise: ['numbers', function(numbers){
-					return numbers.getAll();
+					return numbers.getAll(false);
 				}]
 			}
 		});
@@ -449,7 +473,7 @@ app.config([
 					return $stateParams.editId;
 				}],
 				postPromise: ['numbers', function(numbers){
-					return numbers.getAll();
+					return numbers.getAll(false);
 				}]
 			}
 		});

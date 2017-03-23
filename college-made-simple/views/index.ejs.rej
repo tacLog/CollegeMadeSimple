@@ -1,0 +1,19 @@
+diff a/college-made-simple/views/index.ejs b/college-made-simple/views/index.ejs	(rejected hunks)
+@@ -28,13 +28,17 @@
+  <body ng-app="materializeApp">
+    <!--side nav-->
+    <nav class="blue lighten-2" role="navigation" ng-controller="NavCtrl">
+++<<<<<<< HEAD
+ +    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">College Made Simple Alpha 0.0.1</a>
+ +      <ul class="nav navbar-nav right">
+ +        <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+ +        <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+ +        <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
+ +        <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+ +      </ul>
+++=======
++     <div class="nav-wrapper container"><header><a id="logo-container" href="#" class="brand-logo">College Made Simple Alpha 0.0.1</a></header>
+++>>>>>>> db457f9... code works great
+        <div>
+          <ul id="slide-out" class="side-nav fixed">
+            <li>
