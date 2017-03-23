@@ -17,7 +17,7 @@ var app = angular.module('materializeApp', ['ui.materialize','ui.router','chart.
 
 app.factory('numbers', ['$http','auth', function($http, auth){
 	var o = {
-		default: [],
+		default: {},
 		old: []
 	};
 
@@ -26,27 +26,39 @@ app.factory('numbers', ['$http','auth', function($http, auth){
 			return this.getDef();
 		}
 		else{
-			return $http({
-				headers: {Authorization: 'Bearer '+auth.getToken()},
-				method:"GET",
-				url:'/numbers/'+auth.currentUser()
-			}).then(function successCallback(data){
-				console.log(data);
-				if (data.data.VID=="-1"){
-					//console.log(data);
-					angular.copy(data.data[0], o.default);
-					console.log('this should have worked')
-				}
-				else{
-					console.log('else condition of getAll');
-					console.log(data.data[0]);
-					angular.copy(data.data[0].numbers, o.default);
-				}
-			}, function errorCallback(response){
-				
-				console.log(response);
+			if (this.default.numbers == undefined){
+				return $http({
+					headers: {Authorization: 'Bearer '+auth.getToken()},
+					method:"GET",
+					url:'/numbers/user'
+				}).then(function successCallback(data){
+					console.log('data returned from get request');
+					console.log(data);
+					if (data.data.VID=="-1"){
+						//This doesn't work, it just overwrites because it is undefined
+						console.log('We are in error mode because we failed to get user data');
+						angular.copy(data.data, o.default);
+						console.log('patched in test data')
+						console.log('this is o right now:')
+						console.log(o);
+					}
+					else{
+						console.log('We found user data and here is');
+						console.log(data);
+						angular.copy(data.data[0], o.default);
+						data.data.splice(0,1)
+						angular.copy(data.data,o.old);
+						console.log('We added things to old, lenght: ' + o.old.length);
+					}
+				}, function errorCallback(response){
+					
+					console.log(response);
 
-			});
+				});
+			}
+			else{
+				console.log('we just skipped the get command');
+			}
 		}
 	};
 	o.getDef= function(){
@@ -58,29 +70,44 @@ app.factory('numbers', ['$http','auth', function($http, auth){
 				})
 	}
 
-	o.create = function(numbers) {
-		console.log('ok we are now posting:');
-		console.log(numbers);
-		$http.post('/numbers', numbers, {
+	o.create = function(updatedNumbers) {
+		console.log('ok we are now at numbers.create:');
+		console.log(this.default);
+		console.log('This is what we are posting');
+		console.log(updatedNumbers);
+		$http.post('/numbers', updatedNumbers, {
 			headers: {Authorization: 'Bearer '+auth.getToken()}
 		}).then(function successCallback(data){
-			console.log('Returned from post numbers: ');
-			console.log(data);
-			angular.copy(o.default, o.old);
-			angular.copy(data, o.default);
+			//console.log('Returned from POST:numbers:');
+			//console.log(data);
 		}, function errorCallback(response){
+			console.log('This is the error recieved from POST:numbers');
 			console.log(response);
 		});
 	};
 
-	o.update = function(section, id){
+	o.update = function(section, index){
+		var temp = {};
+		angular.copy(this.default, temp);
+		this.old.unshift(temp);
+		console.log('Updated old, New length of old: ' + o.old.length);
+		console.log('This is the numbers.default we are editing in numbers.update');
 		console.log(this.default);
-		this.default.numbers[id]= section;
+		//We are updated out numbers.default
+		this.default.numbers[index]= section;
 		this.default.VID = ((this.default.VID-0)+1);
+		//angular.copy(data.data[0], o.default);
 		if(auth.isLoggedIn()){
 			this.create(this.default);
 		}
-	}
+		else{
+			//it would be great to add a login script here 
+		}
+	};
+
+	o.revert = function(index){
+		angular.copy(this.old[index],this.default);
+	};
 
 	return o;
 }]);
@@ -163,15 +190,24 @@ app.controller('AuthCtrl', [
 
 app.controller('NavCtrl', [
 	'$scope',
+	'$rootScope',
+	'numbers',
 	'auth',
-	function($scope, auth){
+	function($scope, $rootScope, numbers, auth){
 		$scope.isLoggedIn = auth.isLoggedIn;
 		$scope.currentUser = auth.currentUser;
 		$scope.logOut = auth.logOut;
+		$scope.version = 0;
+		$scope.revert = function(dirction){
+			$scope.version = $scope.version +1;
+			numbers.revert($scope.version);
+			console.log('we reverted to ' +$scope.version);
+			$rootScope.$emit('updateValues',{});
+		}
 	}]);
 
 
-
+/*
 app.directive('googleSignInButton',function(){
 	return {
 		scope:{
@@ -197,37 +233,39 @@ app.directive('googleSignInButton',function(){
                     }]
                 };
             });
+*/
 
-
-app.controller('SumController', ['$scope', 
+app.controller('SumController', ['$scope','$rootScope',
 	'numbers',
-	function ($scope, numbers) {
-		$scope.test = 'Hello world';
+	function ($scope, $rootScope, numbers) {
+		//$scope.test = 'Hello world';
 		//load the numbers
 		$scope.numbers = numbers.default.numbers;
-		//console.log($scope.numbers);
+		//looking at things
+		console.log('what we see on the SumController');
+		console.log(numbers.default);
+		console.log($scope.numbers);
 		//load my helpers
 		$scope.helpers = MyHelpers.helpers;
 		//console.log($scope.numbers);
 		//testing
 		//console.log($scope.helpers.loadById($scope.numbers,"grants"));
-		
-		//labels for the graphs
-		$scope.lables = ["scholarships", "grants", "job", "parents", "other", "utilities", "other", "food", "rent", "tuition"];
+
+
+		//creating mre listener
+		$scope.$on('updateValues', function(event, args){
+			$scope.update();
+		});
+
+		//Defining empty vars
 		//graph for the in side
-		$scope.labelsIN = ["Scholarships", "Grants", "Job", "Parents", "Other"];
-		$scope.dataIN = [$scope.numbers[$scope.helpers.loadById($scope.numbers,"scholarships")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"grants")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"job")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"parents")].total,$scope.numbers[$scope.helpers.loadById($scope.numbers,"otherIn")].total];
+		$scope.labelsIN = [];
+		$scope.dataIN = [];
 		//graph for the out side
-		$scope.labelsOUT = ["Utilities", "Personal", "Food", "Rent", "Tuition", "Supplies", "Transportation"];
-		$scope.dataOUT = [
-		$scope.numbers[$scope.helpers.loadById($scope.numbers,"utilities")].total,
-		$scope.numbers[$scope.helpers.loadById($scope.numbers,"personal")].total,
-		$scope.numbers[$scope.helpers.loadById($scope.numbers,"food")].total,
-		$scope.numbers[$scope.helpers.loadById($scope.numbers,"rent")].total,
-		$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total,
-		$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total,
-		$scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total];
+		$scope.labelsOUT = [];
+		$scope.dataOUT = []
 		
+
 		//loading the sumary screen
 		//new way of loading the data:
 		$scope.dataIn =[];
@@ -238,73 +276,65 @@ app.controller('SumController', ['$scope',
 		$scope.totalOutY = 0;
 		$scope.totalOutU = 0;
 		$scope.totalOutM = 0;
-		for (var cat in $scope.numbers){
-			var obj = $scope.numbers[cat];
-			if (obj.id == "error"){
-				continue;
+		$scope.update = function(){
+				for (var cat in $scope.numbers){
+					var obj = $scope.numbers[cat];
+					if (obj.id == "error"){
+						continue;
+					}
+					//console.log(obj.type);
+					if (obj.type =="in") {
+						$scope.dataIn.push({
+							title: obj.id.charAt(0).toUpperCase() + obj.id.slice(1),
+							link: obj.id,
+							totalY: obj.totalYear,
+							totalU: obj.totalUnit,
+							totalM: obj.totalMonth
+						})
+						//update the graph
+						$scope.labelsIN.push(obj.id.charAt(0).toUpperCase() + obj.id.slice(1))
+						$scope.dataIN.push(obj.totalYear);
+						//totals
+						$scope.totalInY = $scope.totalInY + (obj.totalYear- 0);
+						$scope.totalInU = $scope.totalInU + (obj.totalUnit- 0);
+						$scope.totalInM = $scope.totalInM + (obj.totalMonth- 0);
+					}
+					if (obj.type =="out") {
+						$scope.dataOut.push({
+							title: obj.id.charAt(0).toUpperCase() + obj.id.slice(1),
+							link: obj.id,
+							totalY: obj.totalYear,
+							totalU: obj.totalUnit,
+							totalM: obj.totalMonth
+						})
+						//graph
+						$scope.labelsOUT.push(obj.id.charAt(0).toUpperCase() + obj.id.slice(1))
+						$scope.dataOUT.push(obj.totalYear);
+						//totals
+						$scope.totalOutY = $scope.totalOutY + (obj.totalYear- 0);
+						$scope.totalOutU = $scope.totalOutU + (obj.totalUnit- 0);
+						$scope.totalOutM = $scope.totalOutM + (obj.totalMonth- 0);
+					}
+				}
 			}
-			//console.log(obj.type);
-			if (obj.type =="in") {
-				$scope.dataIn.push({
-					title: obj.id.charAt(0).toUpperCase() + obj.id.slice(1),
-					link: obj.id,
-					totalY: obj.totalYear,
-					totalU: obj.totalUnit,
-					totalM: obj.totalMonth
-				})
-				$scope.totalInY = $scope.totalInY + (obj.totalYear- 0);
-				$scope.totalInU = $scope.totalInU + (obj.totalUnit- 0);
-				$scope.totalInM = $scope.totalInM + (obj.totalMonth- 0);
-			}
-			if (obj.type =="out") {
-				$scope.dataOut.push({
-					title: obj.id.charAt(0).toUpperCase() + obj.id.slice(1),
-					link: obj.id,
-					totalY: obj.totalYear,
-					totalU: obj.totalUnit,
-					totalM: obj.totalMonth
-				})
-				$scope.totalOutY = $scope.totalOutY + (obj.totalYear- 0);
-				$scope.totalOutU = $scope.totalOutU + (obj.totalUnit- 0);
-				$scope.totalOutM = $scope.totalOutM + (obj.totalMonth- 0);
-			}
+		//our error path
+		if($scope.numbers == undefined || $scope.numbers.length==0 ){
+			$scope.error = "We are sorry it seems we couldn't get a response from the server to load your data";
 		}
-
-		//console.log('scope.in:');
-		//console.log($scope.in);
-		/* Old way of loading shit
-		//in data
-		$scope.scholarships = $scope.numbers[$scope.helpers.loadById($scope.numbers,"scholarships")].total;
-		$scope.grants =$scope.numbers[$scope.helpers.loadById($scope.numbers,"grants")].total;
-		$scope.job = $scope.numbers[$scope.helpers.loadById($scope.numbers,"job")].total;
-		$scope.parents = $scope.numbers[$scope.helpers.loadById($scope.numbers,"parents")].total;
-		$scope.other = $scope.numbers[$scope.helpers.loadById($scope.numbers,"other")].total; 
-		$scope.totalIn = 
-		($scope.grants-0) 
-		+ ($scope.scholarships-0) 
-		+ ($scope.job-0)
-		+ ($scope.parents-0) 
-		+ ($scope.other-0);
-		//out data
-		$scope.tuition = $scope.numbers[$scope.helpers.loadById($scope.numbers,"tuition")].total;
-		$scope.personal =$scope.numbers[$scope.helpers.loadById($scope.numbers,"personal")].total;
-		$scope.supplies = $scope.numbers[$scope.helpers.loadById($scope.numbers,"supplies")].total;
-		$scope.rent = $scope.numbers[$scope.helpers.loadById($scope.numbers,"rent")].total;
-		$scope.transportation = $scope.numbers[$scope.helpers.loadById($scope.numbers,"transportation")].total; 
-		$scope.food = $scope.numbers[$scope.helpers.loadById($scope.numbers,"food")].total; 
-		$scope.personal = $scope.numbers[$scope.helpers.loadById($scope.numbers,"personal")].total;
-		$scope.totalOut = ($scope.tuition-0) + ($scope.supplies-0) + ($scope.rent-0)
-		+ ($scope.transportation-0) + ($scope.personal-0);
-		*/
-		//console.log($scope.numbers);
+		else{
+		$scope.update();
+		}
 		
+		
+
 	}]);
 
 app.controller('EditController', [
 	'$scope',
+	'$state',
 	'numbers',
 	'sourceId',
-	function ($scope, numbers, sourceId) {
+	function ($scope, $state, numbers, sourceId) {
 		//load my helpers
 		$scope.helpers = MyHelpers.helpers;
 		$scope.numbers = numbers.default.numbers;
@@ -352,9 +382,6 @@ app.controller('EditController', [
 				totalUnit = totalUnit + (obj.unit-0);
 				newFields.push(obj);
 			}
-			totalYear = totalYear.toString();
-			totalUnit = totalUnit.toString();
-			totalMonth = totalMonth.toString();
 			var temp = {
 				"id" : sourceId,
 				"totalYear":totalYear,
@@ -364,19 +391,34 @@ app.controller('EditController', [
 				"fields":newFields
 
 			};
-			console.log('This is what we are posting:')
+			console.log('This is what we are sending from EditController:')
 			console.log(temp);
 			numbers.update(temp,id);
 
 		}
 		$scope.addOne = function(){
 			$scope.subcat.push({
-				"year":"120",
-            "month":"10",
-            "unit":"40",
-            "title":"",
-            "order":$scope.subcat.length.toString
+				"year":120,
+				"month":10,
+				"unit":40,
+				"title":"",
+				"order":($scope.subcat.length-0)
 			})
+			//console.log('Testing addOne in edit');
+			//console.log($scope.subcat[$scope.subcat.length-1]);
+		}
+		$scope.removeOne = function(place){
+			console.log('We called removeOne on possition: '+place);
+			for (var cat in $scope.subcat){
+				var obj = $scope.subcat[cat];
+				if (obj.order > place){
+					obj.order = obj.order -1;
+				}
+			}
+			$scope.subcat.splice(place,1);
+		}
+		$scope.back = function(){
+			$state.go('home');
 		}
 	}]);
 

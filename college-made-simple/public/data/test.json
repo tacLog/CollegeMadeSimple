@@ -1,187 +1,187 @@
 
 {
     "author":"tester",
-    "VID":"-1",
+    "VID":-1,
     "numbers": [
         {"id" : "error",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"error",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
       {"id" : "scholarships",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"in",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
     {"id" : "other",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",        
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,        
         "type":"in",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
     {"id" : "grants",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"in",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
     {"id" : "parents",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"in",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
     {"id" : "job",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"in",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
     {"id" : "utilities",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"out",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
     },
     
     {"id" : "personal",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"out",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
     {"id" : "food",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"out",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
     {"id" : "rent",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"out",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
     {"id" : "tuition",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"out",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
      {"id" : "supplies",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"out",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     },
     {"id" : "transportation",
-        "totalYear":"50",
-        "totalUnit":"40",
-        "totalMonth":"10",
+        "totalYear":50,
+        "totalUnit":40,
+        "totalMonth":10,
         "type":"out",
         "fields":[{
-            "year":"120",
-            "month":"10",
-            "unit":"40",
+            "year":120,
+            "month":10,
+            "unit":40,
             "title":"Sample Title",
-            "order":"1"
+            "order":0
         }]
 
     }

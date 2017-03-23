@@ -8,8 +8,9 @@ var bodyParser = require('body-parser');
 
 //database setup
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 require('./models/Numbers');
-require('./models/User')
+require('./models/User');
 mongoose.connect('mongodb://localhost/testCollege');
 
 //passport setup?

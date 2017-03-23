@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-
+var adder = require('cloneextend');
 
 //set up our database
 var mongoose = require('mongoose');
@@ -32,29 +32,35 @@ router.param('id', function(req, res, next, id) {
     return next();
   });
 });
-*/
-router.get('/numbers/:id', auth, function(req, res, next) {
-	console.log('Starting reqest');
-	var id = req.params.id;
-	console.log(id);
-	var query = Numbers.find({'author': id}).sort({'_id':-1}).limit(1);
+*/ 
+router.get('/numbers/user', auth, function(req, res, next) {
+	//console.log('Starting reqest');
+	var id = req.payload.username;
+	//console.log(id);
+	var query = Numbers.find({'author': id}).sort({'_id':-1}).limit(10);
 
-  	query.exec(function (err, numbers){
+  	query.exec(function (err, results){
     if (err) { return next(err); }
-    if (!numbers) { return next(new Error('can\'t find numbers for user: '+id)); }
-
-    req.post = numbers;
-    if (numbers.length==0){
-      numbers = test;
+    if (!results) { return next(new Error('can\'t find results for user: '+id)); }
+    //console.log(results);
+    //console.log(results[0].numbers.length);
+    //req.post = results;
+    if (results[0].numbers.length==0){
+      results = test;
     }
-    res.json(numbers);
+    res.json(results);
   });
 });
 
 router.post('/numbers', auth, function(req, res, next) {
 	var numbers = new Numbers();
-  numbers.numbers = req.body;
+  //console.log(req.body);
+  adder.add(numbers.numbers,req.body.numbers);
+  numbers.VID = req.body.VID;
+  //numbers.numbers = req.body.numbers;
+  //console.log(numbers);
 	numbers.author = req.payload.username;
+  
 	numbers.save(function(err, numbers){
 		if(err){ 
       console.log('I found you');

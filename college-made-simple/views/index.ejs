@@ -29,12 +29,6 @@
   <!--side nav-->
   <nav class="blue lighten-2" role="navigation" ng-controller="NavCtrl">
     <div class="nav-wrapper container"><header><a id="logo-container" href="#" class="brand-logo">College Made Simple Alpha 0.0.1</a></header>
-      <ul class="nav navbar-nav">
-        <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
-        <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
-        <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
-        <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
-      </ul>
       <div>
         <ul id="slide-out" class="side-nav fixed">
           <li>
@@ -50,7 +44,7 @@
                 </div>
               </div>
             </a>
-            <a><span class="grey-text email">SamSlug@ucsc.edu</span></a>
+            <div ng-show="isLoggedIn()"><span>{{ currentUser() }}</span></div>
               <!--
               <div class="g-signin2" data-onsuccess="onSignIn"></div>
               <a href="#" onclick="signOut();">Sign out</a>
@@ -62,132 +56,178 @@
                   });
                 }
               </script>
-            -->
+            --><!--
             <google-sign-in-button button-id="signin" options="options"></google-sign-in-button>
-          </div></li>
-          <li><div class="divider"></div></li>
-          <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Link and Icon</a></li>
-          <li><a class="waves-effect" href="#!">Link 2</a></li>
-          <li><a class="waves-effect" href="#!">Link 3</a></li>
-        </ul>
-        <a href="#" data-activates="slide-out" class="button-collapse "><i class="material-icons black-text">menu</i></a>
-      </div>
+          -->
+        </div>
+      </li>
+      <li><div class="divider"></div></li>
+      <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+      <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+      <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
+      <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+      <li><button ng-click="revert(1)" class="btn blue lighten-2 waves-effect waves-light">Undo</button></li>
+      <li><a class="waves-effect" href="#!">Link 2</a></li>
+      <li><a class="waves-effect" href="#!">Link 3</a></li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse "><i class="material-icons black-text">menu</i></a>
+  </div>
+</div>
+</nav>
+<!--end side nav-->
+<main>
+  <div class="cointainer">
+    <div class="section">
+      <ui-view></ui-view>
     </div>
-  </nav>
-  <!--end side nav-->
-  <main>
-    <div class="cointainer">
-      <div class="section">
-        <ui-view></ui-view>
+  </div>
+
+
+
+  <script type="text/ng-template" id="/home.html">
+    <div class="row">
+      <div ng-show="error" class="alert alert-danger row">
+        <span>{{error}}</span>
+        <span>Please reload to try again</span>
       </div>
-    </div>
-
-
-
-    <script type="text/ng-template" id="/home.html">
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="card-panel grey darken-2">
-            <div class="center">
-              <span class="white-text"><font size=+3>Income</font></span>
-            </div>
-            <table class="white-text">
-              <thead>
-                <tr>
-                  <th data-field="id">Name</th>
-                  <th data-field="price">Month Total</th>
-                  <th data-field="price">Unit Total</th>
-                  <th data-field="price">Year Total</th>
-                  <th data-field="edit"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="post in dataIn">
-                  <td>{{post.title}}</td>
-                  <td>${{post.totalM}}</td>
-                  <td>${{post.totalU}}</td>
-                  <td>${{post.totalY}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/{{post.link}}">Edit</a></span></td>
-                </tr>
-              </tbody>
+      <div class="col s12 m6">
+        <div class="card-panel grey darken-2">
+          <div class="center">
+            <span class="white-text"><font size=+3>Income</font></span>
+          </div>
+          <table class="white-text">
+            <thead>
+              <tr>
+                <th data-field="id">Name</th>
+                <th data-field="price">Month Total</th>
+                <th data-field="price">Unit Total</th>
+                <th data-field="price">Year Total</th>
+                <th data-field="edit"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="post in dataIn">
+                <td>{{post.title}}</td>
+                <td>{{post.totalM |currency:'$':2}}</td>
+                <td>{{post.totalU |currency:'$':2}}</td>
+                <td>{{post.totalY |currency:'$':2}}</td>
+                <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/{{post.link}}">Edit</a></span></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Total:</td>
+                <td>{{totalInM |currency:'$':2}}</td>
+                <td>{{totalInU |currency:'$':2}}</td>
+                <td>{{totalInY |currency:'$':2}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="card-panel grey darken-2">
+          <div class="center">
+            <span class="white-text"><font size=+3>Cost</font></span>
+          </div>
+          <table class="white-text">
+            <thead>
+              <tr>
+                <th data-field="id">Name</th>
+                <th data-field="price">Month Total</th>
+                <th data-field="price">Unit Total</th>
+                <th data-field="price">Year Total</th>
+                <th data-field="edit"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="post in dataOut">
+                <td>{{post.title}}</td>
+                <td>{{post.totalM |currency:'$':2}}</td>
+                <td>{{post.totalU |currency:'$':2}}</td>
+                <td>{{post.totalY |currency:'$':2}}</td>
+                <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/{{post.link}}">Edit</a></span></td>
+              </tr>
+            </tbody>
+            <tbody>
               <tbody>
                 <tr>
                   <td>Total:</td>
-                  <td>${{totalInM}}</td>
-                  <td>${{totalInU}}</td>
-                  <td>${{totalInY}}</td>
+                  <td>${{totalOutM |currency:'$':2}}</td>
+                  <td>${{totalOutU |currency:'$':2}}</td>
+                  <td>${{totalOutY |currency:'$':2}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="col s12 m6">
+      </div>
+      <div class="row">
+        <div class="col s12 l4">
+          <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataIN"
+          chart-labels="labelsIN" chart-click="onClickIN">
+          </canvas>
+        </div>
+        <div class="col s12 m12 l4">
           <div class="card-panel grey darken-2">
             <div class="center">
-              <span class="white-text"><font size=+3>Cost</font></span>
-            </div>
-            <table class="white-text">
+              <table class="centered white-text">
               <thead>
-                <tr>
-                  <th data-field="id">Name</th>
-                  <th data-field="price">Month Total</th>
-                  <th data-field="price">Unit Total</th>
-                  <th data-field="price">Year Total</th>
-                  <th data-field="edit"></th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr ng-repeat="post in dataOut">
-                  <td>{{post.title}}</td>
-                   <td>${{post.totalM}}</td>
-                  <td>${{post.totalU}}</td>
-                  <td>${{post.totalY}}</td>
-                  <td class="lastCol"><span class="white-text"><a class="blue lighten-2 waves-effect waves-light btn" href="/#/edit/{{post.link}}">Edit</a></span></td>
-                </tr>
-              </tbody>
-              <tbody>
+                  <tr>
+                    <td></td>
+                    <td>Month</td>
+                    <td>Unit</td>
+                    <td>Year</td>
+                  </tr>
+                  <tr>
+                    <td>Income</td>
+                    <td>{{totalInM |currency:'$':2}}</td>
+                    <td>{{totalInU |currency:'$':2}}</td>
+                    <td>{{totalInY |currency:'$':2}}</td>
+                  </tr>
+                  <tr>
+                    <td>Costs</td>
+                    <td>{{totalOutM |currency:'$':2}}</td>
+                    <td>{{totalOutU |currency:'$':2}}</td>
+                    <td>{{totalOutY |currency:'$':2}}</td>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
-                  <td>Total:</td>
-                  <td>${{totalOutM}}</td>
-                  <td>${{totalOutU}}</td>
-                  <td>${{totalOutY}}</td>
-                </tr>
+                    <td>Net</td>
+                    <td>{{totalInM - totalOutM |currency:'$':2}}</td>
+                    <td>{{totalInU - totalOutU |currency:'$':2}}</td>
+                    <td>{{totalInY - totalOutY |currency:'$':2}}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col s12 m6">
-            <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataIN"
-            chart-labels="labelsIN" chart-click="onClickIN">
-          </canvas>
-        </div>
-        <div class="col s12 m6">
-          <canvas id="pie" class="chart chart-doughnut" chart-data="dataOUT"
-          chart-labels="labelsOUT" chart-click="onClickOUT">
-        </canvas>
-      </div>
+      <div class="col s12 l4">
+        <canvas id="pie" class="chart chart-doughnut" chart-data="dataOUT"
+        chart-labels="labelsOUT" chart-click="onClickOUT">
+      </canvas>
     </div>
+  </div>
 
 
-  </script>
+</script>
 
 
 
-  <script type="text/ng-template" id="/edit.html">
-    <div class="row">
-      <div class="col s12">
-        <div class="card-panel grey white-text darken-2">
-          <div class="center">
-            <span class="white-text"><font size=+3>{{title}}</font></span>
-          </div>
-          <!-- Edit Form Starts Here -->
-          <div class="row">
-            <form class="col s12">
-              <div class="row" ng-repeat="post in subcat">
-                <ng-form name="subcat">
+<script type="text/ng-template" id="/edit.html">
+  <div class="row">
+    <div class="col s12">
+      <div class="card-panel grey white-text darken-2">
+        <div class="center">
+          <span class="white-text"><font size=+3>{{title}}</font></span>
+        </div>
+        <!-- Edit Form Starts Here -->
+        <div class="row">
+          <form class="col s12">
+            <div class="row" ng-repeat="post in subcat">
+              <ng-form name="subcat">
                 <div class="input-field col s6">
                   <input ng-model="post.title" type="text" class="validate">
                   <label for="input1">Subcatagory Name</label>
@@ -204,67 +244,38 @@
                   <input ng-model="post.year" ng-change="changeYear(post)" type="text" class="validate">
                   <label for="input2">Per Year</label>
                 </div>
-                </ng-form>
-              </div>
-              <a ng-href="#/home">
-                <button ng-click="update()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Cancel
-                </button>
-              </a>
-              <button ng-click="addOne()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Add One
-                  <i class="material-icons right">send</i>
-                </button>
-              <a ng-href="#/home">
-                <button ng-click="update()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Save and Return
-                  <i class="material-icons right">send</i>
-                </button>
-              </a>
+                <div>
+                  <button ng-click="removeOne(post.order)" class="btn blue lighten-2 waves-effect waves-light">Remove</button>
+                </div>
+              </ng-form>
             </div>
+            <a ng-href="#/home">
+              <button ng-click="back()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Cancel
+              </button>
+            </a>
+            <button ng-click="addOne()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Add One
+              <i class="material-icons right">send</i>
+            </button>
+            <a ng-href="#/home">
+              <button ng-click="update()" class="btn blue lighten-2 waves-effect waves-light" type="submit" name="action">Save and Return
+                <i class="material-icons right">send</i>
+              </button>
+            </a>
           </div>
         </div>
       </div>
-    </script>
-
-    <script type="text/ng-template" id="/register.html">
-      <div class="page-header">
-        <h1>College Made Simple</h1>
-      </div>
-
-      <div ng-show="error" class="alert alert-danger row">
-        <span>{{ error.message }}</span>
-      </div>
-
-      <form ng-submit="register()"
-      style="margin-top:30px;">
-      <h3>Register</h3>
-
-      <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Username"
-        ng-model="user.username"></input>
-      </div>
-      <div class="form-group">
-        <input type="password"
-        class="form-control"
-        placeholder="Password"
-        ng-model="user.password"></input>
-      </div>
-      <button type="submit" class="btn btn-primary">Register</button>
-    </form>
+    </div>
   </script>
 
-  <script type="text/ng-template" id="/login.html">
-    <div class="page-header">
-      <h1>Flapper News</h1>
-    </div>
+  <script type="text/ng-template" id="/register.html">
 
     <div ng-show="error" class="alert alert-danger row">
       <span>{{ error.message }}</span>
     </div>
 
-    <form ng-submit="logIn()"
+    <form ng-submit="register()"
     style="margin-top:30px;">
-    <h3>Log In</h3>
+    <h3>Register</h3>
 
     <div class="form-group">
       <input type="text"
@@ -278,8 +289,34 @@
       placeholder="Password"
       ng-model="user.password"></input>
     </div>
-    <button type="submit" class="btn btn-primary">Log In</button>
+    <button type="submit" class="btn btn-primary">Register</button>
   </form>
+</script>
+
+<script type="text/ng-template" id="/login.html">
+
+  <div ng-show="error" class="alert alert-danger row">
+    <span>{{ error.message }}</span>
+  </div>
+
+  <form ng-submit="logIn()"
+  style="margin-top:30px;">
+  <h3>Log In</h3>
+
+  <div class="form-group">
+    <input type="text"
+    class="form-control"
+    placeholder="Username"
+    ng-model="user.username"></input>
+  </div>
+  <div class="form-group">
+    <input type="password"
+    class="form-control"
+    placeholder="Password"
+    ng-model="user.password"></input>
+  </div>
+  <button type="submit" class="btn btn-primary">Log In</button>
+</form>
 </script>
 </main>
 
