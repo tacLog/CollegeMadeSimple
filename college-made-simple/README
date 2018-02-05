@@ -1,0 +1,3 @@
+To run app, make sure to have a version of mongodb running then 
+bash:
+npm start
