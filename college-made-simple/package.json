@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "angular-chart.js": "^1.1.1",
+    "angularfire": "^2.3.0",
     "bcrypt-nodejs": "latest",
     "body-parser": "~1.16.0",
     "cloneextend": "0.0.3",
